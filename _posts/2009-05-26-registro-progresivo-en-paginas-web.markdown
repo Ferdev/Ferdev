@@ -1,0 +1,40 @@
+--- 
+wordpress_id: 7
+layout: post
+title: Registro progresivo en paginas web
+wordpress_url: http://www.ferdev.com/?p=7
+---
+Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.
+
+Comienzo hablando de un tema que en mi opinión es muy interesante (y útil), y que no he visto implementado en ningún sitio aún. De hecho aunque los habrá, yo no he visto ninguno. Se trata del registro progresivo de datos en formularios.
+
+¿En qué consiste? Es un patrón de desarrollo, por tanto es aplicable a cualquier tipo de tecnología web, no está atado a ningún framework o lenguaje. Va muy de la mano de la gestión de las cookies, y de un modelo de datos organizado y pensado desde un principio para soportar esta técnica. El objetivo principal de este patrón de desarrollo es evitar una de las barreras de entrada más colosales de cualquier sitio web: el registro de usuarios en un sistema para permitir la interacción del éstos con el mismo. ¿Cuantas veces hemos reculado al entrar a un sitio y ver que tenemos que registrarnos para realizar la acción más sencilla, como comprar en una tienda on-line? Estoy seguro que los sitios con esta barrera de entrada tienen una gran pérdida de usuarios (igual a dinero) por este motivo. Voy a tratar de describir en líneas generales el proceso a seguir para implementarlo y sus desventajas (que las tiene, claro).
+
+Básicamente, el proceso consiste en registrar en algún motor de persistencia (una base de datos en el mayor de los casos) los datos que un usuario no registrado va introduciendo en el mismo a lo largo del tiempo y sus sucesivas visitas. Es decir, un día un usuario entra a la web, introduce su dirección para una cosa, otro día vuelve a entrar e introduce su fecha de nacimiento, y así sucesivamente. La clave del patrón está en registrar esa información y tenerla disponible para el usuario para que, en caso de que algún día se decida a formalizar su registro en la web, ofrecerle toda esa información que el usuario ha ido acumulando en su interacción con el sitio. De este modo, el usuario llegado a ese punto, sólo tiene que introducir los datos obligatorios para realizar el registro (por ejemplo, email y contraseña) y automáticamente su perfil queda creado junto con los datos que el usuario fue introduciendo. Es una ventaja para la página web, porque cuenta con un conjunto de datos de los usuarios no registrados que de otra forma no tendría, y una ventaja para el usuario porque facilita enormemente su interacción con el sitio.
+
+Pero, todo hay que decirlo, esta técnica tiene sus inconvenientes, y parte de algunas premisas que no se pueden dar en todos los sistemas. En primer lugar, para poder hacer uso de esta técnica, el navegador del usuario que se conecta debe tener las cookies habilitadas. Sin esta primera condición es imposible montarlo. O mejor dicho, yo no sabría cómo hacerlo. Se podría hacer registrando la dirección IP del usuario que se conecta, pero teniendo en cuenta que en España la gran mayoría de los usuarios utilizan ADSL's con ip dinámica, no veo esta opción factible.  Por otro lado, el uso de cookies es la principal debilidad de esta técnica. Las cookies tienen una fecha de caducidad. E incluso antes de que se consuma esta fecha, el usuario puede perfectamente hacer una limpieza de sus cookies, con lo que perdemos el enlace del usuario con los datos que ha ido almacenando en el sitio. Y este problema nos lleva al siguiente: cuando un usuario borra o pierde su cookie del sitio web, y se nos quedan todos sus datos huérfanos, están ocupando un espacio valiosísimo en el motor de persistencia, que habrá que borrar de alguna manera.
+
+A pesar de los problemas, me parece una técnica muy interesante como para dejarla de lado. ¿Qué porcentaje de usuarios tiene las cookies desactivadas en su navegador? No sé cual es la estadística, pero estoy seguro que no es muy elevada. Además, ¿qué problema hay si el usuario no las tiene? Símplemente no podrá usar esta funcionalidad, y por otro lado tendríamos una gran cantidad de usuarios (los que sí tienen las cookies activadas) haciendo uso de ella. Se le podría aconsejar que las active llegados a ese punto si así lo creyesen necesario los desarrolladores. Y respecto al borrado de los datos huérfanos... Tampoco es problema llevar un registro de las cookies que llevan más tiempo sin usarse y hacer una limpieza de datos cada X tiempo. Cuestión de sopesar los pros y los contras.
+
+Entrando más en detalle de susodicha técnica, creo que lo mejor es poner un ejemplo que es como mejor se entienden las cosas. Pongamos como ídem una tienda de comercio electrónico, con su carrito de la compra y su formulario de registro final. Sin emplear este patrón, el proceso de compra para el usuario sería:
+
+1.  El usuario agrega un producto al carrito, y pulsa en "formalizar compra" para proceder a su pago.
+2.  El sitio web necesita saber a quién y a dónde enviar el producto, por lo que le muestra dos formularios (generalmente) según el caso:
+    1.  Formulario sin registro: el usuario introduce sus datos y su dirección ya que no está registrado, y así el sistema obtiene sus datos.
+    2.  Formulario con registro: el usuario ya está registrado en el sitio, introduce su usuario y password, y el sistema ya tiene sus datos para realizar la compra.
+3.  Ya con los datos del usuario, la web muestra el formulario de pago y la compra finaliza (el usuario a pesar de la crisis tiene mucha pasta, y finaliza la compra sin problemas:D).
+
+Ahora, empleando el nuevo patron:
+
+1.  Un usuario entra al sitio web. Se busca una cookie en la cual hemos guardado su identificador de usuario.
+    1.  Si no encontramos la cookie, creamos un usuario nuevo en la base de datos, vacío, pero con una clave primaria única. Con esta clave primaria única, creamos una nueva cookie y guardaremos este identificador en ella.
+    2.  Si encontramos la cookie, buscamos en la base de datos el identificador de usuario almacenado en la misma. De este modo hemos recuperado los datos de un usuario de la base de datos.
+2.  El usuario navega por la tienda, y decide añadir un producto al carrito. Luego le da a "formalizar compra" porque no quiere nada más, que está la vida muy cara.
+3.  Le presentamos el formulario de contacto al usuario, y aquí es donde entran en juego las bondades de esta técnica.
+    1.  El usuario es asiduo comprador de nuestra tienda, ha realizado otras compras y tenemos todos los datos que ha introducido anteriormente en la base de datos. Como hemos recuperado la instancia del usuario en el primer paso, se los mostramos por si quiere validarlos o corregir algo. Al usuario símplemente le queda introducir sus datos de pago si es necesario, y el proceso ha finalizado.
+    2.  El usuario no había comprado nunca, por lo que rellena los datos del formulario necesarios para poder realizar el pedido. Estos datos, se guardan en la base de datos contra el usuario que hemos recuperado en el paso uno. Si el usuario vuelve a entrar alguna vez a la tienda y su cookie sigue existiendo (lo más probable, en mi humilde opinión), podremos recuperar su identificador de usuario y mostrarle sus datos.
+4.  El usuario sin registrar vuelve al cabo de los dias, hace otra compra y decide registrarse en la tienda (para beneficiarse de unos vales de descuento disponibles sólo para usuarios registrados, por ejemplo). Nada más tendrá que introducir su email y contraseña (o los datos que sean necesarios para el registro) y quedará registrado.
+
+Quizá se pueda poner un ejemplo más correcto del uso de esta técnica, pero creo que la idea se capta. En mi opinión es para tenerla en consideración, y si además la complementamos con algún sistema de identificación como OAuth o Facebook Connect, creo que puede llegar a ser una herramienta muy poderosa.
+
+Más adelante escribiré un post sobre su implementación en una web desarrollada con Ruby on Rails.

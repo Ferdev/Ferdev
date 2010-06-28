@@ -1,0 +1,35 @@
+<p>Hola!</p>
+
+<p>Hace mucho que no escribo por aquí, no dispongo de demasiado tiempo&#8230; Como podéis ver, cuando saco unos minutos voy haciendo pruebas de diseño con el blog. Tengo intención de pasarlo a HTML5, usar CSS3 al máximo e intentar usar el menor número de imágenes posibles, a ver si lo consigo :D Bueno, al grano.</p>
+
+<p>Trabajando en un proyecto me surgió la necesidad una vez de conocer las dimensiones (alto y ancho) de unos objetos ocultos que luego estaba agregando a otros elementos del DOM de mi página. El problema es que por diversas razones, necesitaba conocer su tamaño antes de agregarlos al objeto DOM, y jQuery, aunque cuenta con unos maravillosos métodos para obtener el tamaño de cualquier objeto (tanto tamaño exterior, contando el ancho de los bordes y demás, como el tamaño interior del objeto, sin bordes ni nada). El problema, es que si el objeto está oculto (display: none), jQuery no puede calcular el tamaño y te devolverá cero.</p>
+
+<p>Hay una solución muy sencilla para esto. Agregas el objeto con el tamaño a calcular a una capa que tendremos posicionada en modo &#8220;absolute&#8221; y fuera de la vista del usuario (fuera del viewport del navegador), dándole una posición &#8220;left: -1000px&#8221; (por ejemplo). Así, el objeto no es necesario que esté oculto, jQuery podrá calcular sus dimensiones y no lo tendrás dentro del flujo de la página, por lo que no te descolocará nada.</p>
+
+<p>Aquí os dejo el código del plugin, tal y como lo vengo usando en mi proyecto. Espero que os sea útil!</p>
+
+<pre><code>;(function($){
+$.fn.objectSize = function(){
+
+    function calculateSize(domNode){
+        var divSizer = $(document.createElement(&quot;div&quot;))
+        .attr(&quot;id&quot;, &quot;sizer&quot;)
+        .css({           
+            width: &#39;100%&#39;,
+            height: &#39;100%&#39;,
+            position: &#39;absolute&#39;,
+            left: &#39;-10000px&#39; 
+        }).appendTo(&#39;body&#39;),
+        size = {width: 0, height: 0};
+    
+        divSizer.append(domNode);
+        size.width = parseInt(domNode.outerWidth());
+        size.height = parseInt(domNode.outerHeight());
+        divSizer.remove();
+        delete divSizer;
+        return size;
+    }
+
+    return calculateSize($(this[0]));
+};
+})(jQuery);</code></pre>
