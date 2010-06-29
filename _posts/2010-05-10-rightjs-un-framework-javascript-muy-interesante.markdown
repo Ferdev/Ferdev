@@ -1,18 +1,18 @@
 --- 
-wordpress_id: 99
 layout: post
 title: RightJS, un framework javascript muy interesante
-wordpress_url: http://www.ferdev.com/?p=99
+category: Development
+tags: [javascript, rightjs, frameworks]
 ---
-Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los m·s interesantes del momento. Quiz· no sea tan conocido como jQuery o MooTools, pero en mi opiniÛn merece estar tan arriba como ellos. Adem·s, ciertos elementos de su sintaxis resultar·n familiares a los rubistas. M·s adelante explicarÈ cuales.
+Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los m√°s interesantes del momento. Quiz√° no sea tan conocido como jQuery o MooTools, pero en mi opini√≥n merece estar tan arriba como ellos. Adem√°s, ciertos elementos de su sintaxis resultar√°n familiares a los rubistas. M√°s adelante explicar√© cuales.
 
-La mejor manera de hablar de [RightJS][1] es comentar sus caracterÌsticas principales:
+La mejor manera de hablar de [RightJS][1] es comentar sus caracter√≠sticas principales:
 
-*	Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costar· muy poco aprender RightJS.
+*	Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costar√° muy poco aprender RightJS.
 
-*	**Posiblemente**, el m·s r·pido de todos los frameworks JavaScript. DifÌcil de demostrar, pero [diversos tests][2] parecen corroborarlo. No sÈ si el m·s r·pido, pero desde luego es rapidÌsimo.
+*	**Posiblemente**, el m√°s r√°pido de todos los frameworks JavaScript. Dif√≠cil de demostrar, pero [diversos tests][2] parecen corroborarlo. No s√© si el m√°s r√°pido, pero desde luego es rapid√≠simo.
 
-*	Llamadas a funciones por nombre. Muchas veces tenemos el tÌpico callback para acceder a un mÈtodo del propio objeto. Con RightJS no necesitaremos dicho callback, sÌmplemente pasaremos el nombre de la funciÛn como string.
+*	Llamadas a funciones por nombre. Muchas veces tenemos el t√≠pico callback para acceder a un m√©todo del propio objeto. Con RightJS no necesitaremos dicho callback, s√≠mplemente pasaremos el nombre de la funci√≥n como string.
 
         // Modo habitual
         $('element').onClick(function() {
@@ -22,7 +22,7 @@ La mejor manera de hablar de [RightJS][1] es comentar sus caracterÌsticas princi
         // Usando llamadas por nombre
         $('element').onClick('hide');
 
-*	Soporte en navegadores m·s antiguos de la ˙ltima especificaciÛn JavaScript/ECMAScript. Por ejemplo:
+*	Soporte en navegadores m√°s antiguos de la √∫ltima especificaci√≥n JavaScript/ECMAScript. Por ejemplo:
 
     [**Array#filter**][3]:
 
@@ -58,7 +58,7 @@ La mejor manera de hablar de [RightJS][1] es comentar sus caracterÌsticas princi
 
     	' asdf '.trim(); // -> 'asdf'
 
-*	ExtensiÛn del core de JavaScript con algunos mÈtodos que sonar·n a muchos rubistas:
+*	Extensi√≥n del core de JavaScript con algunos m√©todos que sonar√°n a muchos rubistas:
 
     [**Array#compact**][6]:
 
@@ -73,18 +73,18 @@ La mejor manera de hablar de [RightJS][1] es comentar sus caracterÌsticas princi
     	'image.gif'.endsWith('.GIF');       // -> false
     	'image.gif'.endsWith('.GIF', true); // -> true
 	
-*	Manejo de n˙meros simplificado.
+*	Manejo de n√∫meros simplificado.
 
-    	// ConversiÛn de string a number
+    	// Conversi√≥n de string a number
     	'123'.toInt();   // -> 123
     	'1.3'.toFloat(); // -> 1.3
 
-    	// Manejo de n˙meros
+    	// Manejo de n√∫meros
     	1.4.floor(); // -> 1
     	1.4.ceil();  // -> 2
     	1.4.round(); // -> 1
 	
-*	Aunque JavaScript ya es un lenguaje orientado a objetos, la clase `Class` hace m·s sencilla la herencia, implementaciÛn de interfaces, etc.
+*	Aunque JavaScript ya es un lenguaje orientado a objetos, la clase `Class` hace m√°s sencilla la herencia, implementaci√≥n de interfaces, etc.
 
     	var Klass = new Class(AnotherClass, {
     	  include: Module1,
@@ -95,9 +95,9 @@ La mejor manera de hablar de [RightJS][1] es comentar sus caracterÌsticas princi
     	  }
     	});
 	
-*	Y tambiÈn: [envÌo][8] simplificado de formularios, uso de spinners autom·ticos en peticiones AJAX, manejo unificado de [eventos][9] y [opciones][10] de mÈtodos, arquitectura abierta, soporte para [plugins][11], y una [gema][12] para facilitar la integraciÛn con Rails (soporta Rails3).
+*	Y tambi√©n: [env√≠o][8] simplificado de formularios, uso de spinners autom√°ticos en peticiones AJAX, manejo unificado de [eventos][9] y [opciones][10] de m√©todos, arquitectura abierta, soporte para [plugins][11], y una [gema][12] para facilitar la integraci√≥n con Rails (soporta Rails3).
 
-Como vÈis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cÛmodo con la parte front (est· orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)
+Como v√©is, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy c√≥modo con la parte front (est√° orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)
 
 [1]: http://rightjs.org "The Right JavaScript Framework"
 [2]: http://rightjs.org/benchmarks

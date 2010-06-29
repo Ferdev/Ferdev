@@ -1,18 +1,18 @@
 --- 
-wordpress_id: 35
 layout: post
 title: Plugin jQuery para obtener dimensiones de un objeto
-wordpress_url: http://www.ferdev.com/?p=35
+category: Development
+tags: [javascript, jquery, plugins]
 ---
 Hola!
 
-Hace mucho que no escribo por aquÌ, no dispongo de demasiado tiempo... Como podÈis ver, cuando saco unos minutos voy haciendo pruebas de diseÒo con el blog. Tengo intenciÛn de pasarlo a HTML5, usar CSS3 al m·ximo e intentar usar el menor n˙mero de im·genes posibles, a ver si lo consigo :D Bueno, al grano.
+Hace mucho que no escribo por aqu√≠, no dispongo de demasiado tiempo... Como pod√©is ver, cuando saco unos minutos voy haciendo pruebas de dise√±o con el blog. Tengo intenci√≥n de pasarlo a HTML5, usar CSS3 al m√°ximo e intentar usar el menor n√∫mero de im√°genes posibles, a ver si lo consigo :D Bueno, al grano.
 
-Trabajando en un proyecto me surgiÛ la necesidad una vez de conocer las dimensiones (alto y ancho) de unos objetos ocultos que luego estaba agregando a otros elementos del DOM de mi p·gina. El problema es que por diversas razones, necesitaba conocer su tamaÒo antes de agregarlos al objeto DOM, y jQuery, aunque cuenta con unos maravillosos mÈtodos para obtener el tamaÒo de cualquier objeto (tanto tamaÒo exterior, contando el ancho de los bordes y dem·s, como el tamaÒo interior del objeto, sin bordes ni nada). El problema, es que si el objeto est· oculto (display: none), jQuery no puede calcular el tamaÒo y te devolver· cero. 
+Trabajando en un proyecto me surgi√≥ la necesidad una vez de conocer las dimensiones (alto y ancho) de unos objetos ocultos que luego estaba agregando a otros elementos del DOM de mi p√°gina. El problema es que por diversas razones, necesitaba conocer su tama√±o antes de agregarlos al objeto DOM, y jQuery, aunque cuenta con unos maravillosos m√©todos para obtener el tama√±o de cualquier objeto (tanto tama√±o exterior, contando el ancho de los bordes y dem√°s, como el tama√±o interior del objeto, sin bordes ni nada). El problema, es que si el objeto est√° oculto (display: none), jQuery no puede calcular el tama√±o y te devolver√° cero. 
 
-Hay una soluciÛn muy sencilla para esto. Agregas el objeto con el tamaÒo a calcular a una capa que tendremos posicionada en modo "absolute" y fuera de la vista del usuario (fuera del viewport del navegador), d·ndole una posiciÛn "left: -1000px" (por ejemplo). AsÌ, el objeto no es necesario que estÈ oculto, jQuery podr· calcular sus dimensiones y no lo tendr·s dentro del flujo de la p·gina, por lo que no te descolocar· nada.
+Hay una soluci√≥n muy sencilla para esto. Agregas el objeto con el tama√±o a calcular a una capa que tendremos posicionada en modo "absolute" y fuera de la vista del usuario (fuera del viewport del navegador), d√°ndole una posici√≥n "left: -1000px" (por ejemplo). As√≠, el objeto no es necesario que est√© oculto, jQuery podr√° calcular sus dimensiones y no lo tendr√°s dentro del flujo de la p√°gina, por lo que no te descolocar√° nada.
 
-AquÌ os dejo el cÛdigo del plugin, tal y como lo vengo usando en mi proyecto. Espero que os sea ˙til!
+Aqu√≠ os dejo el c√≥digo del plugin, tal y como lo vengo usando en mi proyecto. Espero que os sea √∫til!
 
     ;(function($){
     $.fn.objectSize = function(){

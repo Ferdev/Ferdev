@@ -1,21 +1,21 @@
 --- 
-wordpress_id: 25
 layout: post
 title: SWFUpload, Rails y los 406
-wordpress_url: http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406/
+category: Development
+tags: [rails, ruby on rails, ruby, flash, swfupload]
 ---
-En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.
+En una aplicaciÃ³n que tenÃ­a funcionando en Snow Leopard con SWFUpload para subir imÃ¡genes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvÃ­a un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se estÃ¡ respondiendo a una solicitud con un tipo MIME que no estÃ¡ soportado dentro de la cabecera ACCEPT que enviÃ³ el navegador. El servidor no sabe quÃ© hacer con la solicitud, y lanza ese error.
 
-Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo "text/*". Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.
+Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envÃ­a como Ãºnico tipo MIME en su cabecera ACCEPT el tipo "text/*". Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederÃ¡ lo mismo, no lo he probado.
 
-Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:
+Para solucionarlo, en primer lugar deberemos aÃ±adir un nuevo tipo MIME al environment.rb de nuestro proyecto:
 
 	Mime::Type.register "text/*", :all_text
 
-Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:
+Luego, en la acciÃ³n en la que estemos guardando la imagen, tenemos que aÃ±adir un nuevo manejador de este tipo de peticiones:
 
 	respond_to do |format|
-		format.all_text{ render :text =&gt; text_to_render }
+		format.all_text{ render :text => text_to_render }
 	end
 
-Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.
+Y eso es todo, con esto Internet Explorer 8 deberÃ­a estar recibiendo el resultado de la subida de una imagen con SWFUpload.

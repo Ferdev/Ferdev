@@ -1,0 +1,571 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Registro progresivo en paginas web</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />		
+	<meta name="description" content="I'm a freelance web developer, specialized in Ruby on Rails, jQuery, user interfaces and usability." />
+	<meta name="keywords" content="ruby on rails, jquery, usability, html, css, css2, css3, javascript" />
+	<link rel="canonical" href="http://www.ferdev.com/" />
+</head>
+<body>
+	<div id="page">		
+		<header>
+			<hgroup>
+		    <a class="logo" href="http://www.ferdev.com/" title="Home" rel="home">
+		        <img src="/images/logo.gif" alt="ferdev.com" width="59" height="59" />
+		    </a>
+				<a class="title" href="/" title="Home" rel="home">FerDev</a><br />
+				<span>Registro progresivo en paginas web</span>
+			</hgroup>			
+		</header>
+		<nav>
+			<ul id="menu">
+				<li class="page_item"><a href="/portfolio/" title="Portfolio">Portfolio</a></li>
+				<li class="page_item"><a href="/contact/" title="Contact">Contact</a></li>
+				<li class="page_item"><a href="/about/" title="About me">About me</a></li>
+			</ul>		
+		</nav>
+		<section>
+			
+			
+			<article>
+				<h1>
+				    <a href="/Development/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html">RightJS, un framework javascript muy interesante</a>
+				</h1>
+				<span class="date">
+					May 10, 2010 in <a rel="category tag" title="View all posts in Development" href="/category/Development/">Development</a>
+				</span>
+
+				Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.
+
+La mejor manera de hablar de [RightJS][1] es comentar sus características principales:
+
+*	Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costará muy poco aprender RightJS.
+
+*	**Posiblemente**, el más rápido de todos los frameworks JavaScript. Difícil de demostrar, pero [diversos tests][2] parecen corroborarlo. No sé si el más rápido, pero desde luego es rapidísimo.
+
+*	Llamadas a funciones por nombre. Muchas veces tenemos el típico callback para acceder a un método del propio objeto. Con RightJS no necesitaremos dicho callback, símplemente pasaremos el nombre de la función como string.
+
+        // Modo habitual
+        $('element').onClick(function() {
+          this.hide();
+        });
+
+        // Usando llamadas por nombre
+        $('element').onClick('hide');
+
+*	Soporte en navegadores más antiguos de la última especificación JavaScript/ECMAScript. Por ejemplo:
+
+    [**Array#filter**][3]:
+
+    	var strings = ['anny', 'manny', 'banny', 'bob'];
+
+    	strings.filter(function(string, i) {
+    	  return string.length > (i+1);
+    	});
+    	// -> ['anny', 'manny', 'banny'];
+
+    	strings.filter('match', /[a-z]ann/);
+    	// -> ['manny', 'banny']
+
+    [**Array#map**][4]:
+
+    	var strings = ['anny', 'banny', 'manny'];
+
+    	strings.map(function(string, i) {
+    	  return (i+1)+'. '+string;
+    	});
+
+    	// -> ['1. anny', '2. banny', '3. manny'];
+
+    	strings.map('capitalize');
+
+    	// -> ['Anny', 'Banny', 'Manny'];
+
+    	strings.map('replace', 'nn', 'b');
+
+    	// -> ['aby', 'baby', 'maby'];
+
+    [**String#trim**][5]:
+
+    	' asdf '.trim(); // -> 'asdf'
+
+*	Extensión del core de JavaScript con algunos métodos que sonarán a muchos rubistas:
+
+    [**Array#compact**][6]:
+
+    	[null, 0, undefined, 1, 2, 3, null].compact();
+
+    	// -> [0, 1, 2, 3];
+
+    [**String#endsWith**][7]:
+
+    	'image.gif'.endsWith('.gif');       // -> true
+
+    	'image.gif'.endsWith('.GIF');       // -> false
+    	'image.gif'.endsWith('.GIF', true); // -> true
+	
+*	Manejo de números simplificado.
+
+    	// Conversión de string a number
+    	'123'.toInt();   // -> 123
+    	'1.3'.toFloat(); // -> 1.3
+
+    	// Manejo de números
+    	1.4.floor(); // -> 1
+    	1.4.ceil();  // -> 2
+    	1.4.round(); // -> 1
+	
+*	Aunque JavaScript ya es un lenguaje orientado a objetos, la clase `Class` hace más sencilla la herencia, implementación de interfaces, etc.
+
+    	var Klass = new Class(AnotherClass, {
+    	  include: Module1,
+    	  extend:  Module2,
+
+    	  initialize: function() {
+    	    //....
+    	  }
+    	});
+	
+*	Y también: [envío][8] simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de [eventos][9] y [opciones][10] de métodos, arquitectura abierta, soporte para [plugins][11], y una [gema][12] para facilitar la integración con Rails (soporta Rails3).
+
+Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)
+
+[1]: http://rightjs.org "The Right JavaScript Framework"
+[2]: http://rightjs.org/benchmarks
+[3]: http://rightjs.org/docs/array#filter
+[4]: http://rightjs.org/docs/array#map
+[5]: http://rightjs.org/docs/string#trim
+[6]: http://rightjs.org/docs/array#compact
+[7]: http://rightjs.org/docs/string#endsWith
+[8]: http://rightjs.org/docs/form#send "Form#send"
+[9]: http://rightjs.org/tutorials/uniformed-events-handling
+[10]: http://rightjs.org/tutorials/uniformed-options-handling
+[11]: http://rightjs.org/plugins
+[12]: http://github.com/MadRabbit/right-rails
+
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/javascript/">javascript</a>&nbsp; <a rel="tag" href="/tag/rightjs/">rightjs</a>&nbsp; <a rel="tag" href="/tag/frameworks/">frameworks</a>&nbsp;
+			</article>
+			
+			
+			
+			<article>
+				<h1>
+				    <a href="/Ferdev/2010/03/23/rediseno-del-blog-y-freelanceo.html">Rediseño del blog y freelanceo</a>
+				</h1>
+				<span class="date">
+					Mar 23, 2010 in <a rel="category tag" title="View all posts in Ferdev" href="/category/Ferdev/">Ferdev</a>
+				</span>
+
+				La semana pasada he estado dándole un pequeño rediseño al blog. El diseño que había era el resultante de haber hecho unas cuantas pruebas, y al final por falta de tiempo no había podido cambiarlo. Quería algo minimalista, con buena legibilidad, y con el menor número de imágenes posible. 
+
+De hecho, la única imagen es el nuevo logo (a excepción de los iconos de social media, que son de [Komodo Media][1]). Y he creado un logo porque me embarco en la aventura del desarrollo freelance, y éste será mi nueva identidad visual. Últimamente estoy viendo mucha gente que se dedica a ello y me he decidido a dar el salto. Así que si alguien necesita un desarrollador Ruby on Rails, javascript, php, java o .NET, aquí me tenéis!
+
+[1]: http://www.komodomedia.com/ "Komodo Media"
+
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/redesign/">redesign</a>&nbsp; <a rel="tag" href="/tag/freelance/">freelance</a>&nbsp;
+			</article>
+			
+			
+			
+			<article>
+				<h1>
+				    <a href="/Testing/2010/03/10/testing-ajaxupload-con-capybara-culerity.html">Testing AjaxUpload con Capybara + Culerity</a>
+				</h1>
+				<span class="date">
+					Mar 10, 2010 in <a rel="category tag" title="View all posts in Testing" href="/category/Testing/">Testing</a>
+				</span>
+
+				Llevo unos días probando [Capybara][] después de los comentarios tan buenos que había escuchado de él en [twitter][] últimamente, especialmente de su integración con [Culerity][]. Los hados además trataban de decirme algo porque la última [charla][] de [madridrb][] que dio [@porras][] versaba sobre esto mismo (y [Steak][], que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.
+
+Los primeros vinieron con la instalación. Culerity es un recubrimiento (que poco me gusta esta palabra) de [Celerity][], que a su vez es otro recubrimiento de [HtmlUnit][], un navegador web sin interfaz gráfico programado en Java. Y debido a esto, necesitas Jruby para instalar la gema de Celerity. Pues bien, rvm y todo este tinglado no se llevan demasiado bien. Y aunque hay un [hack][] para salir al paso, a mi no me valía del todo (a parte que no me gustaba mucho que digamos) porque yo no estaba usando Cucumber sino Steak (requisito para que funcione el Hack). Al final conseguí hacerlo funcionar instalando Jruby mediante Macports. No sé si me dará problemas en el futuro, pero hasta que Culerity y rvm se lleven mejor, me gusta más esta solución que andar cambiando variables de entorno en cada test.
+
+La aplicación con la que estaba haciendo las pruebas tiene una carga de javascript muy alta, y los primeros problemas que me dieron los tests lo achacaba a esto. "Demasiado javascript", pensaba para mis adentros cuando al testear una petición ajax me daba un error con la respuesta en formato JSON. Dándole vueltas y más vueltas, a punto de desinstalarlo todo porque no conseguía solucionarlo, di con la solución no recuerdo muy bien dónde: la última versión de Celerity (0.7.9) usaba una versión de HtmlUnit con algunos bugs, y recomendaban instalar la versión **0.7.4**. Pues mano de santo oiga :-)
+
+Y llegamos al quid de la cuestión: probar [AjaxUpload][] con Capybara + Culerity. Me ha costado un par de días hacerlo funcionar, y en realidad ha sido una tontería. No hacía falta más que detenerse un poco a pensar como funciona AjaxUpload por dentro.
+
+AjaxUpload es un hack para simular una subida asíncrona de un archivo al servidor de nuestra página web. Para ello, se vale de los siguientes pasos:
+
+1.	Se asocia al elemento de la página web que tú hayas definido (un enlace o un botón, por ejemplo).
+2.	Cuando se dispara el evento "mouseover" sobre ese elemento, crea un div transparente de las mismas dimensiones que el elemento y lo sitúa por encima de él. Cuando el usuario intente pulsar el elemento, será este div en realidad el que se vea pulsado.
+3.	Cuando el usuario hace click en el div, se genera el elemento input file y se abre el diálogo de selección de archivo.
+4.	En cuanto el usuario selecciona el fichero, AjaxUpload crea un formulario, le agrega el input file del paso anterior, y crea un iframe. Este iframe, será el "target" del formulario recien creado.
+5.	AjaxUpload envía el formulario (que hará la subida del fichero a través del iframe) y fin del proceso.
+	
+Mi problema venía con el diálogo de selección. No veía cómo conseguir seleccionar el archivo y pulsar el botón "Aceptar" del diálogo de selección. Sabía que la clase *Celerity::FileField* contaba con el método *Set*, con el que podía pasarle la ruta de un archivo... Pero no sé por qué me dio por pensar que si el diálogo estaba abierto, no funcionaría. Hasta que lo probé, y me di cuenta que Celerity establece la ruta del archivo y cierra la ventana de diálogo él solito. Así que, problema resuelto.
+
+Aquí va un pequeño trozo de código de como quedaría montado. He sacado los selectores principales a variables para que se entienda mejor. Ah! También decir que yo tengo configurado Capybara para que por defecto use selectores css :-)
+
+
+	# selector del botón asociado a AjaxUpload
+	button_selector = 'button#upload'
+	# selector del div que contendrá al input file. Se posicionará justo encima de button_selector
+	div_selector = 'div.ajaxupload_container'
+	# selector del input file
+	input_selector = 'div.ajaxupload_container input.ajaxupload'
+	# ruta al archivo a subir
+	file_path = 'image.jpg'
+	
+	# Simulamos el evento 'mouseover' sobre el botón original asociado a AjaxUpload
+	find(button_selector).trigger(:mouseover)
+	
+	# Comprobamos que se haya creado el div de AjaxUpload
+	page.should have_css(div_selector)
+	
+	# Hacemos click en el div para disparar la creación del input file
+	find(div_selector).click
+	
+	# El input file debería haberse creado
+	page.should have_css(input_selector)
+	
+	# Le pasamos la ruta de archivo al input file
+	find(input_selector).set(file_path)
+
+Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.	
+
+[capybara]: http://github.com/jnicklas/capybara
+[twitter]: http://twitter.com/albertoperdomo/status/9643469318
+[culerity]: http://github.com/langalex/culerity
+[charla]: http://github.com/porras/madrid-rb-feb-2010
+[madridrb]: http://twitter.com/madridrb
+[@porras]: http://twitter.com/porras
+[steak]: http://github.com/cavalle/steak
+[celerity]: http://github.com/jarib/celerity
+[htmlunit]: http://htmlunit.sourceforge.net/
+[hack]: http://rvm.beginrescueend.com/integration/culerty/
+[ajaxupload]: http://valums.com/ajax-upload/
+
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/rails/">rails</a>&nbsp; <a rel="tag" href="/tag/ruby on rails/">ruby on rails</a>&nbsp; <a rel="tag" href="/tag/ruby/">ruby</a>&nbsp; <a rel="tag" href="/tag/capybara/">capybara</a>&nbsp; <a rel="tag" href="/tag/culerity/">culerity</a>&nbsp; <a rel="tag" href="/tag/testing/">testing</a>&nbsp; <a rel="tag" href="/tag/ajaxupload/">ajaxupload</a>&nbsp;
+			</article>
+			
+			
+			
+			<article>
+				<h1>
+				    <a href="/Development/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto.html">Plugin jQuery para obtener dimensiones de un objeto</a>
+				</h1>
+				<span class="date">
+					Oct 31, 2009 in <a rel="category tag" title="View all posts in Development" href="/category/Development/">Development</a>
+				</span>
+
+				Hola!
+
+Hace mucho que no escribo por aquí, no dispongo de demasiado tiempo... Como podéis ver, cuando saco unos minutos voy haciendo pruebas de diseño con el blog. Tengo intención de pasarlo a HTML5, usar CSS3 al máximo e intentar usar el menor número de imágenes posibles, a ver si lo consigo :D Bueno, al grano.
+
+Trabajando en un proyecto me surgió la necesidad una vez de conocer las dimensiones (alto y ancho) de unos objetos ocultos que luego estaba agregando a otros elementos del DOM de mi página. El problema es que por diversas razones, necesitaba conocer su tamaño antes de agregarlos al objeto DOM, y jQuery, aunque cuenta con unos maravillosos métodos para obtener el tamaño de cualquier objeto (tanto tamaño exterior, contando el ancho de los bordes y demás, como el tamaño interior del objeto, sin bordes ni nada). El problema, es que si el objeto está oculto (display: none), jQuery no puede calcular el tamaño y te devolverá cero. 
+
+Hay una solución muy sencilla para esto. Agregas el objeto con el tamaño a calcular a una capa que tendremos posicionada en modo "absolute" y fuera de la vista del usuario (fuera del viewport del navegador), dándole una posición "left: -1000px" (por ejemplo). Así, el objeto no es necesario que esté oculto, jQuery podrá calcular sus dimensiones y no lo tendrás dentro del flujo de la página, por lo que no te descolocará nada.
+
+Aquí os dejo el código del plugin, tal y como lo vengo usando en mi proyecto. Espero que os sea útil!
+
+    ;(function($){
+    $.fn.objectSize = function(){
+    
+        function calculateSize(domNode){
+            var divSizer = $(document.createElement("div"))
+            .attr("id", "sizer")
+            .css({           
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                left: '-10000px' 
+            }).appendTo('body'),
+            size = {width: 0, height: 0};
+        
+            divSizer.append(domNode);
+            size.width = parseInt(domNode.outerWidth());
+            size.height = parseInt(domNode.outerHeight());
+            divSizer.remove();
+            delete divSizer;
+            return size;
+        }
+    
+        return calculateSize($(this[0]));
+    };
+    })(jQuery);
+
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/javascript/">javascript</a>&nbsp; <a rel="tag" href="/tag/jquery/">jquery</a>&nbsp; <a rel="tag" href="/tag/plugins/">plugins</a>&nbsp;
+			</article>
+			
+			
+			
+			<article>
+				<h1>
+				    <a href="/Development/2009/10/06/swfupload-rails-y-los-406.html">SWFUpload, Rails y los 406</a>
+				</h1>
+				<span class="date">
+					Oct 06, 2009 in <a rel="category tag" title="View all posts in Development" href="/category/Development/">Development</a>
+				</span>
+
+				En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.
+
+Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo "text/*". Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.
+
+Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:
+
+	Mime::Type.register "text/*", :all_text
+
+Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:
+
+	respond_to do |format|
+		format.all_text{ render :text => text_to_render }
+	end
+
+Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.
+
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/rails/">rails</a>&nbsp; <a rel="tag" href="/tag/ruby on rails/">ruby on rails</a>&nbsp; <a rel="tag" href="/tag/ruby/">ruby</a>&nbsp; <a rel="tag" href="/tag/flash/">flash</a>&nbsp; <a rel="tag" href="/tag/swfupload/">swfupload</a>&nbsp;
+			</article>
+			
+			
+			
+			<article>
+				<h1>
+				    <a href="/Development/2009/05/26/registro-progresivo-en-paginas-web.html">Registro progresivo en paginas web</a>
+				</h1>
+				<span class="date">
+					May 26, 2009 in <a rel="category tag" title="View all posts in Development" href="/category/Development/">Development</a>
+				</span>
+
+				<p>Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.</p>
+
+<p>Comienzo hablando de un tema que en mi opinión es muy interesante (y útil), y que no he visto implementado en ningún sitio aún. De hecho aunque los habrá, yo no he visto ninguno. Se trata del registro progresivo de datos en formularios.</p>
+
+<p>¿En qué consiste? Es un patrón de desarrollo, por tanto es aplicable a cualquier tipo de tecnología web, no está atado a ningún framework o lenguaje. Va muy de la mano de la gestión de las cookies, y de un modelo de datos organizado y pensado desde un principio para soportar esta técnica. El objetivo principal de este patrón de desarrollo es evitar una de las barreras de entrada más colosales de cualquier sitio web: el registro de usuarios en un sistema para permitir la interacción del éstos con el mismo. ¿Cuantas veces hemos reculado al entrar a un sitio y ver que tenemos que registrarnos para realizar la acción más sencilla, como comprar en una tienda on-line? Estoy seguro que los sitios con esta barrera de entrada tienen una gran pérdida de usuarios (igual a dinero) por este motivo. Voy a tratar de describir en líneas generales el proceso a seguir para implementarlo y sus desventajas (que las tiene, claro).</p>
+
+<p>Básicamente, el proceso consiste en registrar en algún motor de persistencia (una base de datos en el mayor de los casos) los datos que un usuario no registrado va introduciendo en el mismo a lo largo del tiempo y sus sucesivas visitas. Es decir, un día un usuario entra a la web, introduce su dirección para una cosa, otro día vuelve a entrar e introduce su fecha de nacimiento, y así sucesivamente. La clave del patrón está en registrar esa información y tenerla disponible para el usuario para que, en caso de que algún día se decida a formalizar su registro en la web, ofrecerle toda esa información que el usuario ha ido acumulando en su interacción con el sitio. De este modo, el usuario llegado a ese punto, sólo tiene que introducir los datos obligatorios para realizar el registro (por ejemplo, email y contraseña) y automáticamente su perfil queda creado junto con los datos que el usuario fue introduciendo. Es una ventaja para la página web, porque cuenta con un conjunto de datos de los usuarios no registrados que de otra forma no tendría, y una ventaja para el usuario porque facilita enormemente su interacción con el sitio.</p>
+
+<p>Pero, todo hay que decirlo, esta técnica tiene sus inconvenientes, y parte de algunas premisas que no se pueden dar en todos los sistemas. En primer lugar, para poder hacer uso de esta técnica, el navegador del usuario que se conecta debe tener las cookies habilitadas. Sin esta primera condición es imposible montarlo. O mejor dicho, yo no sabría cómo hacerlo. Se podría hacer registrando la dirección IP del usuario que se conecta, pero teniendo en cuenta que en España la gran mayoría de los usuarios utilizan ADSL&#8217;s con ip dinámica, no veo esta opción factible.  Por otro lado, el uso de cookies es la principal debilidad de esta técnica. Las cookies tienen una fecha de caducidad. E incluso antes de que se consuma esta fecha, el usuario puede perfectamente hacer una limpieza de sus cookies, con lo que perdemos el enlace del usuario con los datos que ha ido almacenando en el sitio. Y este problema nos lleva al siguiente: cuando un usuario borra o pierde su cookie del sitio web, y se nos quedan todos sus datos huérfanos, están ocupando un espacio valiosísimo en el motor de persistencia, que habrá que borrar de alguna manera.</p>
+
+<p>A pesar de los problemas, me parece una técnica muy interesante como para dejarla de lado. ¿Qué porcentaje de usuarios tiene las cookies desactivadas en su navegador? No sé cual es la estadística, pero estoy seguro que no es muy elevada. Además, ¿qué problema hay si el usuario no las tiene? Símplemente no podrá usar esta funcionalidad, y por otro lado tendríamos una gran cantidad de usuarios (los que sí tienen las cookies activadas) haciendo uso de ella. Se le podría aconsejar que las active llegados a ese punto si así lo creyesen necesario los desarrolladores. Y respecto al borrado de los datos huérfanos&#8230; Tampoco es problema llevar un registro de las cookies que llevan más tiempo sin usarse y hacer una limpieza de datos cada X tiempo. Cuestión de sopesar los pros y los contras.</p>
+
+<p>Entrando más en detalle de susodicha técnica, creo que lo mejor es poner un ejemplo que es como mejor se entienden las cosas. Pongamos como ídem una tienda de comercio electrónico, con su carrito de la compra y su formulario de registro final. Sin emplear este patrón, el proceso de compra para el usuario sería:</p>
+
+<ol>
+<li>
+<p>El usuario agrega un producto al carrito, y pulsa en &#8220;formalizar compra&#8221; para proceder a su pago.</p>
+</li>
+
+<li>
+<p>El sitio web necesita saber a quién y a dónde enviar el producto, por lo que le muestra dos formularios (generalmente) según el caso:</p>
+
+<ol>
+<li>Formulario sin registro: el usuario introduce sus datos y su dirección ya que no está registrado, y así el sistema obtiene sus datos.</li>
+
+<li>Formulario con registro: el usuario ya está registrado en el sitio, introduce su usuario y password, y el sistema ya tiene sus datos para realizar la compra.</li>
+</ol>
+</li>
+
+<li>
+<p>Ya con los datos del usuario, la web muestra el formulario de pago y la compra finaliza (el usuario a pesar de la crisis tiene mucha pasta, y finaliza la compra sin problemas:D).</p>
+</li>
+</ol>
+
+<p>Ahora, empleando el nuevo patron:</p>
+
+<ol>
+<li>
+<p>Un usuario entra al sitio web. Se busca una cookie en la cual hemos guardado su identificador de usuario.</p>
+
+<ol>
+<li>Si no encontramos la cookie, creamos un usuario nuevo en la base de datos, vacío, pero con una clave primaria única. Con esta clave primaria única, creamos una nueva cookie y guardaremos este identificador en ella.</li>
+
+<li>Si encontramos la cookie, buscamos en la base de datos el identificador de usuario almacenado en la misma. De este modo hemos recuperado los datos de un usuario de la base de datos.</li>
+</ol>
+</li>
+
+<li>
+<p>El usuario navega por la tienda, y decide añadir un producto al carrito. Luego le da a &#8220;formalizar compra&#8221; porque no quiere nada más, que está la vida muy cara.</p>
+</li>
+
+<li>
+<p>Le presentamos el formulario de contacto al usuario, y aquí es donde entran en juego las bondades de esta técnica.</p>
+
+<ol>
+<li>El usuario es asiduo comprador de nuestra tienda, ha realizado otras compras y tenemos todos los datos que ha introducido anteriormente en la base de datos. Como hemos recuperado la instancia del usuario en el primer paso, se los mostramos por si quiere validarlos o corregir algo. Al usuario símplemente le queda introducir sus datos de pago si es necesario, y el proceso ha finalizado.</li>
+
+<li>El usuario no había comprado nunca, por lo que rellena los datos del formulario necesarios para poder realizar el pedido. Estos datos, se guardan en la base de datos contra el usuario que hemos recuperado en el paso uno. Si el usuario vuelve a entrar alguna vez a la tienda y su cookie sigue existiendo (lo más probable, en mi humilde opinión), podremos recuperar su identificador de usuario y mostrarle sus datos.</li>
+</ol>
+</li>
+
+<li>
+<p>El usuario sin registrar vuelve al cabo de los dias, hace otra compra y decide registrarse en la tienda (para beneficiarse de unos vales de descuento disponibles sólo para usuarios registrados, por ejemplo). Nada más tendrá que introducir su email y contraseña (o los datos que sean necesarios para el registro) y quedará registrado.</p>
+</li>
+</ol>
+
+<p>Quizá se pueda poner un ejemplo más correcto del uso de esta técnica, pero creo que la idea se capta. En mi opinión es para tenerla en consideración, y si además la complementamos con algún sistema de identificación como OAuth o Facebook Connect, creo que puede llegar a ser una herramienta muy poderosa.</p>
+
+<p>Más adelante escribiré un post sobre su implementación en una web desarrollada con Ruby on Rails.</p>
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/patterns/">patterns</a>&nbsp;
+			</article>
+			
+			
+			
+			<article>
+				<h1>
+				    <a href="/Ferdev/2009/05/08/paso-1-wordpress-instalado.html">Paso 1: wordpress instalado</a>
+				</h1>
+				<span class="date">
+					May 08, 2009 in <a rel="category tag" title="View all posts in Ferdev" href="/category/Ferdev/">Ferdev</a>
+				</span>
+
+				<p>Empiezo las andanzas en el mundo &#8220;blogueril&#8221; personal. Me llamo Fer, y en este blog intentaré transmitir lo mejor que pueda los conocimientos que he ido adquiriendo a lo largo de mi vida en el mundo del desarrollo de software (y un poquito de diseño también, pero poco, que no es lo mío).</p>
+
+<p>Como primer paso he conseguido un dominio, un servidor y la última versión de <a href='http://wordpress.org/' title='wordpress'>wordpress 2.7.1</a>.</p>
+
+<p>Poco a poco, iré implementando mi propio tema de wordpress. Para ello, parto de la base del tema <a href='http://carringtontheme.com/' title='Carrington Jam'>Carrington Jam</a>, tema especialmente pensado para modificarlo a gusto del consumidor. Para realizar este tema, principalmente utilizaré el framework javascript <a href='http://www.jquery.com/' title='jQuery 1.3.2.'>jQuery 1.3.2</a>, mi favorito de entre todos los actuales.</p>
+
+<p>Falta algún plugin, publicidad para sobrellevar la crisis, añadir mi cuenta de twitter&#8230; Poco a poco iré actualizando.</p>
+
+<p>Bienvenidos :-)</p>
+
+				<div class="sociable">
+					<ul>
+						<li class="sociablefirst"><span class="hkmuob_noscript" id="hkmuob-id-116"><a title="Digg" rel="nofollow" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;bodytext=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Digg" title="Digg" src="/wp-content/img/icons/social/digg.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-6386"><a title="del.icio.us" rel="nofollow" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;notes=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="del.icio.us" title="del.icio.us" src="/wp-content/img/icons/social/delicious.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7473"><a title="Facebook" rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Facebook" title="Facebook" src="/wp-content/img/icons/social/facebook.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9138"><a title="Google Bookmarks" rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;annotation=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Google Bookmarks" title="Google Bookmarks" src="/wp-content/img/icons/social/googlebookmark.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-7991"><a title="Posterous" rel="nofollow" href="http://posterous.com/share?linkto=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;selection=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Posterous" title="Posterous" src="/wp-content/img/icons/social/posterous.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4267"><a title="Reddit" rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="Reddit" title="Reddit" src="/wp-content/img/icons/social/reddit.png"></a></span></li>
+						<li><a title="RSS" rel="nofollow" href="http://www.ferdev.com/feed/"><img class="sociable-hovers" alt="RSS" title="RSS" src="/wp-content/img/icons/social/rss.png"></a></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-2534"><a title="StumbleUpon" rel="nofollow" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado"><img class="sociable-hovers" alt="StumbleUpon" title="StumbleUpon" src="/wp-content/img/icons/social/stumbleupon.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-4586"><a title="Tumblr" rel="nofollow" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;t=Paso%201%3A%20wordpress%20instalado&amp;s=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="Tumblr" title="Tumblr" src="/wp-content/img/icons/social/tumblr.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8082"><a title="Twitter" rel="nofollow" href="http://twitter.com/home?status=Paso%201%3A%20wordpress%20instalado%20-%20http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="Twitter" title="Twitter" src="/wp-content/img/icons/social/twitter.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-9667"><a title="email" rel="nofollow" href="mailto:?subject=Paso%201%3A%20wordpress%20instalado&amp;body=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="email" title="email" src="/wp-content/img/icons/social/email_link.png"></a></span></li>
+						<li><span class="hkmuob_noscript" id="hkmuob-id-8688"><a title="FriendFeed" rel="nofollow" href="http://www.friendfeed.com/share?title=Paso%201%3A%20wordpress%20instalado&amp;link=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F"><img class="sociable-hovers" alt="FriendFeed" title="FriendFeed" src="/wp-content/img/icons/social/friendfeed.png"></a></span></li>
+						<li class="sociablelast"><span class="hkmuob_noscript" id="hkmuob-id-4107"><a title="LinkedIn" rel="nofollow" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ferdev.com%2F2009%2F05%2F08%2Fpaso-1-wordpress-instalado%2F&amp;title=Paso%201%3A%20wordpress%20instalado&amp;source=FerDev+Freelance+Ruby+on+Rails+developer&amp;summary=Empiezo%20las%20andanzas%20en%20el%20mundo%20%22blogueril%22%20personal.%20Me%20llamo%20Fer%2C%20y%20en%20este%20blog%20intentar%C3%A9%20transmitir%20lo%20mejor%20que%20pueda%20los%20conocimientos%20que%20he%20ido%20adquiriendo%20a%20lo%20largo%20de%20mi%20vida%20en%20el%20mundo%20del%20desarrollo%20de%20software%20%28y%20un%20poquito%20de%20dise%C3%B1"><img class="sociable-hovers" alt="LinkedIn" title="LinkedIn" src="/wp-content/img/icons/social/linkedin.png"></a></span></li>
+					</ul>
+				</div>
+				Tags:  <a rel="tag" href="/tag/wordpress/">wordpress</a>&nbsp; <a rel="tag" href="/tag/carrington/">carrington</a>&nbsp; <a rel="tag" href="/tag/jquery/">jquery</a>&nbsp;
+			</article>
+			
+			
+			
+		</section>
+	</div>
+	<footer>
+		Designed by <a href="/" title="ferdev.com">ferdev.com</a>. Social icons by <a href="http://www.komodomedia.com/" title="Komodo Media">Komodo Media</a>. 
+		Blog <a href="http://github.com/ferdev/ferdev">source</a>.
+	</footer>
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-6392398-3");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+	<script src="/javascripts/ferdev.init.js" type="text/javascript"></script>	
+</body>
+</html>

@@ -1,61 +1,49 @@
-<p>Llevo unos días probando <a href='http://github.com/jnicklas/capybara'>Capybara</a> después de los comentarios tan buenos que había escuchado de él en <a href='http://twitter.com/albertoperdomo/status/9643469318'>twitter</a> últimamente, especialmente de su integración con <a href='http://github.com/langalex/culerity'>Culerity</a>. Los hados además trataban de decirme algo porque la última <a href='http://github.com/porras/madrid-rb-feb-2010'>charla</a> de <a href='http://twitter.com/madridrb'>madridrb</a> que dio <a href='http://twitter.com/porras'>@porras</a> versaba sobre esto mismo (y <a href='http://github.com/cavalle/steak'>Steak</a>, que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.</p>
-
-<p>Los primeros vinieron con la instalación. Culerity es un recubrimiento (que poco me gusta esta palabra) de <a href='http://github.com/jarib/celerity'>Celerity</a>, que a su vez es otro recubrimiento de <a href='http://htmlunit.sourceforge.net/'>HtmlUnit</a>, un navegador web sin interfaz gráfico programado en Java. Y debido a esto, necesitas Jruby para instalar la gema de Celerity. Pues bien, rvm y todo este tinglado no se llevan demasiado bien. Y aunque hay un <a href='http://rvm.beginrescueend.com/integration/culerty/'>hack</a> para salir al paso, a mi no me valía del todo (a parte que no me gustaba mucho que digamos) porque yo no estaba usando Cucumber sino Steak (requisito para que funcione el Hack). Al final conseguí hacerlo funcionar instalando Jruby mediante Macports. No sé si me dará problemas en el futuro, pero hasta que Culerity y rvm se lleven mejor, me gusta más esta solución que andar cambiando variables de entorno en cada test.</p>
-
-<p>La aplicación con la que estaba haciendo las pruebas tiene una carga de javascript muy alta, y los primeros problemas que me dieron los tests lo achacaba a esto. &#8220;Demasiado javascript&#8221;, pensaba para mis adentros cuando al testear una petición ajax me daba un error con la respuesta en formato JSON. Dándole vueltas y más vueltas, a punto de desinstalarlo todo porque no conseguía solucionarlo, di con la solución no recuerdo muy bien dónde: la última versión de Celerity (0.7.9) usaba una versión de HtmlUnit con algunos bugs, y recomendaban instalar la versión <strong>0.7.4</strong>. Pues mano de santo oiga :-)</p>
-
-<p>Y llegamos al quid de la cuestión: probar <a href='http://valums.com/ajax-upload/'>AjaxUpload</a> con Capybara + Culerity. Me ha costado un par de días hacerlo funcionar, y en realidad ha sido una tontería. No hacía falta más que detenerse un poco a pensar como funciona AjaxUpload por dentro.</p>
-
-<p>AjaxUpload es un hack para simular una subida asíncrona de un archivo al servidor de nuestra página web. Para ello, se vale de los siguientes pasos:</p>
-
-<ol>
-<li>
-<p>Se asocia al elemento de la página web que tú hayas definido (un enlace o un botón, por ejemplo).</p>
-</li>
-
-<li>
-<p>Cuando se dispara el evento &#8220;mouseover&#8221; sobre ese elemento, crea un div transparente de las mismas dimensiones que el elemento y lo sitúa por encima de él. Cuando el usuario intente pulsar el elemento, será este div en realidad el que se vea pulsado.</p>
-</li>
-
-<li>
-<p>Cuando el usuario hace click en el div, se genera el elemento input file y se abre el diálogo de selección de archivo.</p>
-</li>
-
-<li>
-<p>En cuanto el usuario selecciona el fichero, AjaxUpload crea un formulario, le agrega el input file del paso anterior, y crea un iframe. Este iframe, será el &#8220;target&#8221; del formulario recien creado.</p>
-</li>
-
-<li>
-<p>AjaxUpload envía el formulario (que hará la subida del fichero a través del iframe) y fin del proceso.</p>
-
-<p>Mi problema venía con el diálogo de selección. No veía cómo conseguir seleccionar el archivo y pulsar el botón &#8220;Aceptar&#8221; del diálogo de selección. Sabía que la clase <em>Celerity::FileField</em> contaba con el método <em>Set</em>, con el que podía pasarle la ruta de un archivo&#8230; Pero no sé por qué me dio por pensar que si el diálogo estaba abierto, no funcionaría. Hasta que lo probé, y me di cuenta que Celerity establece la ruta del archivo y cierra la ventana de diálogo él solito. Así que, problema resuelto.</p>
-</li>
-</ol>
-
-<p>Aquí va un pequeño trozo de código de como quedaría montado. He sacado los selectores principales a variables para que se entienda mejor. Ah! También decir que yo tengo configurado Capybara para que por defecto use selectores css :-)</p>
-
-<pre><code># selector del botón asociado a AjaxUpload
-button_selector = &#39;button#upload&#39;
-# selector del div que contendrá al input file. Se posicionará justo encima de button_selector
-div_selector = &#39;div.ajaxupload_container&#39;
-# selector del input file
-input_selector = &#39;div.ajaxupload_container input.ajaxupload&#39;
-# ruta al archivo a subir
-file_path = &#39;image.jpg&#39;
-
-# Simulamos el evento &#39;mouseover&#39; sobre el botón original asociado a AjaxUpload
-find(button_selector).trigger(:mouseover)
-
-# Comprobamos que se haya creado el div de AjaxUpload
-page.should have_css(div_selector)
-
-# Hacemos click en el div para disparar la creación del input file
-find(div_selector).click
-
-# El input file debería haberse creado
-page.should have_css(input_selector)
-
-# Le pasamos la ruta de archivo al input file
-find(input_selector).set(file_path)</code></pre>
-
-<p>Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.</p>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Testing AjaxUpload con Capybara + Culerity</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />		
+	<meta name="description" content="I'm a freelance web developer, specialized in Ruby on Rails, jQuery, user interfaces and usability." />
+	<meta name="keywords" content="ruby on rails, jquery, usability, html, css, css2, css3, javascript" />
+	<link rel="canonical" href="http://www.ferdev.com/" />
+</head>
+<body>
+	<div id="page">		
+		<header>
+			<hgroup>
+		    <a class="logo" href="http://www.ferdev.com/" title="Home" rel="home">
+		        <img src="/images/logo.gif" alt="ferdev.com" width="59" height="59" />
+		    </a>
+				<a class="title" href="/" title="Home" rel="home">FerDev</a><br />
+				<span>Testing AjaxUpload con Capybara + Culerity</span>
+			</hgroup>			
+		</header>
+		<nav>
+			<ul id="menu">
+				<li class="page_item"><a href="/portfolio/" title="Portfolio">Portfolio</a></li>
+				<li class="page_item"><a href="/contact/" title="Contact">Contact</a></li>
+				<li class="page_item"><a href="/about/" title="About me">About me</a></li>
+			</ul>		
+		</nav>
+		<section>
+		</section>
+	</div>
+	<footer>
+		Designed by <a href="/" title="ferdev.com">ferdev.com</a>. Social icons by <a href="http://www.komodomedia.com/" title="Komodo Media">Komodo Media</a>. 
+		Blog <a href="http://github.com/ferdev/ferdev">source</a>.
+	</footer>
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-6392398-3");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+	<script src="/javascripts/ferdev.init.js" type="text/javascript"></script>	
+</body>
+</html>
