@@ -71,8 +71,7 @@ div.content{
   width: 800px;
   height: 100%;
   border: 0 none;
-  margin: 0 auto;
-  position: relative;
+  margin-left: 165px;
 }
 
 section{
