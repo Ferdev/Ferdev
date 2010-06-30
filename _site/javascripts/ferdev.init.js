@@ -23,15 +23,6 @@ var ferdev = function(){
         scrollTo       = $(destination_id).offset().top;
       $('html,body').animate({scrollTop: scrollTo}, 2000, 'easeInOutExpo');
     });
-    var 
-      navigation = $('nav'),
-      navigation_top = parseInt(navigation.css('top'));
-    $(document).scroll(function(evt){
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(function(){
-        navigation.animate({'top': $(this).scrollTop() + navigation_top}, 1000, 'easeInOutExpo');
-      }, 100);      
-    });
   };  
   
   return {
