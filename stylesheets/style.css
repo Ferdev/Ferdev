@@ -72,6 +72,7 @@ div.content{
   height: 100%;
   border: 0 none;
   margin: 0 auto;
+  position: relative;
 }
 
 section{
@@ -82,8 +83,6 @@ section{
 /* Header */
 header {
   border: 0 none;
-  display: inline-block;
-  width: 450px;
 }
 
 header hgroup {
@@ -112,10 +111,10 @@ header hgroup h3 {
 
 /* Navigation */
 nav {
-  display: inline-block;
-  margin-top: 2em;
-  position: fixed;
-  vertical-align: top;
+  position:absolute;
+  right:0;
+  top: 0;
+  z-index: 1;
 }
 
 #menu {
