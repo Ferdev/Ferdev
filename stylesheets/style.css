@@ -385,6 +385,11 @@ section article a[rel='tag']:hover {
   color: #000;
   text-shadow: 1px 1px 1px #999;
 }
+#about img{
+  border: 0;
+  vertical-align: middle;
+  margin: 0 5px;
+}
 
 /* Footer */
 footer {
