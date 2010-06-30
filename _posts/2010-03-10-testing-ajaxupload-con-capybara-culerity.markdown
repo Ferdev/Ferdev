@@ -1,8 +1,7 @@
 --- 
 layout: post
 title: Testing AjaxUpload con Capybara + Culerity
-category: Testing
-tags: [rails, ruby on rails, ruby, capybara, culerity, testing, ajaxupload]
+tags: [rails, ruby, capybara, culerity, testing, ajaxupload]
 ---
 Llevo unos días probando [Capybara][] después de los comentarios tan buenos que había escuchado de él en [twitter][] últimamente, especialmente de su integración con [Culerity][]. Los hados además trataban de decirme algo porque la última [charla][] de [madridrb][] que dio [@porras][] versaba sobre esto mismo (y [Steak][], que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.
 

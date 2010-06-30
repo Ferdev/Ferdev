@@ -1,7 +1,6 @@
 --- 
 layout: post
 title: "Paso 1: wordpress instalado"
-category: Ferdev
 tags: [wordpress, carrington, jquery]
 ---
 Empiezo las andanzas en el mundo "blogueril" personal. Me llamo Fer, y en este blog intentaré transmitir lo mejor que pueda los conocimientos que he ido adquiriendo a lo largo de mi vida en el mundo del desarrollo de software (y un poquito de diseño también, pero poco, que no es lo mío).

@@ -1,7 +1,6 @@
 --- 
 layout: post
 title: "Rediseño del blog y freelanceo"
-category: Ferdev
 tags: [redesign, freelance]
 ---
 La semana pasada he estado dándole un pequeño rediseño al blog. El diseño que había era el resultante de haber hecho unas cuantas pruebas, y al final por falta de tiempo no había podido cambiarlo. Quería algo minimalista, con buena legibilidad, y con el menor número de imágenes posible. 

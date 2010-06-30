@@ -1,3 +1,15 @@
 ---
 layout: default
 ---
+<article>
+	<h1>
+	    <a href="{{ post.url }}">{{ page.title }}</a>
+	</h1>
+	<span class="date">
+		{{page.date | date: "%b %d, %Y"}} in <a rel="category tag" title="View all posts in {{page.category}}" href="/{{page.category}}/">{{page.category}}</a>
+	</span>
+
+	{{ page.content }}
+
+	Tags: {% for tag in page.tags %} <a rel="tag" href="/tag/{{ tag }}/">{{ tag }}</a>&nbsp;{% endfor %}
+</article>

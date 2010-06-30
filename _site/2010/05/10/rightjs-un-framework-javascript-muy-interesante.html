@@ -1,49 +1,256 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>RightJS, un framework javascript muy interesante</title>
+	<title>Freelance Ruby on Rails developer. RightJS, un framework javascript muy interesante</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />		
+	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
 	<meta name="description" content="I'm a freelance web developer, specialized in Ruby on Rails, jQuery, user interfaces and usability." />
 	<meta name="keywords" content="ruby on rails, jquery, usability, html, css, css2, css3, javascript" />
 	<link rel="canonical" href="http://www.ferdev.com/" />
 </head>
 <body>
-	<div id="page">		
+	<div class="content">
 		<header>
 			<hgroup>
-		    <a class="logo" href="http://www.ferdev.com/" title="Home" rel="home">
-		        <img src="/images/logo.gif" alt="ferdev.com" width="59" height="59" />
-		    </a>
-				<a class="title" href="/" title="Home" rel="home">FerDev</a><br />
-				<span>RightJS, un framework javascript muy interesante</span>
+				<h1><a class="title" href="/" title="Home" rel="home"><img src="/images/logo.gif" alt="ferdev.com" width="59" height="59" />Ferdev</a></h1>
+				<h3>Freelance Ruby on Rails developer</h3>
 			</hgroup>			
 		</header>
 		<nav>
 			<ul id="menu">
-				<li class="page_item"><a href="/portfolio/" title="Portfolio">Portfolio</a></li>
-				<li class="page_item"><a href="/contact/" title="Contact">Contact</a></li>
-				<li class="page_item"><a href="/about/" title="About me">About me</a></li>
+				<li><a href="#blog" title="Portfolio">Blog</a></li>
+				<li><a href="#portfolio" title="Portfolio">Portfolio</a></li>
+				<li><a href="#contact" title="Contact">Contact</a></li>
+				<li><a href="#about" title="About me">About me</a></li>
 			</ul>		
 		</nav>
-		<section>
-		</section>
 	</div>
+	<section id="blog" class="articles">
+		<div class="content">
+			<article>
+	<h1>
+	    <a href="">RightJS, un framework javascript muy interesante</a>
+	</h1>
+	<span class="date">
+		May 10, 2010 in <a rel="category tag" title="View all posts in " href="//"></a>
+	</span>
+
+	Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.
+
+La mejor manera de hablar de [RightJS][1] es comentar sus características principales:
+
+*	Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costará muy poco aprender RightJS.
+
+*	**Posiblemente**, el más rápido de todos los frameworks JavaScript. Difícil de demostrar, pero [diversos tests][2] parecen corroborarlo. No sé si el más rápido, pero desde luego es rapidísimo.
+
+*	Llamadas a funciones por nombre. Muchas veces tenemos el típico callback para acceder a un método del propio objeto. Con RightJS no necesitaremos dicho callback, símplemente pasaremos el nombre de la función como string.
+
+        // Modo habitual
+        $('element').onClick(function() {
+          this.hide();
+        });
+
+        // Usando llamadas por nombre
+        $('element').onClick('hide');
+
+*	Soporte en navegadores más antiguos de la última especificación JavaScript/ECMAScript. Por ejemplo:
+
+    [**Array#filter**][3]:
+
+    	var strings = ['anny', 'manny', 'banny', 'bob'];
+
+    	strings.filter(function(string, i) {
+    	  return string.length > (i+1);
+    	});
+    	// -> ['anny', 'manny', 'banny'];
+
+    	strings.filter('match', /[a-z]ann/);
+    	// -> ['manny', 'banny']
+
+    [**Array#map**][4]:
+
+    	var strings = ['anny', 'banny', 'manny'];
+
+    	strings.map(function(string, i) {
+    	  return (i+1)+'. '+string;
+    	});
+
+    	// -> ['1. anny', '2. banny', '3. manny'];
+
+    	strings.map('capitalize');
+
+    	// -> ['Anny', 'Banny', 'Manny'];
+
+    	strings.map('replace', 'nn', 'b');
+
+    	// -> ['aby', 'baby', 'maby'];
+
+    [**String#trim**][5]:
+
+    	' asdf '.trim(); // -> 'asdf'
+
+*	Extensión del core de JavaScript con algunos métodos que sonarán a muchos rubistas:
+
+    [**Array#compact**][6]:
+
+    	[null, 0, undefined, 1, 2, 3, null].compact();
+
+    	// -> [0, 1, 2, 3];
+
+    [**String#endsWith**][7]:
+
+    	'image.gif'.endsWith('.gif');       // -> true
+
+    	'image.gif'.endsWith('.GIF');       // -> false
+    	'image.gif'.endsWith('.GIF', true); // -> true
+	
+*	Manejo de números simplificado.
+
+    	// Conversión de string a number
+    	'123'.toInt();   // -> 123
+    	'1.3'.toFloat(); // -> 1.3
+
+    	// Manejo de números
+    	1.4.floor(); // -> 1
+    	1.4.ceil();  // -> 2
+    	1.4.round(); // -> 1
+	
+*	Aunque JavaScript ya es un lenguaje orientado a objetos, la clase `Class` hace más sencilla la herencia, implementación de interfaces, etc.
+
+    	var Klass = new Class(AnotherClass, {
+    	  include: Module1,
+    	  extend:  Module2,
+
+    	  initialize: function() {
+    	    //....
+    	  }
+    	});
+	
+*	Y también: [envío][8] simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de [eventos][9] y [opciones][10] de métodos, arquitectura abierta, soporte para [plugins][11], y una [gema][12] para facilitar la integración con Rails (soporta Rails3).
+
+Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)
+
+[1]: http://rightjs.org "The Right JavaScript Framework"
+[2]: http://rightjs.org/benchmarks
+[3]: http://rightjs.org/docs/array#filter
+[4]: http://rightjs.org/docs/array#map
+[5]: http://rightjs.org/docs/string#trim
+[6]: http://rightjs.org/docs/array#compact
+[7]: http://rightjs.org/docs/string#endsWith
+[8]: http://rightjs.org/docs/form#send "Form#send"
+[9]: http://rightjs.org/tutorials/uniformed-events-handling
+[10]: http://rightjs.org/tutorials/uniformed-options-handling
+[11]: http://rightjs.org/plugins
+[12]: http://github.com/MadRabbit/right-rails
+
+
+	Tags:  <a rel="tag" href="/tag/javascript/">javascript</a>&nbsp; <a rel="tag" href="/tag/rightjs/">rightjs</a>&nbsp; <a rel="tag" href="/tag/frameworks/">frameworks</a>&nbsp;
+</article>
+		</div>
+	</section>
+	<section id="portfolio">
+		<div class="content">
+			<p>
+			These are the projects I've been working on lately:
+			</p>
+			<ul id="portfolio_projects">
+				<li class="project">
+					<h3>Loovrs.com</h3>
+					<div>
+						<img src="/images/portfolio/loovrs.jpg" alt="Loovrs" title="Loovrs"/>
+						<ul class="project_data">
+							<li>Dating site</li>
+							<li>xhtml / css / jQuery / Ruby on Rails</li>
+							<li><a href="http://www.loovrs.com" rel="loovrs.com">http://www.loovrs.com</a></li>
+						</ul>
+					</div>		
+				</li>
+				<li class="project">
+					<h3>FerDev.com</h3>
+					<div>
+						<img src="/images/portfolio/ferdev.jpg" alt="FerDev" title="FerDev"/>
+						<ul class="project_data">
+							<li>Wordpress theme</li>
+							<li>xhtml / css / jQuery / php</li>
+							<li><a href="http://www.ferdev.com" rel="ferdev.com">http://www.ferdev.com</a></li>
+						</ul>
+					</div>		
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section id="contact">
+		<div class="content">
+			<p>Feel free to contact me for anything you might need from me!</p>
+			<ul>
+				<li>Send me an email to <a href="mailto:fer@ferdev.com">fer@ferdev.com</a>.</li>
+				<li><a href="http://twitter.com/ferdev">Follow me</a> on twitter.</li>
+				<li>Or drop me a few lines:<br />
+					[contact-form 1 "Contact form"]
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section id="about">
+		<div class="content">
+			<h2 id="who_am_i">Who am I?</h2>
+
+<p>My name is Fernando Espinosa, a <a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=madrid,+spain&amp;sll=37.0625,-95.677068&amp;sspn=51.621706,91.318359&amp;ie=UTF8&amp;hq=&amp;hnear=Madrid,+Comunidad+de+Madrid,+Espa%C3%B1a&amp;z=11">spanish</a> guy passionate with web development and specialized in usability.</p>
+
+<h2 id="where_do_i_came_from">Where do I came from?</h2>
+
+<p>I have been developing software professionally for more than ten years. My career goes through companies like Soluziona or <a href="http://www.indra.es" title="Indra">Indra</a> amongst others. You can see my resume at <img src="http://www.xing.com/profile/Fernando_EspinosaJimenez" alt="Xing - Fernando Espinosa](/wp-content/img/icons/social/xing.png) <a href="/wp-content/img/icons/social/linkedin.png">Xing" title="Fernando Espinosa Jiménez"> or <img src="http://es.linkedin.com/in/fernandoespinosajimenez" alt="Linked In - Fernando Espinosa</a> [Linked In" title="Fernando Espinosa Jiménez">.</p>
+
+<h2 id="what_do_i_do">What do I do?</h2>
+
+<p>I develop web applications using agile methodologies and focusing on its usability. I do my best efforts creating clean, appealing and easy to use user interfaces. Without neglecting application features, of course.</p>
+
+<h2 id="how_do_i_do_it">How do I do it?</h2>
+
+<p>With the help of <a href="http://agilemanifesto.org/">agile methodologies</a>, prototyping since development starts and a fluent communication with the client, so I can respond his expectations and needs any time.</p>
+
+<h2 id="what_tools_do_i_use">What tools do I use?</h2>
+
+<p>These are the ones which I feel more comfortable with:</p>
+
+<ul>
+<li><a href="http://rubyonrails.org/">Ruby on Rails</a></li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+<li>HTML</li>
+<li>CSS2 y CSS3</li>
+<li>Mac OSX o Gentoo</li>
+</ul>
+
+<p>But if the project requires it, I also manage Java and PHP (although I prefer avoiding them if possible ;-)).</p>
+
+<h2 id="about_hiring_me">About hiring me.</h2>
+
+<p>Do you need a freelance web developer and my profile has interested you? <a href="/contact/">Tell me</a> your needs and I&#8217;ll give you all details posible and a budget if needed.</p>
+
+		</div>
+	</section>
 	<footer>
-		Designed by <a href="/" title="ferdev.com">ferdev.com</a>. Social icons by <a href="http://www.komodomedia.com/" title="Komodo Media">Komodo Media</a>. 
-		Blog <a href="http://github.com/ferdev/ferdev">source</a>.
+		<div class="content">
+			<ul>
+				<li>Designed by <a href="/" title="ferdev.com">ferdev.com</a>.</li>
+				<li>Social icons by <a href="http://www.komodomedia.com/" title="Komodo Media">Komodo Media</a>.</li>
+				<li>Blog <a href="http://github.com/ferdev/ferdev">source</a>.</li>
+			</ul>
+			<span>Copyright © 2010 Fernando Espinosa</span>
+		</div>
 	</footer>
-	<script type="text/javascript">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/lib/jquery.easing.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/ferdev.init.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript" charset="utf-8">
 		try {
 			var pageTracker = _gat._getTracker("UA-6392398-3");
 			pageTracker._trackPageview();
 		} catch(err) {}
 	</script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-	<script src="/javascripts/ferdev.init.js" type="text/javascript"></script>	
 </body>
 </html>

@@ -1,7 +1,6 @@
 --- 
 layout: post
 title: Registro progresivo en paginas web
-category: Development
 tags: [patterns]
 ---
 Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.

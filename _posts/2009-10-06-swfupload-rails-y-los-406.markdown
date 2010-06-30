@@ -1,8 +1,7 @@
 --- 
 layout: post
 title: SWFUpload, Rails y los 406
-category: Development
-tags: [rails, ruby on rails, ruby, flash, swfupload]
+tags: [rails, ruby, flash, swfupload]
 ---
 En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.
 

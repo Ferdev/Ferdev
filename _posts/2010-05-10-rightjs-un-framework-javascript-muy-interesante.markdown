@@ -1,7 +1,6 @@
 --- 
 layout: post
 title: RightJS, un framework javascript muy interesante
-category: Development
 tags: [javascript, rightjs, frameworks]
 ---
 Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.

@@ -1,7 +1,6 @@
 --- 
 layout: post
 title: Plugin jQuery para obtener dimensiones de un objeto
-category: Development
 tags: [javascript, jquery, plugins]
 ---
 Hola!
