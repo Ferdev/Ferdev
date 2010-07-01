@@ -24,10 +24,7 @@
 }
 
 /* Main */
-html, body {
-  padding: 0;
-  margin: 0;
-}
+html, body { padding: 0; margin: 0; }
 
 body {
   width: 100%;
@@ -37,28 +34,18 @@ body {
   background-color: #444444;
   color: #ffffff;
   text-shadow:0 -1px 1px #000000;
+  line-height: 1.2em;
 }
 
-a {
-  color: #cc66ff;
-}
+a { color: #cc66ff; }
 
-a:hover {
-  color: #66ccff;
-}
+a:hover { color: #66ccff; }
 
-a:visited {
-  color: #999999;
-}
+a:visited { color: #999999; }
 
-h1 {
-  font-size: 1.5em;
-}
+h1 { font-size: 1.5em; margin: 0 0 1em; }
 
-h2 {
-  font-size: 1.3em;
-  text-decoration: underline;
-}
+h2 { font-size: 1.3em; text-decoration: underline; }
 
 h1,
 h1 a,
@@ -68,18 +55,17 @@ h2 a:visited {
   color: #ccff33;
 }
 
+p{  margin: 1em 0; }
+
 div.content{
-  padding: 0;
+  padding: 2em 0;
   width: 800px;
   height: 100%;
   border: 0 none;
   margin-left: 12.5em;
 }
 
-section{
-  display: block;
-  padding: 10px 0;
-}
+section{ display: block; padding: 10px 0; }
 
 .dark{
   background-color: #444444;
@@ -93,9 +79,7 @@ section{
   text-shadow: 1px 1px 1px #999;
 }
 
-.light h1{
-  text-shadow: 1px 1px 1px #333;
-}
+.light h1{ text-shadow: 1px 1px 1px #000; }
 
 /* Header */
 header {
@@ -105,19 +89,14 @@ header {
   width:800px;  
 }
 
-header hgroup {
-}
-
-
-header hgroup .title {
-  font-family: Helvetica, Arial;
+header hgroup h1 .title {
+  font-family: 'Old Sans Black', Helvetica, Arial;
   font-size: 4em;
   text-decoration: none;
   color: #ffffff;
   text-shadow: 0 -1px 0 #000000;
 }
-
-header hgroup .title img{
+header hgroup h1 .title img{
   border:0 none;
   margin-right:15px;
 }
@@ -199,9 +178,6 @@ section article {
   width:800px;
 }
 
-section article h1{
-}
-
 section article .date {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -216,11 +192,16 @@ section article .date {
 section article pre {
   border: 1px solid #444444;
   background-color: #222222;
-  color: #FFFFFF;
-  font-family: 'Deja Vu Sans Mono', monospace;
+  color: #FFFFFF;  
   font-size: 0.9em;
   overflow: auto;
   padding: 2em 1em;
+}
+
+section article pre,
+section article code {
+  font-family: 'Deja Vu Sans Mono', monospace;
+  white-space: pre;
 }
 
 section article a[rel='tag'] {
@@ -239,6 +220,11 @@ section article a[rel='tag']:hover {
   border: 1px solid #222222;
   background-color: #333333;
   text-decoration: underline;
+}
+
+section article ul {
+  list-style-type: disc;
+  margin-left: 2em;
 }
 
 .comments_subscribe {
