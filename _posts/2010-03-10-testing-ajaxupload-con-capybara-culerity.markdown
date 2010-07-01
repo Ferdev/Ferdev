@@ -23,30 +23,31 @@ Mi problema venía con el diálogo de selección. No veía cómo conseguir selec
 
 Aquí va un pequeño trozo de código de como quedaría montado. He sacado los selectores principales a variables para que se entienda mejor. Ah! También decir que yo tengo configurado Capybara para que por defecto use selectores css :-)
 
+{% highlight ruby %}
+# selector del botón asociado a AjaxUpload
+button_selector = 'button#upload'
+# selector del div que contendrá al input file. Se posicionará justo encima de button_selector
+div_selector = 'div.ajaxupload_container'
+# selector del input file
+input_selector = 'div.ajaxupload_container input.ajaxupload'
+# ruta al archivo a subir
+file_path = 'image.jpg'
 
-	# selector del botón asociado a AjaxUpload
-	button_selector = 'button#upload'
-	# selector del div que contendrá al input file. Se posicionará justo encima de button_selector
-	div_selector = 'div.ajaxupload_container'
-	# selector del input file
-	input_selector = 'div.ajaxupload_container input.ajaxupload'
-	# ruta al archivo a subir
-	file_path = 'image.jpg'
-	
-	# Simulamos el evento 'mouseover' sobre el botón original asociado a AjaxUpload
-	find(button_selector).trigger(:mouseover)
-	
-	# Comprobamos que se haya creado el div de AjaxUpload
-	page.should have_css(div_selector)
-	
-	# Hacemos click en el div para disparar la creación del input file
-	find(div_selector).click
-	
-	# El input file debería haberse creado
-	page.should have_css(input_selector)
-	
-	# Le pasamos la ruta de archivo al input file
-	find(input_selector).set(file_path)
+# Simulamos el evento 'mouseover' sobre el botón original asociado a AjaxUpload
+find(button_selector).trigger(:mouseover)
+
+# Comprobamos que se haya creado el div de AjaxUpload
+page.should have_css(div_selector)
+
+# Hacemos click en el div para disparar la creación del input file
+find(div_selector).click
+
+# El input file debería haberse creado
+page.should have_css(input_selector)
+
+# Le pasamos la ruta de archivo al input file
+find(input_selector).set(file_path)
+{% endhighlight %}
 
 Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.	
 

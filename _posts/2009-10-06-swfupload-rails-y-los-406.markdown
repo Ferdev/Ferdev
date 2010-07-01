@@ -9,12 +9,16 @@ Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía 
 
 Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:
 
-	Mime::Type.register "text/*", :all_text
+{% highlight ruby %}
+Mime::Type.register "text/*", :all_text
+{% endhighlight %}
 
 Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:
 
-	respond_to do |format|
-		format.all_text{ render :text => text_to_render }
-	end
+{% highlight ruby %}
+respond_to do |format|
+	format.all_text{ render :text => text_to_render }
+end
+{% endhighlight %}
 
 Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.

@@ -191,6 +191,10 @@ section article .date {
   margin-right: 1em;
 }
 
+section article .highlight{
+  margin: 1em 0;
+}
+
 section article pre {
   border: 1px solid #444444;
   background-color: #222222;

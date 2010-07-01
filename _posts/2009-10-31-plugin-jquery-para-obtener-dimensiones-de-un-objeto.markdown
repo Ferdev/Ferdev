@@ -13,28 +13,30 @@ Hay una solución muy sencilla para esto. Agregas el objeto con el tamaño a cal
 
 Aquí os dejo el código del plugin, tal y como lo vengo usando en mi proyecto. Espero que os sea útil!
 
-    ;(function($){
-    $.fn.objectSize = function(){
+{% highlight javascript %}
+;(function($){
+$.fn.objectSize = function(){
+
+    function calculateSize(domNode){
+        var divSizer = $(document.createElement("div"))
+        .attr("id", "sizer")
+        .css({           
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            left: '-10000px' 
+        }).appendTo('body'),
+        size = {width: 0, height: 0};
     
-        function calculateSize(domNode){
-            var divSizer = $(document.createElement("div"))
-            .attr("id", "sizer")
-            .css({           
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                left: '-10000px' 
-            }).appendTo('body'),
-            size = {width: 0, height: 0};
-        
-            divSizer.append(domNode);
-            size.width = parseInt(domNode.outerWidth());
-            size.height = parseInt(domNode.outerHeight());
-            divSizer.remove();
-            delete divSizer;
-            return size;
-        }
-    
-        return calculateSize($(this[0]));
-    };
-    })(jQuery);
+        divSizer.append(domNode);
+        size.width = parseInt(domNode.outerWidth());
+        size.height = parseInt(domNode.outerHeight());
+        divSizer.remove();
+        delete divSizer;
+        return size;
+    }
+
+    return calculateSize($(this[0]));
+};
+})(jQuery);
+{% endhighlight %}
