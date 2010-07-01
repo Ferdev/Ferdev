@@ -28,35 +28,28 @@
 </nav>
 	<section id="blog" class="articles dark">
 		<article>
-	<h1>
-	    <a href="">SWFUpload, Rails y los 406</a>
-	</h1>
+	<h1>SWFUpload, Rails y los 406</h1>
 	<span class="date">
-		Oct 06, 2009 in <a rel="category tag" title="View all posts in " href="//"></a>
+		Oct 06, 2009
 	</span>
+	 <a rel="tag" href="/tag/rails/">rails</a>&nbsp; <a rel="tag" href="/tag/ruby/">ruby</a>&nbsp; <a rel="tag" href="/tag/flash/">flash</a>&nbsp; <a rel="tag" href="/tag/swfupload/">swfupload</a>&nbsp;
 
-	En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.
+	<p>En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.</p>
 
-Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo "text/*". Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.
+<p>Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo &#8220;text/<em>&#8221;. Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.</em></p>
 
-Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:
-
-{% highlight ruby %}
-Mime::Type.register "text/*", :all_text
-{% endhighlight %}
-
-Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:
-
-{% highlight ruby %}
-respond_to do |format|
-	format.all_text{ render :text => text_to_render }
-end
-{% endhighlight %}
-
-Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.
-
-
-	Tags:  <a rel="tag" href="/tag/rails/">rails</a>&nbsp; <a rel="tag" href="/tag/ruby/">ruby</a>&nbsp; <a rel="tag" href="/tag/flash/">flash</a>&nbsp; <a rel="tag" href="/tag/swfupload/">swfupload</a>&nbsp;
+<p>Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:</p>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Mime</span><span class='o'>::</span><span class='no'>Type</span><span class='o'>.</span><span class='n'>register</span> <span class='s2'>&quot;text/*&quot;</span><span class='p'>,</span> <span class='ss'>:all_text</span>
+</code></pre>
+</div>
+<p>Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>respond_to</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>format</span><span class='o'>|</span>
+	<span class='nb'>format</span><span class='o'>.</span><span class='n'>all_text</span><span class='p'>{</span> <span class='n'>render</span> <span class='ss'>:text</span> <span class='o'>=&gt;</span> <span class='n'>text_to_render</span> <span class='p'>}</span>
+<span class='k'>end</span>
+</code></pre>
+</div>
+<p>Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.</p>
+	
 </article>
 	</section>
 	<section id="portfolio" class="light">

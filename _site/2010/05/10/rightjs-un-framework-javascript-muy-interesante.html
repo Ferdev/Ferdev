@@ -28,140 +28,125 @@
 </nav>
 	<section id="blog" class="articles dark">
 		<article>
-	<h1>
-	    <a href="">RightJS, un framework javascript muy interesante</a>
-	</h1>
+	<h1>RightJS, un framework javascript muy interesante</h1>
 	<span class="date">
-		May 10, 2010 in <a rel="category tag" title="View all posts in " href="//"></a>
+		May 10, 2010
 	</span>
+	 <a rel="tag" href="/tag/javascript/">javascript</a>&nbsp; <a rel="tag" href="/tag/rightjs/">rightjs</a>&nbsp; <a rel="tag" href="/tag/frameworks/">frameworks</a>&nbsp;
 
-	Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.
+	<p>Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.</p>
 
-La mejor manera de hablar de [RightJS][1] es comentar sus características principales:
+<p>La mejor manera de hablar de <a href='http://rightjs.org' title='The Right JavaScript Framework'>RightJS</a> es comentar sus características principales:</p>
 
-*	Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costará muy poco aprender RightJS.
+<ul>
+<li>
+<p>Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costará muy poco aprender RightJS.</p>
+</li>
 
-*	**Posiblemente**, el más rápido de todos los frameworks JavaScript. Difícil de demostrar, pero [diversos tests][2] parecen corroborarlo. No sé si el más rápido, pero desde luego es rapidísimo.
+<li>
+<p><strong>Posiblemente</strong>, el más rápido de todos los frameworks JavaScript. Difícil de demostrar, pero <a href='http://rightjs.org/benchmarks'>diversos tests</a> parecen corroborarlo. No sé si el más rápido, pero desde luego es rapidísimo.</p>
+</li>
 
-*	Llamadas a funciones por nombre. Muchas veces tenemos el típico callback para acceder a un método del propio objeto. Con RightJS no necesitaremos dicho callback, símplemente pasaremos el nombre de la función como string.
+<li>
+<p>Llamadas a funciones por nombre. Muchas veces tenemos el típico callback para acceder a un método del propio objeto. Con RightJS no necesitaremos dicho callback, símplemente pasaremos el nombre de la función como string.</p>
+</li>
+</ul>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// Modo habitual</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;element&#39;</span><span class='p'>).</span><span class='nx'>onClick</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+  <span class='k'>this</span><span class='p'>.</span><span class='nx'>hide</span><span class='p'>();</span>
+<span class='p'>});</span>
 
-{% highlight javascript %}
-// Modo habitual
-$('element').onClick(function() {
-  this.hide();
-});
+<span class='c1'>// Usando llamadas por nombre</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;element&#39;</span><span class='p'>).</span><span class='nx'>onClick</span><span class='p'>(</span><span class='s1'>&#39;hide&#39;</span><span class='p'>);</span>
+</code></pre>
+</div>
+<ul>
+<li>Soporte en navegadores más antiguos de la última especificación JavaScript/ECMAScript. Por ejemplo:</li>
+</ul>
 
-// Usando llamadas por nombre
-$('element').onClick('hide');
-{% endhighlight %}
+<p><a href='http://rightjs.org/docs/array#filter'><strong>Array#filter</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>strings</span> <span class='o'>=</span> <span class='p'>[</span><span class='s1'>&#39;anny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;manny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;banny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;bob&#39;</span><span class='p'>];</span>
 
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>filter</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>string</span><span class='p'>,</span> <span class='nx'>i</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>return</span> <span class='nx'>string</span><span class='p'>.</span><span class='nx'>length</span> <span class='o'>&gt;</span> <span class='p'>(</span><span class='nx'>i</span><span class='o'>+</span><span class='mi'>1</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='c1'>// -&gt; [&#39;anny&#39;, &#39;manny&#39;, &#39;banny&#39;];</span>
 
-*	Soporte en navegadores más antiguos de la última especificación JavaScript/ECMAScript. Por ejemplo:
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>filter</span><span class='p'>(</span><span class='s1'>&#39;match&#39;</span><span class='p'>,</span> <span class='sr'>/[a-z]ann/</span><span class='p'>);</span>
+<span class='c1'>// -&gt; [&#39;manny&#39;, &#39;banny&#39;]</span>
+</code></pre>
+</div>
+<p><a href='http://rightjs.org/docs/array#map'><strong>Array#map</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>strings</span> <span class='o'>=</span> <span class='p'>[</span><span class='s1'>&#39;anny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;banny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;manny&#39;</span><span class='p'>];</span>
 
-[**Array#filter**][3]:
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>string</span><span class='p'>,</span> <span class='nx'>i</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>return</span> <span class='p'>(</span><span class='nx'>i</span><span class='o'>+</span><span class='mi'>1</span><span class='p'>)</span><span class='o'>+</span><span class='s1'>&#39;. &#39;</span><span class='o'>+</span><span class='nx'>string</span><span class='p'>;</span>
+<span class='p'>});</span>
 
-{% highlight javascript %}
-var strings = ['anny', 'manny', 'banny', 'bob'];
+<span class='c1'>// -&gt; [&#39;1. anny&#39;, &#39;2. banny&#39;, &#39;3. manny&#39;];</span>
 
-strings.filter(function(string, i) {
-  return string.length > (i+1);
-});
-// -> ['anny', 'manny', 'banny'];
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='s1'>&#39;capitalize&#39;</span><span class='p'>);</span>
 
-strings.filter('match', /[a-z]ann/);
-// -> ['manny', 'banny']
-{% endhighlight %}
+<span class='c1'>// -&gt; [&#39;Anny&#39;, &#39;Banny&#39;, &#39;Manny&#39;];</span>
 
-[**Array#map**][4]:
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='s1'>&#39;replace&#39;</span><span class='p'>,</span> <span class='s1'>&#39;nn&#39;</span><span class='p'>,</span> <span class='s1'>&#39;b&#39;</span><span class='p'>);</span>
 
-{% highlight javascript %}
-var strings = ['anny', 'banny', 'manny'];
+<span class='c1'>// -&gt; [&#39;aby&#39;, &#39;baby&#39;, &#39;maby&#39;];</span>
+</code></pre>
+</div>
+<p><a href='http://rightjs.org/docs/string#trim'><strong>String#trim</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='s1'>&#39; asdf &#39;</span><span class='p'>.</span><span class='nx'>trim</span><span class='p'>();</span> <span class='c1'>// -&gt; &#39;asdf&#39;</span>
+</code></pre>
+</div>
+<ul>
+<li>Extensión del core de JavaScript con algunos métodos que sonarán a muchos rubistas:</li>
+</ul>
 
-strings.map(function(string, i) {
-  return (i+1)+'. '+string;
-});
+<p><a href='http://rightjs.org/docs/array#compact'><strong>Array#compact</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='p'>[</span><span class='kc'>null</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='kc'>undefined</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='p'>,</span> <span class='kc'>null</span><span class='p'>].</span><span class='nx'>compact</span><span class='p'>();</span>
 
-// -> ['1. anny', '2. banny', '3. manny'];
+<span class='c1'>// -&gt; [0, 1, 2, 3];</span>
+</code></pre>
+</div>
+<p><a href='http://rightjs.org/docs/string#endsWith'><strong>String#endsWith</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='s1'>&#39;image.gif&#39;</span><span class='p'>.</span><span class='nx'>endsWith</span><span class='p'>(</span><span class='s1'>&#39;.gif&#39;</span><span class='p'>);</span>       <span class='c1'>// -&gt; true</span>
 
-strings.map('capitalize');
+<span class='s1'>&#39;image.gif&#39;</span><span class='p'>.</span><span class='nx'>endsWith</span><span class='p'>(</span><span class='s1'>&#39;.GIF&#39;</span><span class='p'>);</span>       <span class='c1'>// -&gt; false</span>
+<span class='s1'>&#39;image.gif&#39;</span><span class='p'>.</span><span class='nx'>endsWith</span><span class='p'>(</span><span class='s1'>&#39;.GIF&#39;</span><span class='p'>,</span> <span class='kc'>true</span><span class='p'>);</span> <span class='c1'>// -&gt; true</span>
+</code></pre>
+</div>
+<ul>
+<li>Manejo de números simplificado.</li>
+</ul>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// Conversión de string a number</span>
+<span class='s1'>&#39;123&#39;</span><span class='p'>.</span><span class='nx'>toInt</span><span class='p'>();</span>   <span class='c1'>// -&gt; 123</span>
+<span class='s1'>&#39;1.3&#39;</span><span class='p'>.</span><span class='nx'>toFloat</span><span class='p'>();</span> <span class='c1'>// -&gt; 1.3</span>
 
-// -> ['Anny', 'Banny', 'Manny'];
+<span class='c1'>// Manejo de números</span>
+<span class='mf'>1.4</span><span class='p'>.</span><span class='nx'>floor</span><span class='p'>();</span> <span class='c1'>// -&gt; 1</span>
+<span class='mf'>1.4</span><span class='p'>.</span><span class='nx'>ceil</span><span class='p'>();</span>  <span class='c1'>// -&gt; 2</span>
+<span class='mf'>1.4</span><span class='p'>.</span><span class='nx'>round</span><span class='p'>();</span> <span class='c1'>// -&gt; 1</span>
+</code></pre>
+</div>
+<ul>
+<li>Aunque JavaScript ya es un lenguaje orientado a objetos, la clase <code>Class</code> hace más sencilla la herencia, implementación de interfaces, etc.</li>
+</ul>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>Klass</span> <span class='o'>=</span> <span class='k'>new</span> <span class='nx'>Class</span><span class='p'>(</span><span class='nx'>AnotherClass</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>include</span><span class='o'>:</span> <span class='nx'>Module1</span><span class='p'>,</span>
+  <span class='nx'>extend</span><span class='o'>:</span>  <span class='nx'>Module2</span><span class='p'>,</span>
 
-strings.map('replace', 'nn', 'b');
+  <span class='nx'>initialize</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>//....</span>
+  <span class='p'>}</span>
+<span class='p'>});</span>
+</code></pre>
+</div>
+<ul>
+<li>Y también: <a href='http://rightjs.org/docs/form#send' title='Form#send'>envío</a> simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de <a href='http://rightjs.org/tutorials/uniformed-events-handling'>eventos</a> y <a href='http://rightjs.org/tutorials/uniformed-options-handling'>opciones</a> de métodos, arquitectura abierta, soporte para <a href='http://rightjs.org/plugins'>plugins</a>, y una <a href='http://github.com/MadRabbit/right-rails'>gema</a> para facilitar la integración con Rails (soporta Rails3).</li>
+</ul>
 
-// -> ['aby', 'baby', 'maby'];
-{% endhighlight %}
-
-[**String#trim**][5]:
-
-{% highlight javascript %}
-' asdf '.trim(); // -> 'asdf'
-{% endhighlight %}
-
-*	Extensión del core de JavaScript con algunos métodos que sonarán a muchos rubistas:
-
-[**Array#compact**][6]:
-
-{% highlight javascript %}
-[null, 0, undefined, 1, 2, 3, null].compact();
-
-// -> [0, 1, 2, 3];
-{% endhighlight %}
-
-[**String#endsWith**][7]:
-
-{% highlight javascript %}
-'image.gif'.endsWith('.gif');       // -> true
-
-'image.gif'.endsWith('.GIF');       // -> false
-'image.gif'.endsWith('.GIF', true); // -> true
-{% endhighlight %}
+<p>Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)</p>
 	
-*	Manejo de números simplificado.
-
-{% highlight javascript %}
-// Conversión de string a number
-'123'.toInt();   // -> 123
-'1.3'.toFloat(); // -> 1.3
-
-// Manejo de números
-1.4.floor(); // -> 1
-1.4.ceil();  // -> 2
-1.4.round(); // -> 1
-{% endhighlight %}
-	
-*	Aunque JavaScript ya es un lenguaje orientado a objetos, la clase `Class` hace más sencilla la herencia, implementación de interfaces, etc.
-
-{% highlight javascript %}
-var Klass = new Class(AnotherClass, {
-  include: Module1,
-  extend:  Module2,
-
-  initialize: function() {
-    //....
-  }
-});
-{% endhighlight %}
-	
-*	Y también: [envío][8] simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de [eventos][9] y [opciones][10] de métodos, arquitectura abierta, soporte para [plugins][11], y una [gema][12] para facilitar la integración con Rails (soporta Rails3).
-
-Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)
-
-[1]: http://rightjs.org "The Right JavaScript Framework"
-[2]: http://rightjs.org/benchmarks
-[3]: http://rightjs.org/docs/array#filter
-[4]: http://rightjs.org/docs/array#map
-[5]: http://rightjs.org/docs/string#trim
-[6]: http://rightjs.org/docs/array#compact
-[7]: http://rightjs.org/docs/string#endsWith
-[8]: http://rightjs.org/docs/form#send "Form#send"
-[9]: http://rightjs.org/tutorials/uniformed-events-handling
-[10]: http://rightjs.org/tutorials/uniformed-options-handling
-[11]: http://rightjs.org/plugins
-[12]: http://github.com/MadRabbit/right-rails
-
-
-	Tags:  <a rel="tag" href="/tag/javascript/">javascript</a>&nbsp; <a rel="tag" href="/tag/rightjs/">rightjs</a>&nbsp; <a rel="tag" href="/tag/frameworks/">frameworks</a>&nbsp;
 </article>
 	</section>
 	<section id="portfolio" class="light">

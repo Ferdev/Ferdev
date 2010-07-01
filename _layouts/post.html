@@ -2,14 +2,12 @@
 layout: default
 ---
 <article>
-	<h1>
-	    <a href="{{ post.url }}">{{ page.title }}</a>
-	</h1>
+	<h1>{{ page.title }}</h1>
 	<span class="date">
-		{{page.date | date: "%b %d, %Y"}} in <a rel="category tag" title="View all posts in {{page.category}}" href="/{{page.category}}/">{{page.category}}</a>
+		{{page.date | date: "%b %d, %Y"}}
 	</span>
+	{% for tag in page.tags %} <a rel="tag" href="/tag/{{ tag }}/">{{ tag }}</a>&nbsp;{% endfor %}
 
-	{{ page.content }}
-
-	Tags: {% for tag in page.tags %} <a rel="tag" href="/tag/{{ tag }}/">{{ tag }}</a>&nbsp;{% endfor %}
+	{{ content }}
+	
 </article>
