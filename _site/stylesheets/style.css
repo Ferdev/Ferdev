@@ -80,13 +80,15 @@ section{ display: block; padding: 10px 0; }
 }
 
 .light h1{ text-shadow: 1px 1px 1px #000; }
+.light a{ text-shadow: 1px 1px 1px #666; }
 
 /* Header */
 header {
   border:0 none;
   display:block;
   margin-left:12.5em;
-  width:800px;  
+  margin-top:1em;
+  width:800px;
 }
 
 header hgroup h1 .title {
@@ -113,7 +115,7 @@ nav {
   position: fixed;
   left: 0;
   top: 50%;
-  margin-top: -107px;
+  margin-top: -124px;
   z-index: 1;
 }
 
@@ -392,11 +394,36 @@ section article ul {
   min-height: 1080px;
 }
 
+#contact ul li{
+  margin: 10px 0;
+}
+
+#contact ul li:before{
+  vertical-align: -4px;
+  padding-right: 10px;
+}
+
+#contact ul li.mail:before{
+  content: url('/images/icons/social/email_link.png');
+}
+#contact ul li.twitter:before{
+  content: url('/images/icons/social/twitter.png');
+}
+#contact ul li.facebook:before{
+  content: url('/images/icons/social/facebook.png');
+}
+#contact ul li.linkedin:before{
+  content: url('/images/icons/social/linkedin.png');
+}
+#contact ul li.xing:before{
+  content: url('/images/icons/social/xing.png');
+}
+
+
 /* Footer */
 footer {
   width: 100%;
   text-align: center;
-  padding: 2em 0;
 }
 
 footer ul{
