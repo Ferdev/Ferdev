@@ -9,84 +9,34 @@
 	<link rel="canonical" href="http://www.ferdev.com/" />
 </head>
 <body>
-	<div class="content">
-		<header>
-			<hgroup>
-				<h1><a class="title" href="/" title="Home" rel="home"><img src="/images/logo.gif" alt="ferdev.com" width="59" height="59" />Ferdev</a></h1>
-				<h3>Freelance Ruby on Rails developer</h3>
-			</hgroup>			
-		</header>
-		<nav>
-			<ul id="menu">
-				<li><a href="#blog" title="Portfolio">Blog</a></li>
-				<li><a href="#portfolio" title="Portfolio">Portfolio</a></li>
-				<li><a href="#about" title="About me">About me</a></li>
-				<li><a href="#contact" title="Contact">Contact</a></li>
-			</ul>		
-		</nav>
-	</div>
-	<section id="blog" class="articles">
-		<div class="content">
-			{{ content }}
-		</div>
+	<header class="dark">
+		<hgroup>
+			<h1><a class="title" href="/" title="Home" rel="home"><img src="/images/logo.gif" alt="ferdev.com" width="59" height="59" />Ferdev</a></h1>
+			<h3>Freelance Ruby on Rails developer</h3>
+		</hgroup>			
+	</header>
+	<nav>
+		<ul id="menu">
+			<li><a href="#blog" title="Portfolio">Blog</a></li>
+			<li><a href="#portfolio" title="Portfolio">Portfolio</a></li>
+			<li><a href="#about" title="About me">About me</a></li>
+			<li><a href="#contact" title="Contact">Contact</a></li>
+		</ul>		
+	</nav>
+	<section id="blog" class="articles dark">
+		{{ content }}
 	</section>
-	<section id="portfolio">
-		<div class="content">
-			<p>
-			These are the projects I've been working on lately:
-			</p>
-			<ul id="portfolio_projects">
-				<li class="project">
-					<h3>Loovrs.com</h3>
-					<div>
-						<img src="/images/portfolio/loovrs.jpg" alt="Loovrs" title="Loovrs"/>
-						<ul class="project_data">
-							<li>Dating site</li>
-							<li>xhtml / css / jQuery / Ruby on Rails</li>
-							<li><a href="http://www.loovrs.com" rel="loovrs.com">http://www.loovrs.com</a></li>
-						</ul>
-					</div>		
-				</li>
-				<li class="project">
-					<h3>FerDev.com</h3>
-					<div>
-						<img src="/images/portfolio/ferdev.jpg" alt="FerDev" title="FerDev"/>
-						<ul class="project_data">
-							<li>Wordpress theme</li>
-							<li>xhtml / css / jQuery / php</li>
-							<li><a href="http://www.ferdev.com" rel="ferdev.com">http://www.ferdev.com</a></li>
-						</ul>
-					</div>		
-				</li>
-			</ul>
-		</div>
+	<section id="portfolio" class="light">
+		{% include portfolio.html %}
 	</section>
-	<section id="contact">
-		<div class="content">
-			<p>Feel free to contact me for anything you might need from me!</p>
-			<ul>
-				<li>Send me an email to <a href="mailto:fer@ferdev.com">fer@ferdev.com</a>.</li>
-				<li><a href="http://twitter.com/ferdev">Follow me</a> on twitter.</li>
-				<li>Or drop me a few lines:<br />
-					[contact-form 1 "Contact form"]
-				</li>
-			</ul>
-		</div>
+	<section id="about" class="dark">
+		{% include about.html %}
 	</section>
-	<section id="about">
-		<div class="content">
-			{% include about.html %}
-		</div>
+	<section id="contact" class="light">
+		{% include contact.html%}
 	</section>
-	<footer>
-		<div class="content">
-			<ul>
-				<li>Designed by <a href="/" title="ferdev.com">ferdev.com</a>.</li>
-				<li>Social icons by <a href="http://www.komodomedia.com/" title="Komodo Media">Komodo Media</a>.</li>
-				<li>Blog <a href="http://github.com/ferdev/ferdev">source</a>.</li>
-			</ul>
-			<span>Copyright © 2010 Fernando Espinosa</span>
-		</div>
+	<footer class="dark">
+		{% include footer.html %}
 	</footer>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/javascripts/lib/jquery.easing.js" type="text/javascript" charset="utf-8"></script>
