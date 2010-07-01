@@ -1,12 +1,18 @@
 destination: ./_site
-auto:        false
-lsi:         false
+auto: false
+lsi: false
 server_port: 4000
-pygments:    true
-markdown:    maruku
-permalink:   date
+pygments: true
+markdown: maruku
+permalink: date
 maruku:
-  use_tex:    false
-  use_divs:   false
-  png_dir:    images/latex
-  png_url:    /images/latex
+  use_tex: false
+  use_divs: false
+  png_dir: images/latex
+  png_url: /images/latex
+# Change the dir the individual tag files are output to
+tag_dir: tag # Default is tags
+# Title to be used when generating the individual tag html files prefixed with tag name
+tag_title_prefix: "Tags &raquo; "
+# enable related_tags computing
+related_tags: true

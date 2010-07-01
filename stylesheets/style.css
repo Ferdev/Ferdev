@@ -65,7 +65,7 @@ div.content{
   margin-left: 12.5em;
 }
 
-section{ display: block; padding: 10px 0; }
+section{ display: block; padding: 10px 0; min-height: 1080px; }
 
 .dark{
   background-color: #444444;
@@ -161,13 +161,7 @@ nav {
 }
 
 /* Content */
-#content {
-  margin-right: 25px;
-  width: 775px;
-  height: 100%;
-}
-
-section article {
+#blog article {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -180,7 +174,7 @@ section article {
   width:800px;
 }
 
-section article .date {
+#blog .date {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -191,11 +185,11 @@ section article .date {
   margin-right: 1em;
 }
 
-section article .highlight{
+#blog .highlight{
   margin: 1em 0;
 }
 
-section article pre {
+#blog pre {
   border: 1px solid #444444;
   background-color: #222222;
   color: #FFFFFF;  
@@ -204,13 +198,13 @@ section article pre {
   padding: 2em 1em;
 }
 
-section article pre,
-section article code {
+#blog pre,
+#blog code {
   font-family: 'Deja Vu Sans Mono', monospace;
   white-space: pre;
 }
 
-section article a[rel='tag'] {
+#blog a[rel='tag'] {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -222,13 +216,13 @@ section article a[rel='tag'] {
   text-decoration: none;
 }
 
-section article a[rel='tag']:hover {
+#blog a[rel='tag']:hover {
   border: 1px solid #222222;
   background-color: #333333;
   text-decoration: underline;
 }
 
-section article ul {
+#blog ul {
   list-style-type: disc;
   margin-left: 2em;
 }
@@ -315,11 +309,22 @@ section article ul {
   width: 40em;
 }
 
-/* Portfolio */
-#portfolio{
-  min-height: 1080px;  
+/* Tag index*/
+#tag_index ul{
+  list-style-type: none;
+  margin: 2em;
 }
 
+#tag_index ul.related li{
+  display: inline;
+}
+
+#tag_index ul.posts li{
+  font-size: 1.5em;
+  margin: 1em 0;
+}
+
+/* Portfolio */
 #portfolio_projects {
   list-style-type: none;
   padding: 0;
@@ -384,9 +389,6 @@ section article ul {
 }
 
 /* About me */
-#about{
-  min-height: 1080px;
-}
 #about img{
   border: 0;
   vertical-align: middle;
@@ -394,10 +396,6 @@ section article ul {
 }
 
 /* Contact */
-#contact{
-  min-height: 1080px;
-}
-
 #contact ul li{
   margin: 10px 0;
 }
