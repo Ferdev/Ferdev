@@ -160,6 +160,10 @@ nav {
   background-color: #EEE;
 }
 
+#menu li a:active{
+  background: #FFF url(/images/button-overlay-inverse.png) repeat-x;
+}
+
 /* Content */
 #blog article {
   -moz-border-radius: 5px;
@@ -202,6 +206,7 @@ nav {
 #blog code {
   font-family: 'Deja Vu Sans Mono', monospace;
   white-space: pre;
+  overflow-y: hidden;
 }
 
 #blog a[rel='tag'] {
@@ -227,21 +232,25 @@ nav {
   margin-left: 2em;
 }
 
-.comments_subscribe {
+#blog .comments_subscribe {
   font-size: .8em;
 }
 
-.comments {
+#blog .comments {
+  display:block;
+  margin:1em 0 1em 12.5em;
+  padding:1em;
+  width:800px;
 }
 
-.comments li {
+#blog .comments li {
   background-color: #222222;
   margin: 0.5em 0;
   padding: 0.5em;
   overflow: auto;
 }
 
-.comments li .author {
+#blog .comments li .author {
   background-color: #111111;
   font-family: Helvetica,Arial;
   height: 54px;
@@ -249,17 +258,17 @@ nav {
   font-size: .8em;
 }
 
-.comments li .author .avatar {
+#blog .comments li .author .avatar {
   margin: 0 1em 0 0;
   vertical-align: top;
 }
 
-.comments li .author .url {
+#blog .comments li .author .url {
   font-size: 1.3em;
 }
 
-.comments li .comment-reply-link,
-.comments li .comment-edit-link {
+#blog .comments li .comment-reply-link,
+#blog .comments li .comment-edit-link {
   -moz-border-radius: 3px;
   -khtml-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -271,10 +280,10 @@ nav {
   font-family: Helvetica, Arial;
 }
 
-.comments li .comment-reply-link {
+#blog .comments li .comment-reply-link {
 }
 
-.comments li .comment-edit-link {
+#blog .comments li .comment-edit-link {
 }
 
 #respond {
