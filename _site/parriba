@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ejekyll && rsync -avz --delete _site/ ferdev:/var/www/localhost/htdocs/ferdev.com/
+jekyll && rsync -avz --delete _site/ ferdev:/var/www/localhost/htdocs/ferdev.com/
