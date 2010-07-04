@@ -21,19 +21,7 @@
 	<dict/>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
-	<key>showFileHierarchyPanel</key>
-	<true/>
-	<key>treeState</key>
-	<dict>
-		<key>ferdev</key>
-		<dict>
-			<key>isExpanded</key>
-			<true/>
-			<key>subItems</key>
-			<dict/>
-		</dict>
-	</dict>
 	<key>windowFrame</key>
-	<string>{{281, 66}, {1389, 962}}</string>
+	<string>{{51, 4}, {1389, 874}}</string>
 </dict>
 </plist>
