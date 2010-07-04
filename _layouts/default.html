@@ -14,17 +14,17 @@
 <body>
 	{% include header.html %}
 	{% include navigation.html %}
-	<section id="blog" class="articles dark">
+	<section class="articles dark">
 		{{ content }}
 	</section>
-	<section id="portfolio" class="light">
-		{% include portfolio.html %}
+	<section id="contact" class="light">
+		{% include contact.html%}
 	</section>
 	<section id="about" class="dark">
 		{% include about.html %}
 	</section>
-	<section id="contact" class="light">
-		{% include contact.html%}
+	<section id="portfolio" class="light">
+		{% include portfolio.html %}
 	</section>
 	<footer id="footer" class="dark">
 		{% include footer.html %}
