@@ -232,90 +232,11 @@ nav {
   margin-left: 2em;
 }
 
-#blog .comments_subscribe {
-  font-size: .8em;
-}
-
 #blog .comments {
   display:block;
   margin:1em 0 1em 12.5em;
   padding:1em;
   width:800px;
-}
-
-#blog .comments li {
-  background-color: #222222;
-  margin: 0.5em 0;
-  padding: 0.5em;
-  overflow: auto;
-}
-
-#blog .comments li .author {
-  background-color: #111111;
-  font-family: Helvetica,Arial;
-  height: 54px;
-  line-height: 2em;
-  font-size: .8em;
-}
-
-#blog .comments li .author .avatar {
-  margin: 0 1em 0 0;
-  vertical-align: top;
-}
-
-#blog .comments li .author .url {
-  font-size: 1.3em;
-}
-
-#blog .comments li .comment-reply-link,
-#blog .comments li .comment-edit-link {
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -ms-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #111111;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  font-family: Helvetica, Arial;
-}
-
-#blog .comments li .comment-reply-link {
-}
-
-#blog .comments li .comment-edit-link {
-}
-
-#respond {
-  font-family: Helvetica, Arial;
-}
-
-#respond h2 {
-  font-family: 'Everson Mono Latin', Helvetica, Arial;
-}
-
-#respond em,
-#respond abbr {
-  font-size: .7em;
-  color: #555555;
-}
-
-#respond input,
-#respond textarea {
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -ms-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #222222;
-  border-width: 1px;
-  color: white;
-  font-size: 1em;
-  width: 20em;
-}
-
-#respond textarea {
-  width: 40em;
 }
 
 /* Tag index*/
