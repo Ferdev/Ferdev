@@ -4,13 +4,33 @@
  <title>Fernando Espinosa - Ferdev</title>
  <link href="http://ferdev.com/atom.xml" rel="self"/>
  <link href="http://ferdev.com/"/>
- <updated>2010-07-05T00:25:36+02:00</updated>
+ <updated>2010-07-06T10:29:50+02:00</updated>
  <id>http://ferdev.com/</id>
  <author>
    <name>Fernando Espinosa Jiménez</name>
    <email>fer@ferdev.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Blog migrado a Jekyll</title>
+   <link href="http://ferdev.com/2010/07/05/blog-migrado-a-jekyll.html"/>
+   <updated>2010-07-05T00:00:00+02:00</updated>
+   <id>http://ferdev.com/2010/07/05/blog-migrado-a-jekyll</id>
+   <content type="html">&lt;p&gt;La semana pasada me lié la manta a la cabeza y me puse a migrar todo el blog de Wordpress a &lt;a href='http://jekyllrb.com/' title='transform your texto into a monster'&gt;Jekyll&lt;/a&gt;. Los motivos que me han llevado a moverlo a Jekyll son dos: velocidad y sencillez. Jekyll es un generador de sitios web estáticos programado en ruby. Jekyll genera a partir de plantillas y ficheros &lt;a href='http://daringfireball.net/projects/markdown/' title='Markdown'&gt;markdown&lt;/a&gt; o &lt;a href='http://textile.thresholdstate.com/' title='Textile'&gt;textile&lt;/a&gt;, ficheros html y xml (entre otras cosas). Al ser contenido estático, pierdes algunas cosas como el sistema de comentarios. Pero con &lt;a href='http://disqus.com/' title='Disqus'&gt;Disqus&lt;/a&gt; o &lt;a href='http://intensedebate.com/' title='Intense Debate'&gt;IntenseDebate&lt;/a&gt; queda solucionado el problema.&lt;/p&gt;
+
+&lt;p&gt;De paso he aprovechado para hacer un pequeño rediseño, y ahora tengo todo el contenido de la web en el mismo html, y mediante un pequeño javascript se realiza el scroll entre las diferentes secciones. Simplemente obtiene el atributo &amp;#8216;href&amp;#8217; del enlace, obtiene el elemento al que referencia y su offset vertical, y anima el desplazamiento del cursor principal hasta esa posición. Además degrada bien si el usuario no tiene el javascript activado.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#menu li a&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;live&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;evt&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+  &lt;span class='nx'&gt;evt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;preventDefault&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+  &lt;span class='kd'&gt;var&lt;/span&gt; 
+    &lt;span class='nx'&gt;destination_id&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;attr&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;href&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt;
+    &lt;span class='nx'&gt;scrollTo&lt;/span&gt;       &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;destination_id&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;offset&lt;/span&gt;&lt;span class='p'&gt;().&lt;/span&gt;&lt;span class='nx'&gt;top&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;html,body&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;animate&lt;/span&gt;&lt;span class='p'&gt;({&lt;/span&gt;&lt;span class='nx'&gt;scrollTop&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='nx'&gt;scrollTo&lt;/span&gt;&lt;span class='p'&gt;},&lt;/span&gt; &lt;span class='mi'&gt;2000&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;easeInOutExpo&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;He publicado el código fuente del blog por si queréis echarle un vistazo (aunque no tiene gran cosa que ver). Todavía no está terminado, faltan algunas cosas como la paginación de posts y algunos retoques más, pero como ya es funcional me he decidido a publicarlo.&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>RightJS, un framework javascript muy interesante</title>
