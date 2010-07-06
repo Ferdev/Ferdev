@@ -1,23 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
- 
- <title>Fernando Espinosa - Ferdev</title>
- <link href="http://ferdev.com/atom.xml" rel="self"/>
- <link href="http://ferdev.com/"/>
- <updated>2010-07-06T10:51:55+02:00</updated>
- <id>http://ferdev.com/</id>
- <author>
-   <name>Fernando Espinosa Jiménez</name>
-   <email>fer@ferdev.com</email>
- </author>
-
- 
- <entry>
-   <title>Blog migrado a Jekyll</title>
-   <link href="http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll.html"/>
-   <updated>2010-07-05T00:00:00+02:00</updated>
-   <id>http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll</id>
-   <content type="html">&lt;p&gt;La semana pasada me lié la manta a la cabeza y me puse a migrar todo el blog de Wordpress a &lt;a href='http://jekyllrb.com/' title='transform your texto into a monster'&gt;Jekyll&lt;/a&gt;. Los motivos que me han llevado a moverlo a Jekyll son dos: velocidad y sencillez. Jekyll es un generador de sitios web estáticos programado en ruby. Jekyll genera a partir de plantillas y ficheros &lt;a href='http://daringfireball.net/projects/markdown/' title='Markdown'&gt;markdown&lt;/a&gt; o &lt;a href='http://textile.thresholdstate.com/' title='Textile'&gt;textile&lt;/a&gt;, ficheros html y xml (entre otras cosas). Al ser contenido estático, pierdes algunas cosas como el sistema de comentarios. Pero con &lt;a href='http://disqus.com/' title='Disqus'&gt;Disqus&lt;/a&gt; o &lt;a href='http://intensedebate.com/' title='Intense Debate'&gt;IntenseDebate&lt;/a&gt; queda solucionado el problema.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Fernando Espinosa - Ferdev</title>
+    <link>http://www.ferdev.com</link>
+    <language>es</language>
+    <webMaster>fer@ferdev.com (Fernando Espinosa Jiménez)</webMaster>
+    <pubDate>2010-07-06T10:51:55+02:00</pubDate>
+    <copyright>Copyright 2009-2010</copyright>
+    <ttl>60</ttl>
+    <description>Freelance Ruby on Rails developer</description>
+    
+    <item>
+      <title>Blog migrado a Jekyll</title>
+      <link>http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll.html</link>
+      <pubDate>Mon Jul 05 00:00:00 +0200 2010</pubDate>
+      <guid>http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll/</guid>
+      <description>&lt;p&gt;La semana pasada me lié la manta a la cabeza y me puse a migrar todo el blog de Wordpress a &lt;a href='http://jekyllrb.com/' title='transform your texto into a monster'&gt;Jekyll&lt;/a&gt;. Los motivos que me han llevado a moverlo a Jekyll son dos: velocidad y sencillez. Jekyll es un generador de sitios web estáticos programado en ruby. Jekyll genera a partir de plantillas y ficheros &lt;a href='http://daringfireball.net/projects/markdown/' title='Markdown'&gt;markdown&lt;/a&gt; o &lt;a href='http://textile.thresholdstate.com/' title='Textile'&gt;textile&lt;/a&gt;, ficheros html y xml (entre otras cosas). Al ser contenido estático, pierdes algunas cosas como el sistema de comentarios. Pero con &lt;a href='http://disqus.com/' title='Disqus'&gt;Disqus&lt;/a&gt; o &lt;a href='http://intensedebate.com/' title='Intense Debate'&gt;IntenseDebate&lt;/a&gt; queda solucionado el problema.&lt;/p&gt;
 
 &lt;p&gt;De paso he aprovechado para hacer un pequeño rediseño, y ahora tengo todo el contenido de la web en el mismo html, y mediante un pequeño javascript se realiza el scroll entre las diferentes secciones. Simplemente obtiene el atributo &amp;#8216;href&amp;#8217; del enlace, obtiene el elemento al que referencia y su offset vertical, y anima el desplazamiento del cursor principal hasta esa posición. Además degrada bien si el usuario no tiene el javascript activado.&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#menu li a&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;live&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;evt&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
@@ -29,15 +27,20 @@
 &lt;span class='p'&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;He publicado el código fuente del blog por si queréis echarle un vistazo (aunque no tiene gran cosa que ver). Todavía no está terminado, faltan algunas cosas como la paginación de posts y algunos retoques más, pero como ya es funcional me he decidido a publicarlo.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>RightJS, un framework javascript muy interesante</title>
-   <link href="http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html"/>
-   <updated>2010-05-10T00:00:00+02:00</updated>
-   <id>http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante</id>
-   <content type="html">&lt;p&gt;Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.&lt;/p&gt;
+&lt;p&gt;He publicado el código fuente del blog por si queréis echarle un vistazo (aunque no tiene gran cosa que ver). Todavía no está terminado, faltan algunas cosas como la paginación de posts y algunos retoques más, pero como ya es funcional me he decidido a publicarlo.&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/blog"></category>
+      
+      <category domain="http://www.ferdev.com/tag/jekyll"></category>
+      
+    </item>
+    
+    <item>
+      <title>RightJS, un framework javascript muy interesante</title>
+      <link>http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html</link>
+      <pubDate>Mon May 10 00:00:00 +0200 2010</pubDate>
+      <guid>http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante/</guid>
+      <description>&lt;p&gt;Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.&lt;/p&gt;
 
 &lt;p&gt;La mejor manera de hablar de &lt;a href='http://rightjs.org' title='The Right JavaScript Framework'&gt;RightJS&lt;/a&gt; es comentar sus características principales:&lt;/p&gt;
 
@@ -148,25 +151,37 @@
 &lt;li&gt;Y también: &lt;a href='http://rightjs.org/docs/form#send' title='Form#send'&gt;envío&lt;/a&gt; simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de &lt;a href='http://rightjs.org/tutorials/uniformed-events-handling'&gt;eventos&lt;/a&gt; y &lt;a href='http://rightjs.org/tutorials/uniformed-options-handling'&gt;opciones&lt;/a&gt; de métodos, arquitectura abierta, soporte para &lt;a href='http://rightjs.org/plugins'&gt;plugins&lt;/a&gt;, y una &lt;a href='http://github.com/MadRabbit/right-rails'&gt;gema&lt;/a&gt; para facilitar la integración con Rails (soporta Rails3).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Rediseño del blog y freelanceo</title>
-   <link href="http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo.html"/>
-   <updated>2010-03-23T00:00:00+01:00</updated>
-   <id>http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo</id>
-   <content type="html">&lt;p&gt;La semana pasada he estado dándole un pequeño rediseño al blog. El diseño que había era el resultante de haber hecho unas cuantas pruebas, y al final por falta de tiempo no había podido cambiarlo. Quería algo minimalista, con buena legibilidad, y con el menor número de imágenes posible.&lt;/p&gt;
+&lt;p&gt;Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/javascript"></category>
+      
+      <category domain="http://www.ferdev.com/tag/rightjs"></category>
+      
+      <category domain="http://www.ferdev.com/tag/frameworks"></category>
+      
+    </item>
+    
+    <item>
+      <title>Rediseño del blog y freelanceo</title>
+      <link>http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo.html</link>
+      <pubDate>Tue Mar 23 00:00:00 +0100 2010</pubDate>
+      <guid>http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo/</guid>
+      <description>&lt;p&gt;La semana pasada he estado dándole un pequeño rediseño al blog. El diseño que había era el resultante de haber hecho unas cuantas pruebas, y al final por falta de tiempo no había podido cambiarlo. Quería algo minimalista, con buena legibilidad, y con el menor número de imágenes posible.&lt;/p&gt;
 
-&lt;p&gt;De hecho, la única imagen es el nuevo logo (a excepción de los iconos de social media, que son de &lt;a href='http://www.komodomedia.com/' title='Komodo Media'&gt;Komodo Media&lt;/a&gt;). Y he creado un logo porque me embarco en la aventura del desarrollo freelance, y éste será mi nueva identidad visual. Últimamente estoy viendo mucha gente que se dedica a ello y me he decidido a dar el salto. Así que si alguien necesita un desarrollador Ruby on Rails, javascript, php, java o .NET, aquí me tenéis!&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Testing AjaxUpload con Capybara + Culerity</title>
-   <link href="http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity.html"/>
-   <updated>2010-03-10T00:00:00+01:00</updated>
-   <id>http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity</id>
-   <content type="html">&lt;p&gt;Llevo unos días probando &lt;a href='http://github.com/jnicklas/capybara'&gt;Capybara&lt;/a&gt; después de los comentarios tan buenos que había escuchado de él en &lt;a href='http://twitter.com/albertoperdomo/status/9643469318'&gt;twitter&lt;/a&gt; últimamente, especialmente de su integración con &lt;a href='http://github.com/langalex/culerity'&gt;Culerity&lt;/a&gt;. Los hados además trataban de decirme algo porque la última &lt;a href='http://github.com/porras/madrid-rb-feb-2010'&gt;charla&lt;/a&gt; de &lt;a href='http://twitter.com/madridrb'&gt;madridrb&lt;/a&gt; que dio &lt;a href='http://twitter.com/porras'&gt;@porras&lt;/a&gt; versaba sobre esto mismo (y &lt;a href='http://github.com/cavalle/steak'&gt;Steak&lt;/a&gt;, que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.&lt;/p&gt;
+&lt;p&gt;De hecho, la única imagen es el nuevo logo (a excepción de los iconos de social media, que son de &lt;a href='http://www.komodomedia.com/' title='Komodo Media'&gt;Komodo Media&lt;/a&gt;). Y he creado un logo porque me embarco en la aventura del desarrollo freelance, y éste será mi nueva identidad visual. Últimamente estoy viendo mucha gente que se dedica a ello y me he decidido a dar el salto. Así que si alguien necesita un desarrollador Ruby on Rails, javascript, php, java o .NET, aquí me tenéis!&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/redesign"></category>
+      
+      <category domain="http://www.ferdev.com/tag/freelance"></category>
+      
+    </item>
+    
+    <item>
+      <title>Testing AjaxUpload con Capybara + Culerity</title>
+      <link>http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity.html</link>
+      <pubDate>Wed Mar 10 00:00:00 +0100 2010</pubDate>
+      <guid>http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity/</guid>
+      <description>&lt;p&gt;Llevo unos días probando &lt;a href='http://github.com/jnicklas/capybara'&gt;Capybara&lt;/a&gt; después de los comentarios tan buenos que había escuchado de él en &lt;a href='http://twitter.com/albertoperdomo/status/9643469318'&gt;twitter&lt;/a&gt; últimamente, especialmente de su integración con &lt;a href='http://github.com/langalex/culerity'&gt;Culerity&lt;/a&gt;. Los hados además trataban de decirme algo porque la última &lt;a href='http://github.com/porras/madrid-rb-feb-2010'&gt;charla&lt;/a&gt; de &lt;a href='http://twitter.com/madridrb'&gt;madridrb&lt;/a&gt; que dio &lt;a href='http://twitter.com/porras'&gt;@porras&lt;/a&gt; versaba sobre esto mismo (y &lt;a href='http://github.com/cavalle/steak'&gt;Steak&lt;/a&gt;, que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.&lt;/p&gt;
 
 &lt;p&gt;Los primeros vinieron con la instalación. Culerity es un recubrimiento (que poco me gusta esta palabra) de &lt;a href='http://github.com/jarib/celerity'&gt;Celerity&lt;/a&gt;, que a su vez es otro recubrimiento de &lt;a href='http://htmlunit.sourceforge.net/'&gt;HtmlUnit&lt;/a&gt;, un navegador web sin interfaz gráfico programado en Java. Y debido a esto, necesitas Jruby para instalar la gema de Celerity. Pues bien, rvm y todo este tinglado no se llevan demasiado bien. Y aunque hay un &lt;a href='http://rvm.beginrescueend.com/integration/culerty/'&gt;hack&lt;/a&gt; para salir al paso, a mi no me valía del todo (a parte que no me gustaba mucho que digamos) porque yo no estaba usando Cucumber sino Steak (requisito para que funcione el Hack). Al final conseguí hacerlo funcionar instalando Jruby mediante Macports. No sé si me dará problemas en el futuro, pero hasta que Culerity y rvm se lleven mejor, me gusta más esta solución que andar cambiando variables de entorno en cada test.&lt;/p&gt;
 
@@ -226,15 +241,28 @@
 &lt;span class='n'&gt;find&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;input_selector&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;file_path&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Plugin jQuery para obtener dimensiones de un objeto</title>
-   <link href="http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto.html"/>
-   <updated>2009-10-31T00:00:00+01:00</updated>
-   <id>http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto</id>
-   <content type="html">&lt;p&gt;Hola!&lt;/p&gt;
+&lt;p&gt;Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/rails"></category>
+      
+      <category domain="http://www.ferdev.com/tag/ruby"></category>
+      
+      <category domain="http://www.ferdev.com/tag/capybara"></category>
+      
+      <category domain="http://www.ferdev.com/tag/culerity"></category>
+      
+      <category domain="http://www.ferdev.com/tag/testing"></category>
+      
+      <category domain="http://www.ferdev.com/tag/ajaxupload"></category>
+      
+    </item>
+    
+    <item>
+      <title>Plugin jQuery para obtener dimensiones de un objeto</title>
+      <link>http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto.html</link>
+      <pubDate>Sat Oct 31 00:00:00 +0100 2009</pubDate>
+      <guid>http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto/</guid>
+      <description>&lt;p&gt;Hola!&lt;/p&gt;
 
 &lt;p&gt;Hace mucho que no escribo por aquí, no dispongo de demasiado tiempo&amp;#8230; Como podéis ver, cuando saco unos minutos voy haciendo pruebas de diseño con el blog. Tengo intención de pasarlo a HTML5, usar CSS3 al máximo e intentar usar el menor número de imágenes posibles, a ver si lo consigo :D Bueno, al grano.&lt;/p&gt;
 
@@ -269,15 +297,22 @@
 &lt;span class='p'&gt;};&lt;/span&gt;
 &lt;span class='p'&gt;})(&lt;/span&gt;&lt;span class='nx'&gt;jQuery&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content>
- </entry>
- 
- <entry>
-   <title>SWFUpload, Rails y los 406</title>
-   <link href="http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406.html"/>
-   <updated>2009-10-06T00:00:00+02:00</updated>
-   <id>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406</id>
-   <content type="html">&lt;p&gt;En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.&lt;/p&gt;
+&lt;/div&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/javascript"></category>
+      
+      <category domain="http://www.ferdev.com/tag/jquery"></category>
+      
+      <category domain="http://www.ferdev.com/tag/plugins"></category>
+      
+    </item>
+    
+    <item>
+      <title>SWFUpload, Rails y los 406</title>
+      <link>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406.html</link>
+      <pubDate>Tue Oct 06 00:00:00 +0200 2009</pubDate>
+      <guid>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406/</guid>
+      <description>&lt;p&gt;En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.&lt;/p&gt;
 
 &lt;p&gt;Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo &amp;#8220;text/&lt;em&gt;&amp;#8221;. Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.&lt;/em&gt;&lt;/p&gt;
 
@@ -291,15 +326,24 @@
 &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Registro progresivo en paginas web</title>
-   <link href="http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web.html"/>
-   <updated>2009-05-26T00:00:00+02:00</updated>
-   <id>http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web</id>
-   <content type="html">&lt;p&gt;Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.&lt;/p&gt;
+&lt;p&gt;Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/rails"></category>
+      
+      <category domain="http://www.ferdev.com/tag/ruby"></category>
+      
+      <category domain="http://www.ferdev.com/tag/flash"></category>
+      
+      <category domain="http://www.ferdev.com/tag/swfupload"></category>
+      
+    </item>
+    
+    <item>
+      <title>Registro progresivo en paginas web</title>
+      <link>http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web.html</link>
+      <pubDate>Tue May 26 00:00:00 +0200 2009</pubDate>
+      <guid>http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web/</guid>
+      <description>&lt;p&gt;Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.&lt;/p&gt;
 
 &lt;p&gt;Comienzo hablando de un tema que en mi opinión es muy interesante (y útil), y que no he visto implementado en ningún sitio aún. De hecho aunque los habrá, yo no he visto ninguno. Se trata del registro progresivo de datos en formularios.&lt;/p&gt;
 
@@ -367,15 +411,18 @@
 
 &lt;p&gt;Quizá se pueda poner un ejemplo más correcto del uso de esta técnica, pero creo que la idea se capta. En mi opinión es para tenerla en consideración, y si además la complementamos con algún sistema de identificación como OAuth o Facebook Connect, creo que puede llegar a ser una herramienta muy poderosa.&lt;/p&gt;
 
-&lt;p&gt;Más adelante escribiré un post sobre su implementación en una web desarrollada con Ruby on Rails.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Paso 1: wordpress instalado</title>
-   <link href="http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado.html"/>
-   <updated>2009-05-08T00:00:00+02:00</updated>
-   <id>http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado</id>
-   <content type="html">&lt;p&gt;Empiezo las andanzas en el mundo &amp;#8220;blogueril&amp;#8221; personal. Me llamo Fer, y en este blog intentaré transmitir lo mejor que pueda los conocimientos que he ido adquiriendo a lo largo de mi vida en el mundo del desarrollo de software (y un poquito de diseño también, pero poco, que no es lo mío).&lt;/p&gt;
+&lt;p&gt;Más adelante escribiré un post sobre su implementación en una web desarrollada con Ruby on Rails.&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/patterns"></category>
+      
+    </item>
+    
+    <item>
+      <title>Paso 1: wordpress instalado</title>
+      <link>http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado.html</link>
+      <pubDate>Fri May 08 00:00:00 +0200 2009</pubDate>
+      <guid>http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado/</guid>
+      <description>&lt;p&gt;Empiezo las andanzas en el mundo &amp;#8220;blogueril&amp;#8221; personal. Me llamo Fer, y en este blog intentaré transmitir lo mejor que pueda los conocimientos que he ido adquiriendo a lo largo de mi vida en el mundo del desarrollo de software (y un poquito de diseño también, pero poco, que no es lo mío).&lt;/p&gt;
 
 &lt;p&gt;Como primer paso he conseguido un dominio, un servidor y la última versión de &lt;a href='http://wordpress.org/' title='wordpress'&gt;wordpress 2.7.1&lt;/a&gt;.&lt;/p&gt;
 
@@ -383,8 +430,15 @@
 
 &lt;p&gt;Falta algún plugin, publicidad para sobrellevar la crisis, añadir mi cuenta de twitter&amp;#8230; Poco a poco iré actualizando.&lt;/p&gt;
 
-&lt;p&gt;Bienvenidos :-)&lt;/p&gt;</content>
- </entry>
- 
- 
-</feed>
+&lt;p&gt;Bienvenidos :-)&lt;/p&gt;</description>
+      
+      <category domain="http://www.ferdev.com/tag/wordpress"></category>
+      
+      <category domain="http://www.ferdev.com/tag/carrington"></category>
+      
+      <category domain="http://www.ferdev.com/tag/jquery"></category>
+      
+    </item>
+    
+  </channel>
+</rss>
