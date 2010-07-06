@@ -10,6 +10,7 @@ maruku:
   use_divs: false
   png_dir: images/latex
   png_url: /images/latex
+paginate: 5
 url: http://www.ferdev.com
 # Change the dir the individual tag files are output to
 tag_dir: tag # Default is tags

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Freelance Ruby on Rails developer. Registro progresivo en paginas web</title>
+	<title>Freelance Ruby on Rails developer. </title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/reset.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
@@ -29,18 +29,40 @@
 	</ul>		
 </nav>
 	<section class="articles dark">
-		<script type="text/javascript" charset="utf-8">
-  var idcomments_acct = '9485e3d1ca4f30d30b14d9171a8b93b7';
-  var idcomments_post_id;
-  var idcomments_post_url;
-</script>
+		
 <article>
-	<h1>Registro progresivo en paginas web</h1>
+	<h1>
+	    <a href="/2009/10/06/swfupload-rails-y-los-406.html">SWFUpload, Rails y los 406</a>
+	</h1>
+	<span class="date">
+		Oct 06, 2009
+	</span>
+	 <a rel="tag" href="/tag/rails/">rails</a>&nbsp; <a rel="tag" href="/tag/ruby/">ruby</a>&nbsp; <a rel="tag" href="/tag/flash/">flash</a>&nbsp; <a rel="tag" href="/tag/swfupload/">swfupload</a>&nbsp;
+	<p>En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.</p>
+
+<p>Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo &#8220;text/<em>&#8221;. Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.</em></p>
+
+<p>Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:</p>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Mime</span><span class='o'>::</span><span class='no'>Type</span><span class='o'>.</span><span class='n'>register</span> <span class='s2'>&quot;text/*&quot;</span><span class='p'>,</span> <span class='ss'>:all_text</span>
+</code></pre>
+</div>
+<p>Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>respond_to</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>format</span><span class='o'>|</span>
+	<span class='nb'>format</span><span class='o'>.</span><span class='n'>all_text</span><span class='p'>{</span> <span class='n'>render</span> <span class='ss'>:text</span> <span class='o'>=&gt;</span> <span class='n'>text_to_render</span> <span class='p'>}</span>
+<span class='k'>end</span>
+</code></pre>
+</div>
+<p>Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.</p>
+</article>
+
+<article>
+	<h1>
+	    <a href="/2009/05/26/registro-progresivo-en-paginas-web.html">Registro progresivo en paginas web</a>
+	</h1>
 	<span class="date">
 		May 26, 2009
 	</span>
 	 <a rel="tag" href="/tag/patterns/">patterns</a>&nbsp;
-
 	<p>Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.</p>
 
 <p>Comienzo hablando de un tema que en mi opinión es muy interesante (y útil), y que no he visto implementado en ningún sitio aún. De hecho aunque los habrá, yo no he visto ninguno. Se trata del registro progresivo de datos en formularios.</p>
@@ -110,12 +132,28 @@
 <p>Quizá se pueda poner un ejemplo más correcto del uso de esta técnica, pero creo que la idea se capta. En mi opinión es para tenerla en consideración, y si además la complementamos con algún sistema de identificación como OAuth o Facebook Connect, creo que puede llegar a ser una herramienta muy poderosa.</p>
 
 <p>Más adelante escribiré un post sobre su implementación en una web desarrollada con Ruby on Rails.</p>
-	
 </article>
-<div class="comments">
-  <span id="IDCommentsPostTitle" style="display:none"></span>
-  <script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
-</div>
+
+<article>
+	<h1>
+	    <a href="/2009/05/08/paso-1-wordpress-instalado.html">Paso 1: wordpress instalado</a>
+	</h1>
+	<span class="date">
+		May 08, 2009
+	</span>
+	 <a rel="tag" href="/tag/wordpress/">wordpress</a>&nbsp; <a rel="tag" href="/tag/carrington/">carrington</a>&nbsp; <a rel="tag" href="/tag/jquery/">jquery</a>&nbsp;
+	<p>Empiezo las andanzas en el mundo &#8220;blogueril&#8221; personal. Me llamo Fer, y en este blog intentaré transmitir lo mejor que pueda los conocimientos que he ido adquiriendo a lo largo de mi vida en el mundo del desarrollo de software (y un poquito de diseño también, pero poco, que no es lo mío).</p>
+
+<p>Como primer paso he conseguido un dominio, un servidor y la última versión de <a href='http://wordpress.org/' title='wordpress'>wordpress 2.7.1</a>.</p>
+
+<p>Poco a poco, iré implementando mi propio tema de wordpress. Para ello, parto de la base del tema <a href='http://carringtontheme.com/' title='Carrington Jam'>Carrington Jam</a>, tema especialmente pensado para modificarlo a gusto del consumidor. Para realizar este tema, principalmente utilizaré el framework javascript <a href='http://www.jquery.com/' title='jQuery 1.3.2.'>jQuery 1.3.2</a>, mi favorito de entre todos los actuales.</p>
+
+<p>Falta algún plugin, publicidad para sobrellevar la crisis, añadir mi cuenta de twitter&#8230; Poco a poco iré actualizando.</p>
+
+<p>Bienvenidos :-)</p>
+</article>
+
+
 	</section>
 	<section id="contact" class="light">
 		<div class="content">

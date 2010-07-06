@@ -141,7 +141,7 @@ nav {
   	box-shadow: 0 1px 3px rgba(0,0,0,0.5);	
   	background: #FFF url(/images/button-overlay.png) repeat-x;
   	display: inline-block;
-  	padding: 6px 17px 8px;
+  	padding: 8px 17px;
   	color: #444;
   	font-family: Helvetica, Arial;
   	font-size: 1.3em;
@@ -150,7 +150,7 @@ nav {
   	text-align: center;
   	border-style:solid;
     border-width:1px;
-  	border-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.35);  	
+  	border-color: rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.85);
   	position: relative;
   	cursor: pointer;  	
   	width:78px;
@@ -162,6 +162,20 @@ nav {
 
 #menu li a:active{
   background: #FFF url(/images/button-overlay-inverse.png) repeat-x;
+}
+
+#menu li a#contact_button{
+  background-color: #222;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+#menu li a#contact_button:hover{
+  background-color: #333;
+}
+
+#menu li a#contact_button:active{
+  background: #222 url(/images/button-overlay-inverse.png) repeat-x;
 }
 
 /* Content */
@@ -230,6 +244,46 @@ section.articles a[rel='tag']:hover {
 section.articles ul {
   list-style-type: disc;
   margin-left: 2em;
+}
+
+section.articles div.more_posts{
+  text-align: center;
+  margin:1em 0 1em 12.5em;
+  padding:1em;
+  width:800px;
+}
+
+section.articles div.more_posts a{
+    -moz-border-radius: 8px;
+  	-webkit-border-radius: 8px;
+    -ms-border-radius: 8px;
+  	border-radius: 8px;
+  	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  	-ms-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  	box-shadow: 0 1px 3px rgba(0,0,0,0.5);	
+    background:url("/images/button-overlay.png") repeat-x scroll 0 0 #FFFFFF;
+    border-color:rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.85);
+    border-style:solid;
+    border-width:1px;
+    color:#444444;
+    cursor:pointer;
+    display:inline-block;
+    font-family:Helvetica,Arial;
+    font-size:1.5em;
+    padding:9px 30px;
+    position:relative;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+section.articles div.more_posts a:hover{
+  background-color: #EEE;
+}
+
+section.articles div.more_posts a:active{
+  background: #FFF url(/images/button-overlay-inverse.png) repeat-x;
 }
 
 section.articles .comments {

@@ -25,10 +25,23 @@ var ferdev = function(){
     });
   };  
   
+  var pagination = function(){
+    $('section.articles div.more_posts a').live('click', function(evt){
+      evt.preventDefault();
+      var 
+        container = $(this).parent(),
+        page      = $(this).attr('rel');
+      $.get('/'+page+'/index.html', function(objHTML){
+        container.replaceWith($(objHTML).closest('section.articles').children());
+      });
+    });
+  };
+  
   return {
     init: function(){
         portfolio();
         navigation();
+        pagination();
     }    
   };    
 };
