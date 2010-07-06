@@ -31,6 +31,7 @@ var ferdev = function(){
       var 
         container = $(this).parent(),
         page      = $(this).attr('rel');
+      $(this).before($('<span/>').addClass('loading'));
       $.get('/'+page+'/index.html', function(objHTML){
         container.replaceWith($(objHTML).closest('section.articles').children());
       });

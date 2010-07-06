@@ -251,6 +251,16 @@ section.articles div.more_posts{
   margin:1em 0 1em 12.5em;
   padding:1em;
   width:800px;
+  position: relative;
+}
+
+section.articles div.more_posts span.loading{
+  background:url("/images/spinner.gif") no-repeat scroll 0 0 transparent;
+  left:290px;
+  margin-top:-16px;
+  padding:16px;
+  position:absolute;
+  top:50%;
 }
 
 section.articles div.more_posts a{
