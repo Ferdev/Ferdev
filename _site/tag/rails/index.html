@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Freelance Ruby on Rails developer. Blog migrado a Jekyll</title>
+	<title>Freelance Ruby on Rails developer. Tags &raquo; rails</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/reset.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
@@ -33,36 +33,54 @@
 	</ul>		
 </nav>
 	<section class="articles dark">
-		<script type="text/javascript">
-  var idcomments_acct = '9485e3d1ca4f30d30b14d9171a8b93b7';
-  var idcomments_post_id;
-  var idcomments_post_url;
-</script>
-<article>
-	<h1>Blog migrado a Jekyll</h1>
-	<span class="date">
-		Jul 05, 2010
-	</span>
-	 <a rel="tag" href="/tag/blog/">blog</a>&nbsp; <a rel="tag" href="/tag/jekyll/">jekyll</a>&nbsp;
-
-	<p>La semana pasada me lié la manta a la cabeza y me puse a migrar todo el blog de Wordpress a <a href='http://jekyllrb.com/' title='transform your texto into a monster'>Jekyll</a>. Los motivos que me han llevado a moverlo a Jekyll son dos: velocidad y sencillez. Jekyll es un generador de sitios web estáticos programado en ruby. Jekyll genera a partir de plantillas y ficheros <a href='http://daringfireball.net/projects/markdown/' title='Markdown'>markdown</a> o <a href='http://textile.thresholdstate.com/' title='Textile'>textile</a>, ficheros html y xml (entre otras cosas). Al ser contenido estático, pierdes algunas cosas como el sistema de comentarios. Pero con <a href='http://disqus.com/' title='Disqus'>Disqus</a> o <a href='http://intensedebate.com/' title='Intense Debate'>IntenseDebate</a> queda solucionado el problema.</p>
-
-<p>De paso he aprovechado para hacer un pequeño rediseño, y ahora tengo todo el contenido de la web en el mismo html, y mediante un pequeño javascript se realiza el scroll entre las diferentes secciones. Simplemente obtiene el atributo &#8216;href&#8217; del enlace, obtiene el elemento al que referencia y su offset vertical, y anima el desplazamiento del cursor principal hasta esa posición. Además degrada bien si el usuario no tiene el javascript activado.</p>
-<div class='highlight'><pre><code class='javascript'><span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#menu li a&#39;</span><span class='p'>).</span><span class='nx'>live</span><span class='p'>(</span><span class='s1'>&#39;click&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>evt</span><span class='p'>){</span>
-  <span class='nx'>evt</span><span class='p'>.</span><span class='nx'>preventDefault</span><span class='p'>();</span>
-  <span class='kd'>var</span> 
-    <span class='nx'>destination_id</span> <span class='o'>=</span> <span class='nx'>$</span><span class='p'>(</span><span class='k'>this</span><span class='p'>).</span><span class='nx'>attr</span><span class='p'>(</span><span class='s1'>&#39;href&#39;</span><span class='p'>),</span>
-    <span class='nx'>scrollTo</span>       <span class='o'>=</span> <span class='nx'>$</span><span class='p'>(</span><span class='nx'>destination_id</span><span class='p'>).</span><span class='nx'>offset</span><span class='p'>().</span><span class='nx'>top</span><span class='p'>;</span>
-  <span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;html,body&#39;</span><span class='p'>).</span><span class='nx'>animate</span><span class='p'>({</span><span class='nx'>scrollTop</span><span class='o'>:</span> <span class='nx'>scrollTo</span><span class='p'>},</span> <span class='mi'>2000</span><span class='p'>,</span> <span class='s1'>&#39;easeInOutExpo&#39;</span><span class='p'>);</span>
-<span class='p'>});</span>
-</code></pre>
-</div>
-<p>He publicado el código fuente del blog por si queréis echarle un vistazo (aunque no tiene gran cosa que ver). Todavía no está terminado, faltan algunas cosas como la paginación de posts y algunos retoques más, pero como ya es funcional me he decidido a publicarlo.</p>
+		<div id="tag_index" class="content">
 	
-</article>
-<div class="comments">
-  <span id="IDCommentsPostTitle" style="display:none"></span>
-  <script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js' charset='utf-8'></script>
+	<h1 id="related_tags:">Related tags:</h1>
+	<ul class="related">
+	
+		<li>
+			<a href="/tag/ruby" rel="tag">ruby</a>
+		</li>
+	
+		<li>
+			<a href="/tag/capybara" rel="tag">capybara</a>
+		</li>
+	
+		<li>
+			<a href="/tag/culerity" rel="tag">culerity</a>
+		</li>
+	
+		<li>
+			<a href="/tag/testing" rel="tag">testing</a>
+		</li>
+	
+		<li>
+			<a href="/tag/ajaxupload" rel="tag">ajaxupload</a>
+		</li>
+	
+		<li>
+			<a href="/tag/flash" rel="tag">flash</a>
+		</li>
+	
+		<li>
+			<a href="/tag/swfupload" rel="tag">swfupload</a>
+		</li>
+	
+	</ul>
+	
+
+	<h1 id="tag_rails"> Tag: rails </h1>
+	<ul class="posts">
+	
+	  <li> 
+	    <a href="/2010/03/10/testing-ajaxupload-con-capybara-culerity.html">Testing AjaxUpload con Capybara + Culerity</a>
+	  </li>
+	
+	  <li> 
+	    <a href="/2009/10/06/swfupload-rails-y-los-406.html">SWFUpload, Rails y los 406</a>
+	  </li>
+	
+	</ul>
 </div>
 	</section>
 	<section id="contact" class="light">
