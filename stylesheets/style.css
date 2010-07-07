@@ -376,6 +376,7 @@ section.articles .comments {
   zoom: 1;
   *display: inline;
   margin-right: 3em;
+  margin-bottom: 3em;
   position: relative;
   vertical-align: top;
   opacity: .3;
