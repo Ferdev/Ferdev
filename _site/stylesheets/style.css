@@ -86,14 +86,16 @@ header {
 
 header hgroup h1 .title {
   font-family: Helvetica, Arial;
-  font-size: 4em;
+  font-size: 3em;
   text-decoration: none;
   color: #DDD;
   text-shadow: 0 2px 1px #000;
+  vertical-align: middle;
 }
 header hgroup h1 .title img{
   border:0 none;
   margin-right:15px;
+  vertical-align: middle;
 }
 
 header hgroup h3 {
