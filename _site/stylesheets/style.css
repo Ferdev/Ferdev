@@ -342,7 +342,7 @@ section.articles .comments {
 /* Tag index*/
 #tag_index ul{
   list-style-type: none;
-  margin: 2em;
+  margin: 2em 0;
 }
 
 #tag_index ul.related li{

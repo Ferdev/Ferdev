@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Fernando Espinosa | Programador web freelance. Tags &raquo; freelance</title>
+	<title>Fernando Espinosa | Programador web freelance. Cambiar el idioma a selenium</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/reset.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
@@ -32,26 +32,42 @@
 	</ul>		
 </nav>
 	<section class="articles dark">
-		<div id="tag_index" class="content">
-	
-	<h1 id="related_tags:">Related tags:</h1>
-	<ul class="related">
-	
-		<li>
-			<a href="/tag/redesign" rel="tag">redesign</a>
-		</li>
-	
-	</ul>
-	
+		<script type="text/javascript">
+  var idcomments_acct = '9485e3d1ca4f30d30b14d9171a8b93b7';
+  var idcomments_post_id;
+  var idcomments_post_url;
+</script>
+<article>
+	<h1>Cambiar el idioma a selenium</h1>
+	<span class="date">
+		Aug 14, 2010
+	</span>
+	 <a rel="tag" href="/tag/rails/">rails</a>&nbsp; <a rel="tag" href="/tag/testing/">testing</a>&nbsp; <a rel="tag" href="/tag/capybara/">capybara</a>&nbsp; <a rel="tag" href="/tag/selenium/">selenium</a>&nbsp;
 
-	<h1 id="tag_freelance"> Tag: freelance </h1>
-	<ul class="posts">
+	<p>Ayer me encontré con un problema haciendo tests para un pet-project que estoy haciendo con Rails3 3.0.0.rc. Parece ser que a partir de la versión 1.0.0.beta.9 de <a href='http://github.com/carlhuda/bundler' title='Bundler'>bundler</a>, culerity lanza un error a la hora de crear el browser con celerity. Mientras investigo el problema, no quería dejar el desarrollo parado, así que decidí cambiar el driver de <a href='http://github.com/jnicklas/capybara' title='Capybara'>capybara</a> a selenium. Pero el firefox que trae el driver de selenium integrado se me ejecutaba en castellano, y yo tengo los tests escritos en inglés, por lo que fallaban. Tras twittear buscando ayuda, <a href='http://twitter.com/pacoguzman/status/21053477686' title='@pacoguzman tweet'>@pacoguzman me pasó un link</a>(gracias!) de la gente de <a href='http://teambox.com/' title='Teambox'>Teambox</a> que tenía la clave para solucionarlo.</p>
+
+<p>Lo solución consiste en extraer el profile del driver de selenium, pasarle la nueva clave del idioma, y volver a asignar el profile al driver de selenium. La clave que había que pasar era &#8216;intl.accept_languages&#8217; (sacado de hacer un about:config en mi Firefox y buscar un poco) junto con el lenguaje que quieras usarlo, en mi caso &#8216;en&#8217;. Como yo estoy usando <a href='http://github.com/cavalle/steak' title='Steak'>Steak</a> para mis test de aceptación, incorporé el código en el archivo de configuración &#8216;spec/acceptance/acceptance_helper.rb&#8217;:</p>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Capybara</span><span class='o'>::</span><span class='no'>Driver</span><span class='o'>::</span><span class='no'>Selenium</span><span class='o'>.</span><span class='n'>class_eval</span> <span class='k'>do</span>
+  <span class='k'>class</span> <span class='o'>&lt;&lt;</span> <span class='nb'>self</span>
+    <span class='k'>def</span> <span class='nf'>driver</span>
+      <span class='vi'>@driver</span> <span class='o'>||=</span> <span class='k'>begin</span>
+        <span class='n'>profile</span> <span class='o'>=</span> <span class='no'>Selenium</span><span class='o'>::</span><span class='no'>WebDriver</span><span class='o'>::</span><span class='no'>Firefox</span><span class='o'>::</span><span class='no'>Profile</span><span class='o'>.</span><span class='n'>new</span> 
+        <span class='n'>profile</span><span class='o'>[</span><span class='s1'>&#39;intl.accept_languages&#39;</span><span class='o'>]</span> <span class='o'>=</span> <span class='s1'>&#39;en&#39;</span>
+        <span class='n'>driver</span> <span class='o'>=</span> <span class='no'>Selenium</span><span class='o'>::</span><span class='no'>WebDriver</span><span class='o'>.</span><span class='n'>for</span> <span class='ss'>:firefox</span><span class='p'>,</span> <span class='ss'>:profile</span> <span class='o'>=&gt;</span> <span class='n'>profile</span>
+        <span class='nb'>at_exit</span> <span class='p'>{</span> <span class='n'>driver</span><span class='o'>.</span><span class='n'>quit</span> <span class='p'>}</span>
+        <span class='n'>driver</span>
+      <span class='k'>end</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre>
+</div>
+<p>Y listo, selenium en inglés y todos los tests pasando!</p>
 	
-	  <li> 
-	    <a href="/2010/03/23/rediseno-del-blog-y-freelanceo.html">Rediseño del blog y freelanceo</a>
-	  </li>
-	
-	</ul>
+</article>
+<div class="comments">
+  <span id="IDCommentsPostTitle" style="display:none"></span>
+  <script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js' charset='utf-8'></script>
 </div>
 	</section>
 	<section id="contact" class="light">

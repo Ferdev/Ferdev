@@ -4,13 +4,39 @@
  <title>Fernando Espinosa - Ferdev</title>
  <link href="http://ferdev.com/atom.xml" rel="self"/>
  <link href="http://ferdev.com/"/>
- <updated>2010-07-12T01:35:06+02:00</updated>
+ <updated>2010-08-14T15:36:33+02:00</updated>
  <id>http://ferdev.com/</id>
  <author>
    <name>Fernando Espinosa Jiménez</name>
    <email>fer@ferdev.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Cambiar el idioma a selenium</title>
+   <link href="http://www.ferdev.com/2010/08/14/cambiar-idioma-selenium.blog.html"/>
+   <updated>2010-08-14T00:00:00+02:00</updated>
+   <id>http://www.ferdev.com/2010/08/14/cambiar-idioma-selenium.blog</id>
+   <content type="html">&lt;p&gt;Ayer me encontré con un problema haciendo tests para un pet-project que estoy haciendo con Rails3 3.0.0.rc. Parece ser que a partir de la versión 1.0.0.beta.9 de &lt;a href='http://github.com/carlhuda/bundler' title='Bundler'&gt;bundler&lt;/a&gt;, culerity lanza un error a la hora de crear el browser con celerity. Mientras investigo el problema, no quería dejar el desarrollo parado, así que decidí cambiar el driver de &lt;a href='http://github.com/jnicklas/capybara' title='Capybara'&gt;capybara&lt;/a&gt; a selenium. Pero el firefox que trae el driver de selenium integrado se me ejecutaba en castellano, y yo tengo los tests escritos en inglés, por lo que fallaban. Tras twittear buscando ayuda, &lt;a href='http://twitter.com/pacoguzman/status/21053477686' title='@pacoguzman tweet'&gt;@pacoguzman me pasó un link&lt;/a&gt;(gracias!) de la gente de &lt;a href='http://teambox.com/' title='Teambox'&gt;Teambox&lt;/a&gt; que tenía la clave para solucionarlo.&lt;/p&gt;
+
+&lt;p&gt;Lo solución consiste en extraer el profile del driver de selenium, pasarle la nueva clave del idioma, y volver a asignar el profile al driver de selenium. La clave que había que pasar era &amp;#8216;intl.accept_languages&amp;#8217; (sacado de hacer un about:config en mi Firefox y buscar un poco) junto con el lenguaje que quieras usarlo, en mi caso &amp;#8216;en&amp;#8217;. Como yo estoy usando &lt;a href='http://github.com/cavalle/steak' title='Steak'&gt;Steak&lt;/a&gt; para mis test de aceptación, incorporé el código en el archivo de configuración &amp;#8216;spec/acceptance/acceptance_helper.rb&amp;#8217;:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='no'&gt;Capybara&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Driver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class_eval&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;
+    &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;driver&lt;/span&gt;
+      &lt;span class='vi'&gt;@driver&lt;/span&gt; &lt;span class='o'&gt;||=&lt;/span&gt; &lt;span class='k'&gt;begin&lt;/span&gt;
+        &lt;span class='n'&gt;profile&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;WebDriver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Firefox&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Profile&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt; 
+        &lt;span class='n'&gt;profile&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;intl.accept_languages&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;en&amp;#39;&lt;/span&gt;
+        &lt;span class='n'&gt;driver&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;WebDriver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;for&lt;/span&gt; &lt;span class='ss'&gt;:firefox&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:profile&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;profile&lt;/span&gt;
+        &lt;span class='nb'&gt;at_exit&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;driver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;quit&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+        &lt;span class='n'&gt;driver&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Y listo, selenium en inglés y todos los tests pasando!&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>Blog migrado a Jekyll</title>
