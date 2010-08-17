@@ -1,1 +1,1 @@
-rvm --create use ree@ferdev > /dev/null
+rvm use default@ferdev --create
