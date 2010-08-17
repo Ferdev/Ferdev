@@ -40,6 +40,7 @@ var ferdev = function(){
   
   return {
     init: function(){
+        preloadImages();
         portfolio();
         navigation();
         pagination();
