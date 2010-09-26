@@ -3,15 +3,16 @@ Source from [http://ferdev.com](http://ferdev.com "Fernando Espinosa")
 Installation
 -----------
 1. Install bundler
-  
-    gem install bundler
-  
+
+		gem install bundler
+
 2. Install project dependencies
   
-    bundle install
-    
+		bundle install
+
 3. Pygments (optional).
-  If you want {% highlight %} support, you'll need to install [pygments](http://pygments.org/ "Python Pygments").
+
+	If you want {% highlight %} support, you'll need to install [pygments](http://pygments.org/ "Python Pygments").
 
 4. Hack!
 

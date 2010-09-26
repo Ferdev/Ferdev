@@ -1,17 +1,12 @@
 $(document).ready(function() {
-	ferdev().init();
+  ferdev().init();
 });
 var ferdev = function(){
-  
-  var portfolio = function(){
-    $('ul#portfolio_projects li.project').hover(function() {
-        $(this)
-        .fadeTo('normal', 1)
-        .find('ul.project_data').fadeIn();
-    }, function() {
-        $(this)
-        .fadeTo('normal', 0.3)
-        .find('ul.project_data').fadeOut();
+
+  var links = function(){
+    $('a.external').live('click', function(evt){
+      evt.preventDefault();
+      window.open($(this).attr('href'));
     });
   };
   
@@ -41,7 +36,7 @@ var ferdev = function(){
   return {
     init: function(){
         preloadImages();
-        portfolio();
+        links();
         navigation();
         pagination();
     }    

@@ -5,7 +5,7 @@
     <link>http://www.ferdev.com</link>
     <language>es</language>
     <webMaster>fer@ferdev.com (Fernando Espinosa Jiménez)</webMaster>
-    <pubDate>2010-08-17T11:25:46+02:00</pubDate>
+    <pubDate>2010-09-26T12:34:51+02:00</pubDate>
     <copyright>Copyright 2009-2010</copyright>
     <ttl>60</ttl>
     <description>Freelance Ruby on Rails developer</description>
@@ -13,7 +13,7 @@
     <item>
       <title>Cambiar el idioma a selenium</title>
       <link>http://www.ferdev.com/2010/08/14/cambiar-idioma-selenium.blog.html</link>
-      <pubDate>Sat Aug 14 00:00:00 +0200 2010</pubDate>
+      <pubDate>2010-08-14 00:00:00 +0200</pubDate>
       <guid>http://www.ferdev.com/2010/08/14/cambiar-idioma-selenium.blog.html</guid>
       <description>&lt;p&gt;Ayer me encontré con un problema haciendo tests para un pet-project que estoy haciendo con Rails3 3.0.0.rc. Parece ser que a partir de la versión 1.0.0.beta.9 de &lt;a href='http://github.com/carlhuda/bundler' title='Bundler'&gt;bundler&lt;/a&gt;, culerity lanza un error a la hora de crear el browser con celerity. Mientras investigo el problema, no quería dejar el desarrollo parado, así que decidí cambiar el driver de &lt;a href='http://github.com/jnicklas/capybara' title='Capybara'&gt;capybara&lt;/a&gt; a selenium. Pero el firefox que trae el driver de selenium integrado se me ejecutaba en castellano, y yo tengo los tests escritos en inglés, por lo que fallaban. Tras twittear buscando ayuda, &lt;a href='http://twitter.com/pacoguzman/status/21053477686' title='@pacoguzman tweet'&gt;@pacoguzman me pasó un link&lt;/a&gt;(gracias!) de la gente de &lt;a href='http://teambox.com/' title='Teambox'&gt;Teambox&lt;/a&gt; que tenía la clave para solucionarlo.&lt;/p&gt;
 
@@ -48,7 +48,7 @@
     <item>
       <title>Blog migrado a Jekyll</title>
       <link>http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll.html</link>
-      <pubDate>Mon Jul 05 00:00:00 +0200 2010</pubDate>
+      <pubDate>2010-07-05 00:00:00 +0200</pubDate>
       <guid>http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll.html</guid>
       <description>&lt;p&gt;La semana pasada me lié la manta a la cabeza y me puse a migrar todo el blog de Wordpress a &lt;a href='http://jekyllrb.com/' title='transform your texto into a monster'&gt;Jekyll&lt;/a&gt;. Los motivos que me han llevado a moverlo a Jekyll son dos: velocidad y sencillez. Jekyll es un generador de sitios web estáticos programado en ruby. Jekyll genera a partir de plantillas y ficheros &lt;a href='http://daringfireball.net/projects/markdown/' title='Markdown'&gt;markdown&lt;/a&gt; o &lt;a href='http://textile.thresholdstate.com/' title='Textile'&gt;textile&lt;/a&gt;, ficheros html y xml (entre otras cosas). Al ser contenido estático, pierdes algunas cosas como el sistema de comentarios. Pero con &lt;a href='http://disqus.com/' title='Disqus'&gt;Disqus&lt;/a&gt; o &lt;a href='http://intensedebate.com/' title='Intense Debate'&gt;IntenseDebate&lt;/a&gt; queda solucionado el problema.&lt;/p&gt;
 
@@ -73,7 +73,7 @@
     <item>
       <title>RightJS, un framework javascript muy interesante</title>
       <link>http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html</link>
-      <pubDate>Mon May 10 00:00:00 +0200 2010</pubDate>
+      <pubDate>2010-05-10 00:00:00 +0200</pubDate>
       <guid>http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html</guid>
       <description>&lt;p&gt;Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.&lt;/p&gt;
 
@@ -199,7 +199,7 @@
     <item>
       <title>Rediseño del blog y freelanceo</title>
       <link>http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo.html</link>
-      <pubDate>Tue Mar 23 00:00:00 +0100 2010</pubDate>
+      <pubDate>2010-03-23 00:00:00 +0100</pubDate>
       <guid>http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo.html</guid>
       <description>&lt;p&gt;La semana pasada he estado dándole un pequeño rediseño al blog. El diseño que había era el resultante de haber hecho unas cuantas pruebas, y al final por falta de tiempo no había podido cambiarlo. Quería algo minimalista, con buena legibilidad, y con el menor número de imágenes posible.&lt;/p&gt;
 
@@ -214,7 +214,7 @@
     <item>
       <title>Testing AjaxUpload con Capybara + Culerity</title>
       <link>http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity.html</link>
-      <pubDate>Wed Mar 10 00:00:00 +0100 2010</pubDate>
+      <pubDate>2010-03-10 00:00:00 +0100</pubDate>
       <guid>http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity.html</guid>
       <description>&lt;p&gt;Llevo unos días probando &lt;a href='http://github.com/jnicklas/capybara'&gt;Capybara&lt;/a&gt; después de los comentarios tan buenos que había escuchado de él en &lt;a href='http://twitter.com/albertoperdomo/status/9643469318'&gt;twitter&lt;/a&gt; últimamente, especialmente de su integración con &lt;a href='http://github.com/langalex/culerity'&gt;Culerity&lt;/a&gt;. Los hados además trataban de decirme algo porque la última &lt;a href='http://github.com/porras/madrid-rb-feb-2010'&gt;charla&lt;/a&gt; de &lt;a href='http://twitter.com/madridrb'&gt;madridrb&lt;/a&gt; que dio &lt;a href='http://twitter.com/porras'&gt;@porras&lt;/a&gt; versaba sobre esto mismo (y &lt;a href='http://github.com/cavalle/steak'&gt;Steak&lt;/a&gt;, que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.&lt;/p&gt;
 
@@ -295,7 +295,7 @@
     <item>
       <title>Plugin jQuery para obtener dimensiones de un objeto</title>
       <link>http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto.html</link>
-      <pubDate>Sat Oct 31 00:00:00 +0100 2009</pubDate>
+      <pubDate>2009-10-31 00:00:00 +0100</pubDate>
       <guid>http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto.html</guid>
       <description>&lt;p&gt;Hola!&lt;/p&gt;
 
@@ -345,7 +345,7 @@
     <item>
       <title>SWFUpload, Rails y los 406</title>
       <link>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406.html</link>
-      <pubDate>Tue Oct 06 00:00:00 +0200 2009</pubDate>
+      <pubDate>2009-10-06 00:00:00 +0200</pubDate>
       <guid>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406.html</guid>
       <description>&lt;p&gt;En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.&lt;/p&gt;
 
@@ -376,7 +376,7 @@
     <item>
       <title>Registro progresivo en paginas web</title>
       <link>http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web.html</link>
-      <pubDate>Tue May 26 00:00:00 +0200 2009</pubDate>
+      <pubDate>2009-05-26 00:00:00 +0200</pubDate>
       <guid>http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web.html</guid>
       <description>&lt;p&gt;Como no he tenido mucho tiempo últimamente de cambiar el diseño del blog, pero sí lo tengo para escribir algunos artículos, cambio el tema de wordpress por uno más vistoso hasta que pueda modificar el genérico.&lt;/p&gt;
 
@@ -455,7 +455,7 @@
     <item>
       <title>Paso 1: wordpress instalado</title>
       <link>http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado.html</link>
-      <pubDate>Fri May 08 00:00:00 +0200 2009</pubDate>
+      <pubDate>2009-05-08 00:00:00 +0200</pubDate>
       <guid>http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado.html</guid>
       <description>&lt;p&gt;Empiezo las andanzas en el mundo &amp;#8220;blogueril&amp;#8221; personal. Me llamo Fer, y en este blog intentaré transmitir lo mejor que pueda los conocimientos que he ido adquiriendo a lo largo de mi vida en el mundo del desarrollo de software (y un poquito de diseño también, pero poco, que no es lo mío).&lt;/p&gt;
 

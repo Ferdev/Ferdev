@@ -38,6 +38,13 @@
 					<key>subItems</key>
 					<dict/>
 				</dict>
+				<key>_layouts</key>
+				<dict>
+					<key>isExpanded</key>
+					<true/>
+					<key>subItems</key>
+					<dict/>
+				</dict>
 				<key>_posts</key>
 				<dict>
 					<key>isExpanded</key>
@@ -49,6 +56,6 @@
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{288, 75}, {1152, 874}}</string>
+	<string>{{288, 95}, {1152, 874}}</string>
 </dict>
 </plist>
