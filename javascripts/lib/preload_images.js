@@ -12,6 +12,5 @@ function preloadImages() {
   for (i = 0; i < IMAGES_TO_PRELOAD.length; i++) {
     images[i] = new Image();
     images[i].src = IMAGES_TO_PRELOAD[i];
-    console.debug(images[i]);
   }
 };
