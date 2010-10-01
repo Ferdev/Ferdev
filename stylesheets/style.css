@@ -79,7 +79,7 @@ section{ display: block; padding: 10px 0; min-height: 1080px; }
 header {
   display: -moz-inline-stack;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: bottom;
   zoom: 1;
   *display: inline;
   border:0 none;
