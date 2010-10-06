@@ -442,6 +442,9 @@ section.articles .comments {
 #contact ul li.twitter:before{
   content: url('/images/icons/social/twitter.png');
 }
+#contact ul li.skype:before{
+  content: url('/images/icons/social/skype.png');
+}
 #contact ul li.facebook:before{
   content: url('/images/icons/social/facebook.png');
 }
