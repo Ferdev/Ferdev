@@ -48,7 +48,10 @@ h2 a:visited {
   color: #ccff33;
 }
 
-p{  margin: 1em 0; }
+p{
+  margin: 2em 0;
+  line-height: 1.3em;
+}
 
 div.content{
   padding: 2em 0;
@@ -63,7 +66,7 @@ section{ display: block; padding: 10px 0; min-height: 1080px; }
 .dark{
   background-color: #444444;
   color: #ffffff;
-  text-shadow: 0 1px 1px #000000;  
+  text-shadow: 0 1px 1px #000000;
 }
 
 .light{
@@ -181,7 +184,7 @@ nav {
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   -ms-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.5);  
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   background: #FFF url(/images/button-overlay.png) repeat-x;
   display: -moz-inline-stack;
   display: inline-block;
@@ -199,7 +202,7 @@ nav {
   border-width:1px;
   border-color: rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.85);
   position: relative;
-  cursor: pointer;    
+  cursor: pointer;
   width:78px;
 }
 
@@ -234,9 +237,13 @@ section.articles article {
   border-radius: 5px;
   background-color:#333333;
   display:block;
-  margin:1em 0 1em 12.5em;
+  margin:3em 0 4em 12.5em;
   padding:1em;
   width:800px;
+}
+
+section.articles article h1{
+  margin: .5em 0 1.5em;
 }
 
 section.articles .date {
@@ -257,7 +264,7 @@ section.articles .highlight{
 section.articles pre {
   border: 1px solid #444444;
   background-color: #222222;
-  color: #FFFFFF;  
+  color: #FFFFFF;
   font-size: 0.9em;
   overflow: auto;
   padding: 2em 1em;
@@ -318,7 +325,7 @@ section.articles div.more_posts a{
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   -ms-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.5);  
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   background:url("/images/button-overlay.png") repeat-x scroll 0 0 #FFFFFF;
   border-color:rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.75) rgba(0, 0, 0, 0.85);
   border-style:solid;
@@ -468,5 +475,5 @@ footer ul{
 }
 
 footer ul li{
-  
+
 }
