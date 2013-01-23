@@ -1,33 +1,33 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Fernando Espinosa | Programador web freelance. {{ page.title }}</title>
+  <title>Fernando Espinosa | Freelance ruby and iOS developer. {{ page.title }}</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/reset.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/ferdev.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/animations.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/glyphs.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/pygments.css" />
-  <meta name="description" content="Soy un programador web freelance, especializado en proyectos ágiles, ruby on rails, jquery, interfaces de usuario y usabilidad." />
-  <meta name="keywords" content="programador, programador web, freelance, programador freelance, programador ruby on rails, freelance ruby on rails, ruby on rails, jquery, usability, html, css, css2, css3, javascript" />
+  <meta name="description" content="I'm a freelance ruby and iOS developer based in Madrid, Spain. I love ruby and crafting beautiful apps with it." />
+  <meta name="keywords" content="ruby, rails, ruby on rails, iOS, rubymotion, developer, freelance, freelance developer, freelance ruby, freelance rails, freelance ruby on rails, freelance iOS, freelance rubymotion, front-end, back-end, css, css3, javascript, jquery" />
   <link rel="canonical" href="{{ site.url }}" />
   <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="/atom.xml" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
 </head>
-<body id="blog">
+<body id="home">
   {% include header.html %}
-  {% include navigation.html %}
-  <section class="articles dark">
-    {{ content }}
-  </section>
-  <section id="contact" class="light">
-    {% include contact.html%}
-  </section>
-  <section id="about" class="dark">
-    {% include about.html %}
-  </section>
-  <section id="portfolio" class="light">
+  <section id="portfolio">
     {% include portfolio.html %}
   </section>
-  <footer id="footer" class="dark">
+  <section id="about-me">
+    {% include about.html %}
+  </section>
+  <section id="hire-me">
+    {% include hire-me.html %}
+  </section>
+  <section id="contact-me">
+    {% include contact.html %}
+  </section>
+  <footer>
     {% include footer.html %}
   </footer>
   {% include javascripts.html %}

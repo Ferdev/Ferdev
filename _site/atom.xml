@@ -4,7 +4,7 @@
  <title>Fernando Espinosa - Ferdev</title>
  <link href="http://ferdev.com/atom.xml" rel="self"/>
  <link href="http://ferdev.com/"/>
- <updated>2011-03-05T23:57:47+01:00</updated>
+ <updated>2013-02-05T23:48:34+01:00</updated>
  <id>http://ferdev.com/</id>
  <author>
    <name>Fernando Espinosa Jiménez</name>
@@ -20,21 +20,20 @@
    <content type="html">&lt;p&gt;Ayer me encontré con un problema haciendo tests para un pet-project que estoy haciendo con Rails3 3.0.0.rc. Parece ser que a partir de la versión 1.0.0.beta.9 de &lt;a href='http://github.com/carlhuda/bundler' title='Bundler'&gt;bundler&lt;/a&gt;, culerity lanza un error a la hora de crear el browser con celerity. Mientras investigo el problema, no quería dejar el desarrollo parado, así que decidí cambiar el driver de &lt;a href='http://github.com/jnicklas/capybara' title='Capybara'&gt;capybara&lt;/a&gt; a selenium. Pero el firefox que trae el driver de selenium integrado se me ejecutaba en castellano, y yo tengo los tests escritos en inglés, por lo que fallaban. Tras twittear buscando ayuda, &lt;a href='http://twitter.com/pacoguzman/status/21053477686' title='@pacoguzman tweet'&gt;@pacoguzman me pasó un link&lt;/a&gt;(gracias!) de la gente de &lt;a href='http://teambox.com/' title='Teambox'&gt;Teambox&lt;/a&gt; que tenía la clave para solucionarlo.&lt;/p&gt;
 
 &lt;p&gt;Lo solución consiste en extraer el profile del driver de selenium, pasarle la nueva clave del idioma, y volver a asignar el profile al driver de selenium. La clave que había que pasar era &amp;#8216;intl.accept_languages&amp;#8217; (sacado de hacer un about:config en mi Firefox y buscar un poco) junto con el lenguaje que quieras usarlo, en mi caso &amp;#8216;en&amp;#8217;. Como yo estoy usando &lt;a href='http://github.com/cavalle/steak' title='Steak'&gt;Steak&lt;/a&gt; para mis test de aceptación, incorporé el código en el archivo de configuración &amp;#8216;spec/acceptance/acceptance_helper.rb&amp;#8217;:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='no'&gt;Capybara&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Driver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class_eval&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='ss'&gt;Capybara&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Driver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class_eval&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
   &lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;
     &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;driver&lt;/span&gt;
       &lt;span class='vi'&gt;@driver&lt;/span&gt; &lt;span class='o'&gt;||=&lt;/span&gt; &lt;span class='k'&gt;begin&lt;/span&gt;
-        &lt;span class='n'&gt;profile&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;WebDriver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Firefox&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Profile&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt; 
+        &lt;span class='n'&gt;profile&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='ss'&gt;Selenium&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:WebDriver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='ss'&gt;Firefox&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Profile&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt; 
         &lt;span class='n'&gt;profile&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;intl.accept_languages&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;en&amp;#39;&lt;/span&gt;
-        &lt;span class='n'&gt;driver&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;WebDriver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;for&lt;/span&gt; &lt;span class='ss'&gt;:firefox&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:profile&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;profile&lt;/span&gt;
+        &lt;span class='n'&gt;driver&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='ss'&gt;Selenium&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:WebDriver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;for&lt;/span&gt; &lt;span class='ss'&gt;:firefox&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:profile&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;profile&lt;/span&gt;
         &lt;span class='nb'&gt;at_exit&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;driver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;quit&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
         &lt;span class='n'&gt;driver&lt;/span&gt;
       &lt;span class='k'&gt;end&lt;/span&gt;
     &lt;span class='k'&gt;end&lt;/span&gt;
   &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;span class='k'&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Y listo, selenium en inglés y todos los tests pasando!&lt;/p&gt;</content>
  </entry>
  
@@ -53,8 +52,7 @@
     &lt;span class='nx'&gt;scrollTo&lt;/span&gt;       &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;destination_id&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;offset&lt;/span&gt;&lt;span class='p'&gt;().&lt;/span&gt;&lt;span class='nx'&gt;top&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
   &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;html,body&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;animate&lt;/span&gt;&lt;span class='p'&gt;({&lt;/span&gt;&lt;span class='nx'&gt;scrollTop&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='nx'&gt;scrollTo&lt;/span&gt;&lt;span class='p'&gt;},&lt;/span&gt; &lt;span class='mi'&gt;2000&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;easeInOutExpo&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='p'&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;He publicado el código fuente del blog por si queréis echarle un vistazo (aunque no tiene gran cosa que ver). Todavía no está terminado, faltan algunas cosas como la paginación de posts y algunos retoques más, pero como ya es funcional me he decidido a publicarlo.&lt;/p&gt;</content>
  </entry>
  
@@ -87,8 +85,7 @@
 
 &lt;span class='c1'&gt;// Usando llamadas por nombre&lt;/span&gt;
 &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;element&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;onClick&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;hide&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Soporte en navegadores más antiguos de la última especificación JavaScript/ECMAScript. Por ejemplo:&lt;/li&gt;
 &lt;/ul&gt;
@@ -103,8 +100,7 @@
 
 &lt;span class='nx'&gt;strings&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;filter&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;match&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='sr'&gt;/[a-z]ann/&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='c1'&gt;// -&amp;gt; [&amp;#39;manny&amp;#39;, &amp;#39;banny&amp;#39;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href='http://rightjs.org/docs/array#map'&gt;&lt;strong&gt;Array#map&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;strings&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;anny&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;banny&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;manny&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
 
@@ -121,12 +117,10 @@
 &lt;span class='nx'&gt;strings&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;map&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;replace&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;nn&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 
 &lt;span class='c1'&gt;// -&amp;gt; [&amp;#39;aby&amp;#39;, &amp;#39;baby&amp;#39;, &amp;#39;maby&amp;#39;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href='http://rightjs.org/docs/string#trim'&gt;&lt;strong&gt;String#trim&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='s1'&gt;&amp;#39; asdf &amp;#39;&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;trim&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt; &lt;span class='c1'&gt;// -&amp;gt; &amp;#39;asdf&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Extensión del core de JavaScript con algunos métodos que sonarán a muchos rubistas:&lt;/li&gt;
 &lt;/ul&gt;
@@ -135,15 +129,13 @@
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;undefined&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='p'&gt;].&lt;/span&gt;&lt;span class='nx'&gt;compact&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
 
 &lt;span class='c1'&gt;// -&amp;gt; [0, 1, 2, 3];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href='http://rightjs.org/docs/string#endsWith'&gt;&lt;strong&gt;String#endsWith&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='s1'&gt;&amp;#39;image.gif&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;endsWith&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;.gif&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;       &lt;span class='c1'&gt;// -&amp;gt; true&lt;/span&gt;
 
 &lt;span class='s1'&gt;&amp;#39;image.gif&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;endsWith&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;.GIF&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;       &lt;span class='c1'&gt;// -&amp;gt; false&lt;/span&gt;
 &lt;span class='s1'&gt;&amp;#39;image.gif&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;endsWith&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;.GIF&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt; &lt;span class='c1'&gt;// -&amp;gt; true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Manejo de números simplificado.&lt;/li&gt;
 &lt;/ul&gt;
@@ -155,8 +147,7 @@
 &lt;span class='mf'&gt;1.4&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;floor&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt; &lt;span class='c1'&gt;// -&amp;gt; 1&lt;/span&gt;
 &lt;span class='mf'&gt;1.4&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;ceil&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;  &lt;span class='c1'&gt;// -&amp;gt; 2&lt;/span&gt;
 &lt;span class='mf'&gt;1.4&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;round&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt; &lt;span class='c1'&gt;// -&amp;gt; 1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Aunque JavaScript ya es un lenguaje orientado a objetos, la clase &lt;code&gt;Class&lt;/code&gt; hace más sencilla la herencia, implementación de interfaces, etc.&lt;/li&gt;
 &lt;/ul&gt;
@@ -168,8 +159,7 @@
     &lt;span class='c1'&gt;//....&lt;/span&gt;
   &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;span class='p'&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Y también: &lt;a href='http://rightjs.org/docs/form#send' title='Form#send'&gt;envío&lt;/a&gt; simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de &lt;a href='http://rightjs.org/tutorials/uniformed-events-handling'&gt;eventos&lt;/a&gt; y &lt;a href='http://rightjs.org/tutorials/uniformed-options-handling'&gt;opciones&lt;/a&gt; de métodos, arquitectura abierta, soporte para &lt;a href='http://rightjs.org/plugins'&gt;plugins&lt;/a&gt;, y una &lt;a href='http://github.com/MadRabbit/right-rails'&gt;gema&lt;/a&gt; para facilitar la integración con Rails (soporta Rails3).&lt;/li&gt;
 &lt;/ul&gt;
@@ -250,8 +240,7 @@
 
 &lt;span class='c1'&gt;# Le pasamos la ruta de archivo al input file&lt;/span&gt;
 &lt;span class='n'&gt;find&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;input_selector&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;file_path&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.&lt;/p&gt;</content>
  </entry>
  
@@ -294,8 +283,7 @@
     &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nx'&gt;calculateSize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;]));&lt;/span&gt;
 &lt;span class='p'&gt;};&lt;/span&gt;
 &lt;span class='p'&gt;})(&lt;/span&gt;&lt;span class='nx'&gt;jQuery&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
  </entry>
  
  <entry>
@@ -305,18 +293,16 @@
    <id>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406</id>
    <content type="html">&lt;p&gt;En una aplicación que tenía funcionando en Snow Leopard con SWFUpload para subir imágenes al servidor, y RoR en el lado del servidor, me estaba dando problemas al realizar los uploads desde Internet Explorer 8. En concreto, el servidor me devolvía un error 406 tras haber guardado la imagen y justo antes de realizar la respuesta al navegador(en formato json). El error 406 se produce cuando desde el servidor se está respondiendo a una solicitud con un tipo MIME que no está soportado dentro de la cabecera ACCEPT que envió el navegador. El servidor no sabe qué hacer con la solicitud, y lanza ese error.&lt;/p&gt;
 
-&lt;p&gt;Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo &amp;#8220;text/&lt;em&gt;&amp;#8221;. Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Bien, pues se produce en concreto con IE8 en Windows XP porque SWFUpload envía como único tipo MIME en su cabecera ACCEPT el tipo &amp;#8220;text/*&amp;#8221;. Imagino que es un problema con el plugin de Flash de Windows (Flash 10 estaba usando), y que si lo pruebo con otro navegador en Windows sucederá lo mismo, no lo he probado.&lt;/p&gt;
 
 &lt;p&gt;Para solucionarlo, en primer lugar deberemos añadir un nuevo tipo MIME al environment.rb de nuestro proyecto:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='no'&gt;Mime&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Type&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;register&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;text/*&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:all_text&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='ss'&gt;Mime&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Type&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;register&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;text/\*&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:all_text&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Luego, en la acción en la que estemos guardando la imagen, tenemos que añadir un nuevo manejador de este tipo de peticiones:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='n'&gt;respond_to&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='nb'&gt;format&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
 	&lt;span class='nb'&gt;format&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;all_text&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;render&lt;/span&gt; &lt;span class='ss'&gt;:text&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;text_to_render&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;span class='k'&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Y eso es todo, con esto Internet Explorer 8 debería estar recibiendo el resultado de la subida de una imagen con SWFUpload.&lt;/p&gt;</content>
  </entry>
  

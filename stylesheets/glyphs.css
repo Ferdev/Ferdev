@@ -1,0 +1,62 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.svg#icomoon') format('svg'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"]:before {
+*/
+.icon-user:before, .icon-office:before, .icon-link:before, .icon-coin:before, .icon-clock:before, .icon-pencil:before, .icon-arrow-right:before, .icon-at:before, .icon-spinner:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-user:before {
+	content: "\e072";
+}
+.icon-office:before {
+	content: "\e003";
+}
+.icon-link:before {
+	content: "\e0c3";
+}
+.icon-coin:before {
+	content: "\e038";
+}
+.icon-clock:before {
+	content: "\e048";
+}
+.icon-pencil:before {
+	content: "\e006";
+}
+.icon-arrow-right:before {
+	content: "\e132";
+}
+.icon-at:before {
+	content: "\e000";
+}
+.icon-spinner:before {
+	content: "\e002";
+}

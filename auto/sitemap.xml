@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">   
+  
+<url>
+  <loc>http://www.ferdev.com</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2010/08/14/cambiar-idioma-selenium.blog.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2010/07/05/blog-migrado-a-jekyll.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2010/03/23/rediseno-del-blog-y-freelanceo.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2010/03/10/testing-ajaxupload-con-capybara-culerity.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2009/10/31/plugin-jquery-para-obtener-dimensiones-de-un-objeto.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2009/10/06/swfupload-rails-y-los-406.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2009/05/26/registro-progresivo-en-paginas-web.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.ferdev.com/2009/05/08/paso-1-wordpress-instalado.html</loc>
+    <lastmod>2013-01-27T21:49:15+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
