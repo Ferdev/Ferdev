@@ -6,17 +6,42 @@ layout: default
   var idcomments_post_id;
   var idcomments_post_url;
 </script>
-<article>
-	<h1>{{ page.title }}</h1>
-	<span class="date">
-		{{page.date | date: "%b %d, %Y"}}
-	</span>
-	{% for tag in page.tags %} <a rel="tag" href="/tag/{{ tag }}/">{{ tag }}</a>&nbsp;{% endfor %}
 
-	{{ content }}
-	
+<article>
+  <h1>{{ page.title }}</h1>
+  {% for tag in page.tags %} <a rel="tag" href="/tag/{{ tag }}/">{{ tag }}</a>&nbsp;{% endfor %}
+
+  {{ content }}
+
+  <div class="date">
+    <hr />
+    <span>{{page.date | date: "%b %d, %Y"}}</span>
+    <hr />
+  </div>
+
+  <div id="comments">
+
+    <!-- START: Livefyre Embed -->
+    <div id="livefyre-comments"></div>
+    <script type="text/javascript" src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
+    <script type="text/javascript">
+    (function () {
+        var articleId = fyre.conv.load.makeArticleId(null);
+        fyre.conv.load({}, [{
+            el: 'livefyre-comments',
+            network: "livefyre.com",
+            siteId: "323683",
+            articleId: articleId,
+            signed: false,
+            collectionMeta: {
+                articleId: articleId,
+                url: fyre.conv.load.makeCollectionUrl(),
+            }
+        }], function() {});
+    }());
+    </script>
+    <!-- END: Livefyre Embed -->
+
+  </div>
 </article>
-<div class="comments">
-  <span id="IDCommentsPostTitle" style="display:none"></span>
-  <script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js' charset='utf-8'></script>
-</div>
+

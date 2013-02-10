@@ -10,7 +10,6 @@ Modernizr.load([
       bounceFerdev();
       $('header hgroup img').hover(startTalking, stopTalking);
       $('#menu .top').click(goToTop);
-      $('#menu li:not(.top) a').click(goToSection);
       $('.portfolio .summary a').click(showPortfolioDetail);
       $('.portfolio .detail a.hide').click(hidePortfolioDetail);
       $('form').submit(sendHireMeForm);
@@ -79,19 +78,15 @@ var startTalking = function() {
 var stopTalking = function() {
   $('body').removeClass('start-talking');
   $('body').addClass('stop-talking');
+  setTimeout(function(){
+    $('body').removeClass('stop-talking');
+  }, 900);
 };
 
 var goToTop = function(evt) {
   evt.preventDefault();
 
   $('html,body').animate({scrollTop: 0}, 500);
-};
-
-var goToSection = function(evt) {
-  evt.preventDefault();
-  var destination_id = $(this).attr('href').substr(1),
-      scrollTo       = $(destination_id).offset().top;
-  $('html,body').animate({scrollTop: scrollTo}, 1000);
 };
 
 var showPortfolioDetail = function(evt) {

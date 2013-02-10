@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/ferdev.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/animations.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/glyphs.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/pygments.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/solarizeddark.css" />
   <meta name="description" content="I'm a freelance ruby and iOS developer based in Madrid, Spain. I love ruby and crafting beautiful apps with it." />
   <meta name="keywords" content="ruby, rails, ruby on rails, iOS, rubymotion, developer, freelance, freelance developer, freelance ruby, freelance rails, freelance ruby on rails, freelance iOS, freelance rubymotion, front-end, back-end, css, css3, javascript, jquery" />
   <link rel="canonical" href="{{ site.url }}" />
@@ -15,18 +15,7 @@
 </head>
 <body id="home">
   {% include header.html %}
-  <section id="portfolio">
-    {% include portfolio.html %}
-  </section>
-  <section id="about-me">
-    {% include about.html %}
-  </section>
-  <section id="hire-me">
-    {% include hire-me.html %}
-  </section>
-  <section id="contact-me">
-    {% include contact.html %}
-  </section>
+  {{ content }}
   <footer>
     {% include footer.html %}
   </footer>

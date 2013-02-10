@@ -5,7 +5,7 @@
     <link>http://www.ferdev.com</link>
     <language>es</language>
     <webMaster>fer@ferdev.com (Fernando Espinosa Jiménez)</webMaster>
-    <pubDate>2013-02-05T23:48:34+01:00</pubDate>
+    <pubDate>2013-02-10T02:41:41+01:00</pubDate>
     <copyright>Copyright 2009-2010</copyright>
     <ttl>60</ttl>
     <description>Freelance Ruby on Rails developer</description>
@@ -19,28 +19,30 @@
 
 &lt;p&gt;Lo solución consiste en extraer el profile del driver de selenium, pasarle la nueva clave del idioma, y volver a asignar el profile al driver de selenium. La clave que había que pasar era &amp;#8216;intl.accept_languages&amp;#8217; (sacado de hacer un about:config en mi Firefox y buscar un poco) junto con el lenguaje que quieras usarlo, en mi caso &amp;#8216;en&amp;#8217;. Como yo estoy usando &lt;a href='http://github.com/cavalle/steak' title='Steak'&gt;Steak&lt;/a&gt; para mis test de aceptación, incorporé el código en el archivo de configuración &amp;#8216;spec/acceptance/acceptance_helper.rb&amp;#8217;:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='ss'&gt;Capybara&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Driver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Selenium&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class_eval&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+
   &lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;
+
     &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;driver&lt;/span&gt;
+
       &lt;span class='vi'&gt;@driver&lt;/span&gt; &lt;span class='o'&gt;||=&lt;/span&gt; &lt;span class='k'&gt;begin&lt;/span&gt;
-        &lt;span class='n'&gt;profile&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='ss'&gt;Selenium&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:WebDriver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='ss'&gt;Firefox&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Profile&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt; 
+        &lt;span class='n'&gt;profile&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='ss'&gt;Selenium&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:WebDriver&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='ss'&gt;Firefox&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Profile&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt;
+
         &lt;span class='n'&gt;profile&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;intl.accept_languages&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;en&amp;#39;&lt;/span&gt;
+
         &lt;span class='n'&gt;driver&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='ss'&gt;Selenium&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:WebDriver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;for&lt;/span&gt; &lt;span class='ss'&gt;:firefox&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:profile&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;profile&lt;/span&gt;
+
         &lt;span class='nb'&gt;at_exit&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;driver&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;quit&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+
         &lt;span class='n'&gt;driver&lt;/span&gt;
       &lt;span class='k'&gt;end&lt;/span&gt;
+
     &lt;span class='k'&gt;end&lt;/span&gt;
+
   &lt;span class='k'&gt;end&lt;/span&gt;
+
 &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Y listo, selenium en inglés y todos los tests pasando!&lt;/p&gt;</description>
-      
-      <category domain="http://www.ferdev.com/tag/rails"></category>
-      
-      <category domain="http://www.ferdev.com/tag/testing"></category>
-      
-      <category domain="http://www.ferdev.com/tag/capybara"></category>
-      
-      <category domain="http://www.ferdev.com/tag/selenium"></category>
       
     </item>
     

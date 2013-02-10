@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/ferdev.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/animations.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/glyphs.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/pygments.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/solarizeddark.css" />
   <meta name="description" content="I'm a freelance ruby and iOS developer based in Madrid, Spain. I love ruby and crafting beautiful apps with it." />
   <meta name="keywords" content="ruby, rails, ruby on rails, iOS, rubymotion, developer, freelance, freelance developer, freelance ruby, freelance rails, freelance ruby on rails, freelance iOS, freelance rubymotion, front-end, back-end, css, css3, javascript, jquery" />
   <link rel="canonical" href="http://www.ferdev.com" />
@@ -25,16 +25,17 @@
 
     <div class="name">
       <h3>fernando espinosa</h3>
-      <h3>freelance developer</h3>
+      <h3>freelance ruby developer</h3>
     </div>
 
   </hgroup>
   <nav>
 	<ul id="menu">
-		<li><a href="/#portfolio" title="portfolio">portfolio</a></li>
-		<li><a href="/#about-me" title="about me">about me</a></li>
-		<li><a href="/#hire-me" title="hiring me">hire me</a></li>
-		<li><a href="/#contact-me" title="contact">contact</a></li>
+		<li><a href="/" title="home">home</a></li>
+		<li><a href="/portfolio.html" title="portfolio">portfolio</a></li>
+		<li><a href="/about-me.html" title="about me">about me</a></li>
+		<li><a href="/hire-me.html" title="hiring me">hire me</a></li>
+		<li><a href="/contact-me.html" title="contact">contact</a></li>
     <li class="top"><a href="#home" title="home">up</a></li>
 	</ul>
 </nav>
@@ -54,621 +55,287 @@
 </section>
 
 
-  <section id="portfolio">
-    <h1>Portfolio</h1>
+  <section class="articles">
+  
+  <article>
+    <h1>
+      <a href="/2010/08/14/cambiar-idioma-selenium.blog.html">Cambiar el idioma a selenium</a>
+    </h1>
 
-<ul class="portfolio">
+    <p>Ayer me encontré con un problema haciendo tests para un pet-project que estoy haciendo con Rails3 3.0.0.rc. Parece ser que a partir de la versión 1.0.0.beta.9 de <a href='http://github.com/carlhuda/bundler' title='Bundler'>bundler</a>, culerity lanza un error a la hora de crear el browser con celerity. Mientras investigo el problema, no quería dejar el desarrollo parado, así que decidí cambiar el driver de <a href='http://github.com/jnicklas/capybara' title='Capybara'>capybara</a> a selenium. Pero el firefox que trae el driver de selenium integrado se me ejecutaba en castellano, y yo tengo los tests escritos en inglés, por lo que fallaban. Tras twittear buscando ayuda, <a href='http://twitter.com/pacoguzman/status/21053477686' title='@pacoguzman tweet'>@pacoguzman me pasó un link</a>(gracias!) de la gente de <a href='http://teambox.com/' title='Teambox'>Teambox</a> que tenía la clave para solucionarlo.</p>
 
-  <!-- UNESCOPlaces -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>UNESCOplaces</h4>
-      <p>A review of the World Heritage Sites web site.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/whs@2x.png" alt="UNESCOplaces" width="250" height="200" />
+<p>Lo solución consiste en extraer el profile del driver de selenium, pasarle la nueva clave del idioma, y volver a asignar el profile al driver de selenium. La clave que había que pasar era &#8216;intl.accept_languages&#8217; (sacado de hacer un about:config en mi Firefox y buscar un poco) junto con el lenguaje que quieras usarlo, en mi caso &#8216;en&#8217;. Como yo estoy usando <a href='http://github.com/cavalle/steak' title='Steak'>Steak</a> para mis test de aceptación, incorporé el código en el archivo de configuración &#8216;spec/acceptance/acceptance_helper.rb&#8217;:</p>
+<div class='highlight'><pre><code class='ruby'><span class='ss'>Capybara</span><span class='p'>:</span><span class='ss'>:Driver</span><span class='o'>::</span><span class='no'>Selenium</span><span class='o'>.</span><span class='n'>class_eval</span> <span class='k'>do</span>
+
+  <span class='k'>class</span> <span class='o'>&lt;&lt;</span> <span class='nb'>self</span>
+
+    <span class='k'>def</span> <span class='nf'>driver</span>
+
+      <span class='vi'>@driver</span> <span class='o'>||=</span> <span class='k'>begin</span>
+        <span class='n'>profile</span> <span class='o'>=</span> <span class='ss'>Selenium</span><span class='p'>:</span><span class='ss'>:WebDriver</span><span class='o'>::</span><span class='ss'>Firefox</span><span class='p'>:</span><span class='ss'>:Profile</span><span class='o'>.</span><span class='n'>new</span>
+
+        <span class='n'>profile</span><span class='o'>[</span><span class='s1'>&#39;intl.accept_languages&#39;</span><span class='o'>]</span> <span class='o'>=</span> <span class='s1'>&#39;en&#39;</span>
+
+        <span class='n'>driver</span> <span class='o'>=</span> <span class='ss'>Selenium</span><span class='p'>:</span><span class='ss'>:WebDriver</span><span class='o'>.</span><span class='n'>for</span> <span class='ss'>:firefox</span><span class='p'>,</span> <span class='ss'>:profile</span> <span class='o'>=&gt;</span> <span class='n'>profile</span>
+
+        <span class='nb'>at_exit</span> <span class='p'>{</span> <span class='n'>driver</span><span class='o'>.</span><span class='n'>quit</span> <span class='p'>}</span>
+
+        <span class='n'>driver</span>
+      <span class='k'>end</span>
+
+    <span class='k'>end</span>
+
+  <span class='k'>end</span>
+
+<span class='k'>end</span>
+</code></pre></div>
+<p>Y listo, selenium en inglés y todos los tests pasando!</p>
+
+    <div class="date">
+      <hr />
+      <span>Aug 14, 2010</span>
+      <hr />
     </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>UNESCOplaces</h4>
-      </div>
-      <div class="description">
-        <p>The idea behind this project was to perform a facelift to the official UNESCO World Heritage Sites website, giving it a geospatial touch.</p>
-        <p>Oh! And it made it to the <a href="http://readwrite.com/2011/09/14/open_source_cartoset_makes_beautiful_maps_fast_eas" target="_blank">readwrite blog</a>.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Back-end and front-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/projects/unescoplaces" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>Geocoding</li>
-              <li>Panoramio API</li>
-              <li>PostGIS</li>
-              <li>scraping</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project source</dt>
-          <dd><a href="https://github.com/vizzuality/whs" target="_blank">https://github.com/vizzuality/whs</a></dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.unescoplaces.org/" target="_blank">http://www.unescoplaces.org/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/whs@2x.png" alt="UNESCOplaces" />
-      <a href="#" class="hide">hide detail</a>
+  </article>
+  
+  <article>
+    <h1>
+      <a href="/2010/07/05/blog-migrado-a-jekyll.html">Blog migrado a Jekyll</a>
+    </h1>
+
+    <p>La semana pasada me lié la manta a la cabeza y me puse a migrar todo el blog de Wordpress a <a href='http://jekyllrb.com/' title='transform your texto into a monster'>Jekyll</a>. Los motivos que me han llevado a moverlo a Jekyll son dos: velocidad y sencillez. Jekyll es un generador de sitios web estáticos programado en ruby. Jekyll genera a partir de plantillas y ficheros <a href='http://daringfireball.net/projects/markdown/' title='Markdown'>markdown</a> o <a href='http://textile.thresholdstate.com/' title='Textile'>textile</a>, ficheros html y xml (entre otras cosas). Al ser contenido estático, pierdes algunas cosas como el sistema de comentarios. Pero con <a href='http://disqus.com/' title='Disqus'>Disqus</a> o <a href='http://intensedebate.com/' title='Intense Debate'>IntenseDebate</a> queda solucionado el problema.</p>
+
+<p>De paso he aprovechado para hacer un pequeño rediseño, y ahora tengo todo el contenido de la web en el mismo html, y mediante un pequeño javascript se realiza el scroll entre las diferentes secciones. Simplemente obtiene el atributo &#8216;href&#8217; del enlace, obtiene el elemento al que referencia y su offset vertical, y anima el desplazamiento del cursor principal hasta esa posición. Además degrada bien si el usuario no tiene el javascript activado.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#menu li a&#39;</span><span class='p'>).</span><span class='nx'>live</span><span class='p'>(</span><span class='s1'>&#39;click&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>evt</span><span class='p'>){</span>
+  <span class='nx'>evt</span><span class='p'>.</span><span class='nx'>preventDefault</span><span class='p'>();</span>
+  <span class='kd'>var</span> 
+    <span class='nx'>destination_id</span> <span class='o'>=</span> <span class='nx'>$</span><span class='p'>(</span><span class='k'>this</span><span class='p'>).</span><span class='nx'>attr</span><span class='p'>(</span><span class='s1'>&#39;href&#39;</span><span class='p'>),</span>
+    <span class='nx'>scrollTo</span>       <span class='o'>=</span> <span class='nx'>$</span><span class='p'>(</span><span class='nx'>destination_id</span><span class='p'>).</span><span class='nx'>offset</span><span class='p'>().</span><span class='nx'>top</span><span class='p'>;</span>
+  <span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;html,body&#39;</span><span class='p'>).</span><span class='nx'>animate</span><span class='p'>({</span><span class='nx'>scrollTop</span><span class='o'>:</span> <span class='nx'>scrollTo</span><span class='p'>},</span> <span class='mi'>2000</span><span class='p'>,</span> <span class='s1'>&#39;easeInOutExpo&#39;</span><span class='p'>);</span>
+<span class='p'>});</span>
+</code></pre></div>
+<p>He publicado el código fuente del blog por si queréis echarle un vistazo (aunque no tiene gran cosa que ver). Todavía no está terminado, faltan algunas cosas como la paginación de posts y algunos retoques más, pero como ya es funcional me he decidido a publicarlo.</p>
+
+    <div class="date">
+      <hr />
+      <span>Jul 05, 2010</span>
+      <hr />
     </div>
-  </li>
+  </article>
+  
+  <article>
+    <h1>
+      <a href="/2010/05/10/rightjs-un-framework-javascript-muy-interesante.html">RightJS, un framework javascript muy interesante</a>
+    </h1>
 
-  <!-- Planet-Hunters -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>Planet-Hunters</h4>
-      <p>A crowd-computing platform to discover planets outside of our Solar System.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/planethunters@2x.png" alt="Planet-Hunters" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>Planet-Hunters</h4>
-      </div>
-      <div class="description">
-        <p>Planet-Hunters is a crowd-computing platform to discover planets outside of our Solar System. As the front-end developer, the biggest challenge was the light-curve graph, developed using <a href="http://mbostock.github.com/protovis/" target="_blank">Protovis</a>.</p>
-        <p>The project has been a great success, and several habitable planets has been found accross the universe. This projects has been mentioned in sites like <a href="http://www.bbc.co.uk/news/science-environment-16512017" target="_blank">BBC News</a>, <a href="http://www.dailymail.co.uk/sciencetech/article-2218301/Star-Wars-planet-discovered-orbiting-suns-orbited-suns.html" target="_blank">Daily Mail</a>, <a href="http://www.guardian.co.uk/science/2012/oct/15/planet-four-suns-discovered" target="_blank">The Guardian</a>, <a href="http://www.time.com/time/health/article/0,8599,2065049,00.html" target="_blank">Time</a> and <a href="http://www.foxnews.com/science/2012/10/16/amateur-team-finds-tatooine-planet-with-4-suns/" target="_blank">Fox News</a>.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Front-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/projects/planethunters" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client"><a href="https://www.zooniverse.org/" target="_blank">Zooniverse</a></dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>Javascript</li>
-              <li>CSS</li>
-              <li>Protovis</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.planethunters.org/" target="_blank">http://www.planethunters.org/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/planethunters@2x.png" alt="Planet-Hunters" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
+    <p>Llevaba tiempo queriendo escribir acerca de este framework javascript, uno de los más interesantes del momento. Quizá no sea tan conocido como jQuery o MooTools, pero en mi opinión merece estar tan arriba como ellos. Además, ciertos elementos de su sintaxis resultarán familiares a los rubistas. Más adelante explicaré cuales.</p>
 
-  <!-- NGO Aid Map -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>NGO Aid Map</h4>
-      <p>An application to help NGOs to map their efforts around the world.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/iom@2x.png" alt="NGO Aid Map" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>NGO Aid Map</h4>
-      </div>
-      <div class="description">
-        <p>NGO Aid Map is a web project to showcase all the great efforts the InterAction NGOs coalition is making around the world.</p>
-        <p>It's a Ruby on Rails application, with a custom hand-made backoffice to help InterAction administrators to manage the site and its data.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Back-end and front-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/projects/ngoaidmap" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client"><a href="http://www.interaction.org/" target="_blank">InterAction</a></dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>PostgreSQL</li>
-              <li>PostGIS</li>
-              <li>Javascript</li>
-              <li>CSS</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project source</dt>
-          <dd><a href="https://github.com/vizzuality/iom" target="_blank">https://github.com/vizzuality/iom</a></dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.ngoaidmap.org/" target="_blank">http://www.ngoaidmap.org/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/iom@2x.png" alt="NGO Aid Map" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-
-  <!-- CartoDB -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>CartoDB</h4>
-      <p>A geospatial database in the cloud.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/cartodb@2x.png" alt="CartoDB" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>CartoDB</h4>
-      </div>
-      <div class="description">
-        <p>CartoDB is a geospatial database in the cloud. It enables users to visualize data in a map in a really easy way.</p>
-        <p>It's a pretty complex piece of code. It's built on top of PostgreSQL, with node.js and Ruby on Rails as the main frameworks.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Back-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/products" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>node.js</li>
-              <li>PostgreSQL</li>
-              <li>PostGIS</li>
-              <li>REST API</li>
-              <li>redis</li>
-              <li>mapnik</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project source</dt>
-          <dd><a href="https://github.com/cartodb/cartodb20" target="_blank">https://github.com/cartodb/cartodb20</a></dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.cartodb.com/" target="_blank">http://www.cartodb.com/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/cartodb@2x.png" alt="CartoDB" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-
-  <!-- RTVE -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>Spanish Elections</h4>
-      <p>A visualization of 2011 Spanish general elections for the Spanish public television.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/rtve@2x.png" alt="Spanish Elections" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>Spanish Elections</h4>
-      </div>
-      <div class="description">
-        <p>Our job here was to create a visualization of the 2011 Spanish election results.</p>
-        <p>The main difficulty was the creation of the mechanism that will enable us to proccess the electoral results as they were being received by us in realtime.</p>
-        <p>This project <a href="http://www.rtve.es/rtve/20120326/malofiej-premian-analisis-electoral-rtvees/510680.shtml" target="_blank">won a bronze medal</a> in Malofiej20.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Back-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/projects/spanishelections" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client"><a href="http://www.rtve.es/" target="_blank">RTVE</a></dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Javascript</li>
-              <li>scraping</li>
-              <li>ruby</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://datos.rtve.es/elecciones/" target="_blank">http://datos.rtve.es/elecciones/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/rtve@2x.png" alt="Spanish Elections" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-
-  <!-- Ikeameter -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>Ikeameter</h4>
-      <p>Search all Ikea products that fit in that gap of your home.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/ikeameter@2x.png" alt="Ikeameter" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>Ikeameter</h4>
-      </div>
-      <div class="description">
-        <p>This is a personal project I created after a frustrating time browsing through the Ikea website.</p>
-        <p>I scraped the entire Ikea website, generated a database with the data and built a web application on top of it.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Designer, front-end and back-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client">Personal project</dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>sinatra</li>
-              <li>sequel</li>
-              <li>backbone</li>
-              <li>scraping</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.ikeameter.com/" target="_blank">http://www.ikeameter.com/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/ikeameter@2x.png" alt="Ikeameter" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-
-  <!-- GeoCat -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>GeoCat</h4>
-      <p>Perform rapid geospatial analysis of species in a simple and powerful way.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/geocat@2x.png" alt="GeoCat" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>GeoCat</h4>
-      </div>
-      <div class="description">
-        <p>A tool to help biologist to perform geospatial analysis of species in the whole world.</p>
-        <p>It provides scientists with several tools to retrieve data from datasources as GBIF or Flickr, and to analyze the results.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Back-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/projects/rlat" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client"><a href="http://www.kew.org/" target="_blank">Kew, Royal Botanical Gardens</a></dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>Javascript</li>
-              <li>Flickr API</li>
-              <li>GBIF API</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project source</dt>
-          <dd><a href="https://github.com/vizzuality/geocat" target="_blank">https://github.com/vizzuality/geocat</a></dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://geocat.kew.org/" target="_blank">http://geocat.kew.org/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/geocat@2x.png" alt="GeoCat" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-
-
-  <!-- Irekia -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>Irekia</h4>
-      <p>An eGobernment platform for the Basque gobernment.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/irekia@2x.png" alt="Irekia" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>Irekia</h4>
-      </div>
-      <div class="description">
-        <p>We were asked to work in the next version of one of the first eGobernment platforms in the world.</p>
-        <p>Our main concern was to develop a platform that encouraged citizens to participate in their nation issues.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Back-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>company i worked for</dt>
-          <dd>A project by <a href="http://vizzuality.com/projects/irekia" target="_blank">Vizzuality</a>.</dd>
-        </dl>
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client"><a href="http://www.euskadi.net/r33-2220/eu/" target="_blank">Basque Country</a></dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>PostgreSQL</li>
-              <li>activity streams</li>
-              <li>social network</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project source</dt>
-          <dd><a href="https://github.com/vizzuality/irekia/" target="_blank">https://github.com/vizzuality/irekia/</a></dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.irekia.euskadi.net/en" target="_blank">http://www.irekia.euskadi.net/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/irekia@2x.png" alt="Irekia" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-
-  <!-- Pets-Waiting -->
-  <!-- ############################## -->
-  <li>
-    <div class="summary">
-      <div class="shadow"></div>
-      <h4>Pets-Waiting</h4>
-      <p>Helps abandoned pets to find a new home.</p>
-      <a href="#">more info</a>
-      <img src="/images/portfolio/petswaiting@2x.png" alt="Pets-Waiting" width="250" height="200" />
-    </div>
-    <div class="detail">
-      <div class="shadow"></div>
-      <div class="title">
-        <h4>Pets-Waiting</h4>
-      </div>
-      <div class="description">
-        <p>I love animals, and with this project I wanted to help all those abandoned pets we see every day in our streets.</p>
-        <p>Sadly, the project is a little bit abandoned... But a new version is in the works, with a new great design.</p>
-      </div>
-      <div class="info">
-        <dl class="role">
-          <dt>role in the project</dt>
-          <dd>Designer, back-end and front-end developer.</dd>
-        </dl>
-        <dl>
-          <dt>developed for</dt>
-          <dd class="client">Personal project</dd>
-        </dl>
-        <dl>
-          <dt>technologies</dt>
-          <dd>
-            <ul>
-              <li>Ruby on Rails</li>
-              <li>RSpec</li>
-              <li>Capybara</li>
-              <li>Javascript</li>
-              <li>jQuery</li>
-              <li>SCSS</li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt>project source</dt>
-          <dd><a href="https://github.com/ferdev/Pets-Waiting" target="_blank">https://github.com/ferdev/Pets-Waiting</a></dd>
-        </dl>
-        <br />
-        <dl>
-          <dt>project url</dt>
-          <dd><a href="http://www.petswaiting.org/" target="_blank">http://www.petswaiting.org/</a></dd>
-        </dl>
-      </div>
-      <img src="/images/portfolio/detail/petswaiting@2x.png" alt="Pets-Waiting" />
-      <a href="#" class="hide">hide detail</a>
-    </div>
-  </li>
-</ul>
-
-  </section>
-  <section id="about-me">
-    <h1>About me</h1>
-
-<p>My name is Fernando Espinosa, and I'm a senior ruby developer based in Madrid, Spain. I've been doing software development for over 12 years. I really love it, and attention to detail and code quality are my main concerns.</p>
-
-<p>After several years working for a big consultancy company, a few more running my own company and doing freelance work, I've had two great years working with the awesome team at <a href="http://www.vizzuality.com">Vizzuality</a>.</p>
-
-<p>In my <a href="#portfolio">portfolio</a> you can check a selection of my web projects. If you want to see more, you can take a look to these too: <a href="http://afg.scarmarbin.be/" target="_blank">AFG</a>, <a href="http://methanegashydrates.org/" target="_blank">Methane Gas Hydrates</a>, <a href="http://mapmydata.co/" target="_blank">Map My Data</a>, <a href="http://www.otrobache.com/" target="_blank">Otro Bache</a> and <a href="http://www.protectedplanet.net/" target="_blank">Protected Planet</a>. All of them, projects of <a href="http://www.vizzuality.com">Vizzuality</a>.</p>
-
-<p>Besides the web projects I've created a few ruby gems: a <a href="https://rubygems.org/gems/cartodb-rb-client">ruby client</a> for <a href="http://www.cartodb.com">CartoDB</a>, a geospatial database in the cloud, a <a href="https://rubygems.org/gems/cartoset">rails engine</a> to build geospatial-enabled sites easily and, the last one, a <a href="http://www.rubymotion.com">RubyMotion</a> <a href="https://rubygems.org/gems/motion-ocr">wrapper for the OCR engine Tesseract</a>.</p>
-
-<p>I've also created some products in my spare time just by myself. The last one is the <a href="http://www.ikeameter.com">Ikeameter</a>, a tool to help people to choose Ikea furnitures using the measures of the gap they want to furnish. Currently, I'm working in the iOS app, entirely developed using <a href="http://www.rubymotion.com">RubyMotion</a>.</p>
-
-<p>About my skills, I can perform without problems both front-end and back-end development, I love both of them and my knowledge of each of them are comparable. My object oriented background is quite big, as well as my experience working with relational databases (Oracle, Mysql, PostgreSQL, IBM DB2...). Unix administration tasks aren't a problem either.</p>
-
-<p>In short, so many years in software development is long enough for much. If you want to know my experience with a certain technology, don't hesitate, <a href="mailto:fer@ferdev.com">ask me</a>.</p>
-
-<p>Oh! I almost forget: I'm a vim enthusiast, and I use it in a daily basis to code, browse the web, to manage
-  to-do lists, to write texts, etc. You can check my vim setup and other stuff in my <a href="https://github.com/ferdev">github account</a>.</p>
-
-<p>If you want further info about my career, you can check my <a href="http://www.linkedin.com/in/fernandoespinosajimenez">linkedin profile</a>.</p>
-
-  </section>
-  <section id="hire-me">
-    <h1 id="hire-me">Hire me</h1>
-
-<p>If you need a ruby back-end developer, a front-end guy or an iOS programmer, I may be able to help you.</p>
-
-<p>First of all, I want to make it clear <strong>I do not work for projects with fixed scope/budget</strong>, because I don't believe in them. I can give you a rough estimate of what a project could cost, but I can't commit to a date because almost certainly I won't be able to fulfill it</p>
-
-<p><strong>I do iterative development</strong>, and <strong>I commit to</strong> a complete dedication to the project, to daily deploys, to attention to detail and, in general, to deliver a final result that satisfies both client and me.</p>
-
-<p>There're two ways to work with me:</p>
+<p>La mejor manera de hablar de <a href='http://rightjs.org' title='The Right JavaScript Framework'>RightJS</a> es comentar sus características principales:</p>
 
 <ul>
-  <li><p><strong>For a fixed ammount of time</strong>. As it sounds, I'll work with you for a fixed ammount of time, in which I'll perform the planned tasks for each week.</p></li>
-  <li><p><strong>By project</strong>. A number of features will be defined for the project, and a first delivery date will be scheduled (without fixed scope). Once the first delivery is made, if any features still remains and the client wants to continue working in the project, a new date will be scheduled, so on so forth.</p></li>
+<li>
+<p>Sintaxis sencilla y curva de aprendizaje baja. Si ya conoces otro framework como jQuery o Prototype, te costará muy poco aprender RightJS.</p>
+</li>
+
+<li>
+<p><strong>Posiblemente</strong>, el más rápido de todos los frameworks JavaScript. Difícil de demostrar, pero <a href='http://rightjs.org/benchmarks'>diversos tests</a> parecen corroborarlo. No sé si el más rápido, pero desde luego es rapidísimo.</p>
+</li>
+
+<li>
+<p>Llamadas a funciones por nombre. Muchas veces tenemos el típico callback para acceder a un método del propio objeto. Con RightJS no necesitaremos dicho callback, símplemente pasaremos el nombre de la función como string.</p>
+</li>
+</ul>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// Modo habitual</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;element&#39;</span><span class='p'>).</span><span class='nx'>onClick</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+  <span class='k'>this</span><span class='p'>.</span><span class='nx'>hide</span><span class='p'>();</span>
+<span class='p'>});</span>
+
+<span class='c1'>// Usando llamadas por nombre</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;element&#39;</span><span class='p'>).</span><span class='nx'>onClick</span><span class='p'>(</span><span class='s1'>&#39;hide&#39;</span><span class='p'>);</span>
+</code></pre></div>
+<ul>
+<li>Soporte en navegadores más antiguos de la última especificación JavaScript/ECMAScript. Por ejemplo:</li>
 </ul>
 
-<p>In both cases, <strong>payments will be made weekly</strong>.</p>
+<p><a href='http://rightjs.org/docs/array#filter'><strong>Array#filter</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>strings</span> <span class='o'>=</span> <span class='p'>[</span><span class='s1'>&#39;anny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;manny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;banny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;bob&#39;</span><span class='p'>];</span>
 
-<p>Although <strong>initially my services don't include any kind of visual or user experience design</strong>, and it's preferable that you provide me with it, you can also hire me for this task if you want. But I warn you: this isn't my speciality, so don't expect the same quality you'll expect from a specialized designer. Anyway, I can offer you this service too.</p>
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>filter</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>string</span><span class='p'>,</span> <span class='nx'>i</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>return</span> <span class='nx'>string</span><span class='p'>.</span><span class='nx'>length</span> <span class='o'>&gt;</span> <span class='p'>(</span><span class='nx'>i</span><span class='o'>+</span><span class='mi'>1</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='c1'>// -&gt; [&#39;anny&#39;, &#39;manny&#39;, &#39;banny&#39;];</span>
 
-<p>For new projects, you must know that for the majority of them <strong>it's imposible to deliver anything of enough quality for development periods below of 6-8 weeks</strong>. Although it will always depend on the project, below this threshold is really hard to guarantee the quality I want to achieve. Therefore if I think the development period is too tight you may not be able to count on me for the project.</p>
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>filter</span><span class='p'>(</span><span class='s1'>&#39;match&#39;</span><span class='p'>,</span> <span class='sr'>/[a-z]ann/</span><span class='p'>);</span>
+<span class='c1'>// -&gt; [&#39;manny&#39;, &#39;banny&#39;]</span>
+</code></pre></div>
+<p><a href='http://rightjs.org/docs/array#map'><strong>Array#map</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>strings</span> <span class='o'>=</span> <span class='p'>[</span><span class='s1'>&#39;anny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;banny&#39;</span><span class='p'>,</span> <span class='s1'>&#39;manny&#39;</span><span class='p'>];</span>
 
-<p>Of course, as I said, this only applies for new projects. If you need me to support a development team, to perform maintenance on an project, or to improve an existing codebase in bad shape, you can count on me for a minimum period of two weeks.</p>
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>string</span><span class='p'>,</span> <span class='nx'>i</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>return</span> <span class='p'>(</span><span class='nx'>i</span><span class='o'>+</span><span class='mi'>1</span><span class='p'>)</span><span class='o'>+</span><span class='s1'>&#39;. &#39;</span><span class='o'>+</span><span class='nx'>string</span><span class='p'>;</span>
+<span class='p'>});</span>
 
-<p>As for my methodology, I always make <strong>tdd</strong> over the features to be developed, and I like to manage the project with agile tools like "Pivotal Tracker", since they help me to manage both the pace of the project and the client's expectatives.</p>
+<span class='c1'>// -&gt; [&#39;1. anny&#39;, &#39;2. banny&#39;, &#39;3. manny&#39;];</span>
 
-<p>If you're still interested in hiring me, that's great! I'll be glad to hear about your project. For that, please, <strong>fill the following form</strong>. The more information you provide me about your project, the better my estimation about it will be.</p>
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='s1'>&#39;capitalize&#39;</span><span class='p'>);</span>
 
-<form method="post" action="/send-project-info">
-  <fieldset>
-    <legend>
-      Personal info&nbsp;
-    </legend>
-    <div class="field email">
-      <label for="contact-name" aria-hidden="true" class="icon-user"></label><!--
-      --><input id="contact-name" name="name" placeholder="Your name (required)" type="text" required="true"/>
+<span class='c1'>// -&gt; [&#39;Anny&#39;, &#39;Banny&#39;, &#39;Manny&#39;];</span>
+
+<span class='nx'>strings</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='s1'>&#39;replace&#39;</span><span class='p'>,</span> <span class='s1'>&#39;nn&#39;</span><span class='p'>,</span> <span class='s1'>&#39;b&#39;</span><span class='p'>);</span>
+
+<span class='c1'>// -&gt; [&#39;aby&#39;, &#39;baby&#39;, &#39;maby&#39;];</span>
+</code></pre></div>
+<p><a href='http://rightjs.org/docs/string#trim'><strong>String#trim</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='s1'>&#39; asdf &#39;</span><span class='p'>.</span><span class='nx'>trim</span><span class='p'>();</span> <span class='c1'>// -&gt; &#39;asdf&#39;</span>
+</code></pre></div>
+<ul>
+<li>Extensión del core de JavaScript con algunos métodos que sonarán a muchos rubistas:</li>
+</ul>
+
+<p><a href='http://rightjs.org/docs/array#compact'><strong>Array#compact</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='p'>[</span><span class='kc'>null</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='kc'>undefined</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='p'>,</span> <span class='kc'>null</span><span class='p'>].</span><span class='nx'>compact</span><span class='p'>();</span>
+
+<span class='c1'>// -&gt; [0, 1, 2, 3];</span>
+</code></pre></div>
+<p><a href='http://rightjs.org/docs/string#endsWith'><strong>String#endsWith</strong></a>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='s1'>&#39;image.gif&#39;</span><span class='p'>.</span><span class='nx'>endsWith</span><span class='p'>(</span><span class='s1'>&#39;.gif&#39;</span><span class='p'>);</span>       <span class='c1'>// -&gt; true</span>
+
+<span class='s1'>&#39;image.gif&#39;</span><span class='p'>.</span><span class='nx'>endsWith</span><span class='p'>(</span><span class='s1'>&#39;.GIF&#39;</span><span class='p'>);</span>       <span class='c1'>// -&gt; false</span>
+<span class='s1'>&#39;image.gif&#39;</span><span class='p'>.</span><span class='nx'>endsWith</span><span class='p'>(</span><span class='s1'>&#39;.GIF&#39;</span><span class='p'>,</span> <span class='kc'>true</span><span class='p'>);</span> <span class='c1'>// -&gt; true</span>
+</code></pre></div>
+<ul>
+<li>Manejo de números simplificado.</li>
+</ul>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// Conversión de string a number</span>
+<span class='s1'>&#39;123&#39;</span><span class='p'>.</span><span class='nx'>toInt</span><span class='p'>();</span>   <span class='c1'>// -&gt; 123</span>
+<span class='s1'>&#39;1.3&#39;</span><span class='p'>.</span><span class='nx'>toFloat</span><span class='p'>();</span> <span class='c1'>// -&gt; 1.3</span>
+
+<span class='c1'>// Manejo de números</span>
+<span class='mf'>1.4</span><span class='p'>.</span><span class='nx'>floor</span><span class='p'>();</span> <span class='c1'>// -&gt; 1</span>
+<span class='mf'>1.4</span><span class='p'>.</span><span class='nx'>ceil</span><span class='p'>();</span>  <span class='c1'>// -&gt; 2</span>
+<span class='mf'>1.4</span><span class='p'>.</span><span class='nx'>round</span><span class='p'>();</span> <span class='c1'>// -&gt; 1</span>
+</code></pre></div>
+<ul>
+<li>Aunque JavaScript ya es un lenguaje orientado a objetos, la clase <code>Class</code> hace más sencilla la herencia, implementación de interfaces, etc.</li>
+</ul>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>Klass</span> <span class='o'>=</span> <span class='k'>new</span> <span class='nx'>Class</span><span class='p'>(</span><span class='nx'>AnotherClass</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>include</span><span class='o'>:</span> <span class='nx'>Module1</span><span class='p'>,</span>
+  <span class='nx'>extend</span><span class='o'>:</span>  <span class='nx'>Module2</span><span class='p'>,</span>
+
+  <span class='nx'>initialize</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>//....</span>
+  <span class='p'>}</span>
+<span class='p'>});</span>
+</code></pre></div>
+<ul>
+<li>Y también: <a href='http://rightjs.org/docs/form#send' title='Form#send'>envío</a> simplificado de formularios, uso de spinners automáticos en peticiones AJAX, manejo unificado de <a href='http://rightjs.org/tutorials/uniformed-events-handling'>eventos</a> y <a href='http://rightjs.org/tutorials/uniformed-options-handling'>opciones</a> de métodos, arquitectura abierta, soporte para <a href='http://rightjs.org/plugins'>plugins</a>, y una <a href='http://github.com/MadRabbit/right-rails'>gema</a> para facilitar la integración con Rails (soporta Rails3).</li>
+</ul>
+
+<p>Como véis, es un framework al que merece la pena echarle un vistazo. Sobre todo si eres un desarrollador de back que no te sientes muy cómodo con la parte front (está orientado principalmente a desarrolladores Rails, como se puede ver). Creo que bien merece uno de vuestros PetProjects ;-)</p>
+
+    <div class="date">
+      <hr />
+      <span>May 10, 2010</span>
+      <hr />
     </div>
-    <div class="field name">
-      <label for="contact-email" aria-hidden="true" class="icon-at"></label><!--
-      --><input id="contact-email" name="email" placeholder="Your email (required)" type="email" required="true"/>
-    </div>
-    <div class="field company">
-      <label for="contact-company" aria-hidden="true" class="icon-office"></label><!--
-      --><input id="contact-company" name="company" placeholder="Your company" type="text" />
-    </div>
-    <div class="field url">
-      <label for="contact-url" aria-hidden="true" class="icon-link"></label><!--
-      --><input id="contact-url" name="url" placeholder="URL of your project or company" type="text" />
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>
-      Project info&nbsp;
-    </legend>
-    <div class="field budget">
-      <label for="contact-budget" aria-hidden="true" class="icon-coin"></label><!--
-      --><input id="contact-budget" name="budget" placeholder="Your budget (required)" type="text" required="true"/>
-    </div>
-    <div class="field duration">
-      <label for="contact-duration" aria-hidden="true" class="icon-clock"></label><!--
-      --><input id="contact-duration" name="duration" placeholder="Estimated project duration" type="text" />
-    </div>
-    <div class="field description">
-      <label for="contact-description" aria-hidden="true" class="icon-pencil"></label><!--
-      --><textarea id="contact-description" name="description" placeholder="Description of the project (required)" rows="10" cols="30" required="true"></textarea>
-    </div>
-    <button>
-      <div>
-        send form <span aria-hidden="true" class="icon-arrow-right"></span>
-        sending... <span aria-hidden="true" class="icon-spinner"></span>
-      </div>
-    </button>
-  </fieldset>
-</form>
+  </article>
+  
+  <article>
+    <h1>
+      <a href="/2010/03/23/rediseno-del-blog-y-freelanceo.html">Rediseño del blog y freelanceo</a>
+    </h1>
 
-  </section>
-  <section id="contact-me">
-    <h1 id="contact-me">Contact me</h1>
+    <p>La semana pasada he estado dándole un pequeño rediseño al blog. El diseño que había era el resultante de haber hecho unas cuantas pruebas, y al final por falta de tiempo no había podido cambiarlo. Quería algo minimalista, con buena legibilidad, y con el menor número de imágenes posible.</p>
 
-<p>You can always reach me at my email, <a href="mailto:fer@ferdev.com">fer@ferdev.com</a>.</p>
+<p>De hecho, la única imagen es el nuevo logo (a excepción de los iconos de social media, que son de <a href='http://www.komodomedia.com/' title='Komodo Media'>Komodo Media</a>). Y he creado un logo porque me embarco en la aventura del desarrollo freelance, y éste será mi nueva identidad visual. Últimamente estoy viendo mucha gente que se dedica a ello y me he decidido a dar el salto. Así que si alguien necesita un desarrollador Ruby on Rails, javascript, php, java o .NET, aquí me tenéis!</p>
 
-<p>Also, you can follow me on twitter if you want. My username is <a href="http://twitter.com/ferdev">@ferdev</a>.</p>
+    <div class="date">
+      <hr />
+      <span>Mar 23, 2010</span>
+      <hr />
+    </div>
+  </article>
+  
+  <article>
+    <h1>
+      <a href="/2010/03/10/testing-ajaxupload-con-capybara-culerity.html">Testing AjaxUpload con Capybara + Culerity</a>
+    </h1>
 
-  </section>
+    <p>Llevo unos días probando <a href='http://github.com/jnicklas/capybara'>Capybara</a> después de los comentarios tan buenos que había escuchado de él en <a href='http://twitter.com/albertoperdomo/status/9643469318'>twitter</a> últimamente, especialmente de su integración con <a href='http://github.com/langalex/culerity'>Culerity</a>. Los hados además trataban de decirme algo porque la última <a href='http://github.com/porras/madrid-rb-feb-2010'>charla</a> de <a href='http://twitter.com/madridrb'>madridrb</a> que dio <a href='http://twitter.com/porras'>@porras</a> versaba sobre esto mismo (y <a href='http://github.com/cavalle/steak'>Steak</a>, que también estoy probando y me está gustando mucho). Por cierto que debería haber ido a la charla (pero no pude :-() porque seguro que me hubiese ahorrado muchos de los problemas que me encontré.</p>
+
+<p>Los primeros vinieron con la instalación. Culerity es un recubrimiento (que poco me gusta esta palabra) de <a href='http://github.com/jarib/celerity'>Celerity</a>, que a su vez es otro recubrimiento de <a href='http://htmlunit.sourceforge.net/'>HtmlUnit</a>, un navegador web sin interfaz gráfico programado en Java. Y debido a esto, necesitas Jruby para instalar la gema de Celerity. Pues bien, rvm y todo este tinglado no se llevan demasiado bien. Y aunque hay un <a href='http://rvm.beginrescueend.com/integration/culerty/'>hack</a> para salir al paso, a mi no me valía del todo (a parte que no me gustaba mucho que digamos) porque yo no estaba usando Cucumber sino Steak (requisito para que funcione el Hack). Al final conseguí hacerlo funcionar instalando Jruby mediante Macports. No sé si me dará problemas en el futuro, pero hasta que Culerity y rvm se lleven mejor, me gusta más esta solución que andar cambiando variables de entorno en cada test.</p>
+
+<p>La aplicación con la que estaba haciendo las pruebas tiene una carga de javascript muy alta, y los primeros problemas que me dieron los tests lo achacaba a esto. &#8220;Demasiado javascript&#8221;, pensaba para mis adentros cuando al testear una petición ajax me daba un error con la respuesta en formato JSON. Dándole vueltas y más vueltas, a punto de desinstalarlo todo porque no conseguía solucionarlo, di con la solución no recuerdo muy bien dónde: la última versión de Celerity (0.7.9) usaba una versión de HtmlUnit con algunos bugs, y recomendaban instalar la versión <strong>0.7.4</strong>. Pues mano de santo oiga :-)</p>
+
+<p>Y llegamos al quid de la cuestión: probar <a href='http://valums.com/ajax-upload/'>AjaxUpload</a> con Capybara + Culerity. Me ha costado un par de días hacerlo funcionar, y en realidad ha sido una tontería. No hacía falta más que detenerse un poco a pensar como funciona AjaxUpload por dentro.</p>
+
+<p>AjaxUpload es un hack para simular una subida asíncrona de un archivo al servidor de nuestra página web. Para ello, se vale de los siguientes pasos:</p>
+
+<ol>
+<li>
+<p>Se asocia al elemento de la página web que tú hayas definido (un enlace o un botón, por ejemplo).</p>
+</li>
+
+<li>
+<p>Cuando se dispara el evento &#8220;mouseover&#8221; sobre ese elemento, crea un div transparente de las mismas dimensiones que el elemento y lo sitúa por encima de él. Cuando el usuario intente pulsar el elemento, será este div en realidad el que se vea pulsado.</p>
+</li>
+
+<li>
+<p>Cuando el usuario hace click en el div, se genera el elemento input file y se abre el diálogo de selección de archivo.</p>
+</li>
+
+<li>
+<p>En cuanto el usuario selecciona el fichero, AjaxUpload crea un formulario, le agrega el input file del paso anterior, y crea un iframe. Este iframe, será el &#8220;target&#8221; del formulario recien creado.</p>
+</li>
+
+<li>
+<p>AjaxUpload envía el formulario (que hará la subida del fichero a través del iframe) y fin del proceso.</p>
+
+<p>Mi problema venía con el diálogo de selección. No veía cómo conseguir seleccionar el archivo y pulsar el botón &#8220;Aceptar&#8221; del diálogo de selección. Sabía que la clase <em>Celerity::FileField</em> contaba con el método <em>Set</em>, con el que podía pasarle la ruta de un archivo&#8230; Pero no sé por qué me dio por pensar que si el diálogo estaba abierto, no funcionaría. Hasta que lo probé, y me di cuenta que Celerity establece la ruta del archivo y cierra la ventana de diálogo él solito. Así que, problema resuelto.</p>
+</li>
+</ol>
+
+<p>Aquí va un pequeño trozo de código de como quedaría montado. He sacado los selectores principales a variables para que se entienda mejor. Ah! También decir que yo tengo configurado Capybara para que por defecto use selectores css :-)</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># selector del botón asociado a AjaxUpload</span>
+<span class='n'>button_selector</span> <span class='o'>=</span> <span class='s1'>&#39;button#upload&#39;</span>
+<span class='c1'># selector del div que contendrá al input file. Se posicionará justo encima de button_selector</span>
+<span class='n'>div_selector</span> <span class='o'>=</span> <span class='s1'>&#39;div.ajaxupload_container&#39;</span>
+<span class='c1'># selector del input file</span>
+<span class='n'>input_selector</span> <span class='o'>=</span> <span class='s1'>&#39;div.ajaxupload_container input.ajaxupload&#39;</span>
+<span class='c1'># ruta al archivo a subir</span>
+<span class='n'>file_path</span> <span class='o'>=</span> <span class='s1'>&#39;image.jpg&#39;</span>
+
+<span class='c1'># Simulamos el evento &#39;mouseover&#39; sobre el botón original asociado a AjaxUpload</span>
+<span class='n'>find</span><span class='p'>(</span><span class='n'>button_selector</span><span class='p'>)</span><span class='o'>.</span><span class='n'>trigger</span><span class='p'>(</span><span class='ss'>:mouseover</span><span class='p'>)</span>
+
+<span class='c1'># Comprobamos que se haya creado el div de AjaxUpload</span>
+<span class='n'>page</span><span class='o'>.</span><span class='n'>should</span> <span class='n'>have_css</span><span class='p'>(</span><span class='n'>div_selector</span><span class='p'>)</span>
+
+<span class='c1'># Hacemos click en el div para disparar la creación del input file</span>
+<span class='n'>find</span><span class='p'>(</span><span class='n'>div_selector</span><span class='p'>)</span><span class='o'>.</span><span class='n'>click</span>
+
+<span class='c1'># El input file debería haberse creado</span>
+<span class='n'>page</span><span class='o'>.</span><span class='n'>should</span> <span class='n'>have_css</span><span class='p'>(</span><span class='n'>input_selector</span><span class='p'>)</span>
+
+<span class='c1'># Le pasamos la ruta de archivo al input file</span>
+<span class='n'>find</span><span class='p'>(</span><span class='n'>input_selector</span><span class='p'>)</span><span class='o'>.</span><span class='n'>set</span><span class='p'>(</span><span class='n'>file_path</span><span class='p'>)</span>
+</code></pre></div>
+<p>Y ya está! Una aclaración: he modificado AjaxUpload para que asigne una clase al div y al input file que crea y sea más sencillo seleccionarlos, ya que por defecto no les asigna identificador ni clases de ningún tipo.</p>
+
+    <div class="date">
+      <hr />
+      <span>Mar 10, 2010</span>
+      <hr />
+    </div>
+  </article>
+  
+
+  
+  <div class="more_posts"><a href="#" rel="page2" title="More posts">More posts</a></div>
+  
+
+</section>
+
   <footer>
     Check the <a href="http://github.com/ferdev/ferdev">source code of this site on Github</a>.
 

@@ -219,6 +219,9 @@ html {
     }
 
     &.start-talking .introduction {
+      position: absolute;
+      z-index: 20;
+
       .balloon_tail_small {
         @include animation-name(scale-in);
         @include animation-direction(normal);
@@ -247,6 +250,8 @@ html {
     }
 
     &.stop-talking .introduction {
+      z-index: 20;
+
       .balloon_tail_small, .balloon_tail_medium, .balloon {
         @include transform(scale(1));
       }
