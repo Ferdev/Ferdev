@@ -99,10 +99,18 @@ html {
       position: relative;
       word-spacing: -1em;
 
+      &:after {
+         content: ".";
+         visibility: hidden;
+         display: block;
+         height: 0;
+         clear: both;
+      }
+
       hgroup {
-        @include inline-block;
+        float: left;
         vertical-align: top;
-        width: 53%;
+        width: 50%;
         word-spacing: normal;
 
         .photo {
@@ -155,9 +163,9 @@ html {
 
       nav {
         position: relative;
-        @include inline-block;
+        float: right;
         vertical-align: top;
-        width: 47%;
+        width: 50%;
         word-spacing: normal;
         text-align: right;
 
@@ -207,14 +215,14 @@ html {
 
      #contact {
         position: absolute;
-        right: 0;
+        right: 6px;
         top: 40px;
         padding: 0 20px;
-        border: 4px dashed;
-        border-radius: 20px;
+        border: 4px dotted;
+        border-radius: 10px;
+        background-color: #0e2d52;
         text-align: right;
-        @include transform(translateY(-300px));
-        opacity: 0;
+        @include transform(scale(0));
 
         div {
           margin: 20px 0;
@@ -227,10 +235,12 @@ html {
 
         span {
           margin: 0 10px;
+          color: #ffffff;
           text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
         }
 
         a {
+          color: #2b8eff;
           text-decoration: none;
           vertical-align: -10%;
 
