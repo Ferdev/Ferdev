@@ -40,6 +40,12 @@ html {
     }
 
     article {
+
+      .date {
+        display: block;
+        margin-bottom: 30px;
+      }
+
       .highlight {
         margin: 40px 0;
         padding: 20px;
@@ -52,27 +58,6 @@ html {
         }
 
 
-      }
-
-      .date {
-        margin: 40px 0;
-
-        hr {
-          @include inline-block;
-          width: 42.5%;
-          border-color: rgba(255, 255, 255, 0.4);
-          border-width: 1px 0 0 0;
-          border-style: solid;
-          vertical-align: middle;
-        }
-
-        span {
-          @include inline-block;
-          width: 12%;
-          font-size: 16px;
-          text-align: center;
-          vertical-align: middle;
-        }
       }
 
       #comments {
@@ -111,6 +96,7 @@ html {
     }
 
     & > header {
+      position: relative;
       word-spacing: -1em;
 
       hgroup {
@@ -184,7 +170,7 @@ html {
           li {
             position: relative;
             display: inline;
-            margin-left: 20px;
+            margin-left: 4%;
             z-index: 1;
 
             a {
@@ -218,6 +204,41 @@ html {
         }
 
       }
+
+     #contact {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        padding: 0 20px;
+        border: 4px dashed;
+        border-radius: 20px;
+        text-align: right;
+        @include transform(translateY(-300px));
+        opacity: 0;
+
+        div {
+          margin: 20px 0;
+        }
+
+        span, a {
+          font-size: 26px;
+          vertical-align: middle;
+        }
+
+        span {
+          margin: 0 10px;
+          text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        a {
+          text-decoration: none;
+          vertical-align: -10%;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+     }
 
     }
 
@@ -298,6 +319,17 @@ html {
             font-weight: normal;
             color: #333333;
           }
+        }
+      }
+
+    }
+
+    .articles {
+
+      #pagination {
+
+        .next {
+          float: right;
         }
       }
 
@@ -515,9 +547,7 @@ html {
       ul {
         padding-left: 20px;
       }
-    }
 
-    #contact-me {
       form {
         width: 501px;
 
@@ -632,6 +662,7 @@ html {
       border-top: 1px dotted rgba(255, 255, 255, 0.4);
       margin-top: 200px;
       padding: 50px 0 20px;
+      text-align: center;
     }
   }
 }

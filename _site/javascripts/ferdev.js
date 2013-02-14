@@ -9,6 +9,7 @@ Modernizr.load([
       detectWindowScroll();
       bounceFerdev();
       $('header hgroup img').hover(startTalking, stopTalking);
+      $('#menu .contact').click(toggleContact);
       $('#menu .top').click(goToTop);
       $('.portfolio .summary a').click(showPortfolioDetail);
       $('.portfolio .detail a.hide').click(hidePortfolioDetail);
@@ -82,6 +83,18 @@ var stopTalking = function() {
     $('body').removeClass('stop-talking');
   }, 900);
 };
+
+var toggleContact = function(evt) {
+  evt.preventDefault();
+  var body = $('body');
+  if (body.hasClass('show-contact')) {
+    body.removeClass('show-contact');
+    body.addClass('hide-contact');
+  } else {
+    body.removeClass('hide-contact');
+    body.addClass('show-contact');
+  }
+}
 
 var goToTop = function(evt) {
   evt.preventDefault();

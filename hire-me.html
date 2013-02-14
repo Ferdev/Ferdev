@@ -28,7 +28,52 @@ layout: default
   <p>As for my methodology, I always make <strong>tdd</strong> over the features to be developed, and I like to manage the project with agile tools like "Pivotal Tracker", since they help me to manage both the pace of the project and the client's expectatives.</p>
 
   <p>If you're still interested in hiring me, that's great! I'll be glad to hear
-    about your project. For that, please, <strong><a href="/contact-me.html#project-info-form">fill the following form</a></strong>. The more information you provide me about your project, the better my estimation about it will be.</p>
+    about your project. For that, please, <strong><a href="#project-info-form">fill the following form</a></strong>. The more information you provide me about your project, the better my estimation about it will be.</p>
 
-
+<form id="project-info-form" method="post" action="/send-project-info">
+    <fieldset>
+      <legend>
+        Personal info&nbsp;
+      </legend>
+      <div class="field email">
+        <label for="contact-name" aria-hidden="true" class="icon-user"></label><!--
+        --><input id="contact-name" name="name" placeholder="Your name (required)" type="text" required="true"/>
+      </div>
+      <div class="field name">
+        <label for="contact-email" aria-hidden="true" class="icon-at"></label><!--
+        --><input id="contact-email" name="email" placeholder="Your email (required)" type="email" required="true"/>
+      </div>
+      <div class="field company">
+        <label for="contact-company" aria-hidden="true" class="icon-office"></label><!--
+        --><input id="contact-company" name="company" placeholder="Your company" type="text" />
+      </div>
+      <div class="field url">
+        <label for="contact-url" aria-hidden="true" class="icon-link"></label><!--
+        --><input id="contact-url" name="url" placeholder="URL of your project or company" type="text" />
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Project info&nbsp;
+      </legend>
+      <div class="field budget">
+        <label for="contact-budget" aria-hidden="true" class="icon-coin"></label><!--
+        --><input id="contact-budget" name="budget" placeholder="Your budget (required)" type="text" required="true"/>
+      </div>
+      <div class="field duration">
+        <label for="contact-duration" aria-hidden="true" class="icon-clock"></label><!--
+        --><input id="contact-duration" name="duration" placeholder="Estimated project duration" type="text" />
+      </div>
+      <div class="field description">
+        <label for="contact-description" aria-hidden="true" class="icon-pencil"></label><!--
+        --><textarea id="contact-description" name="description" placeholder="Description of the project (required)" rows="10" cols="30" required="true"></textarea>
+      </div>
+      <button>
+        <div>
+          send form <span aria-hidden="true" class="icon-arrow-right"></span>
+          sending... <span aria-hidden="true" class="icon-spinner"></span>
+        </div>
+      </button>
+    </fieldset>
+  </form>
 </section>
