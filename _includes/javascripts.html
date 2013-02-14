@@ -7,8 +7,34 @@
 	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
-	try {
-		var pageTracker = _gat._getTracker("UA-6392398-3");
-		pageTracker._trackPageview();
-	} catch(err) {}
+    var useAnalytics = true;
+
+    try {
+        //Turn off analytics if 'analytics=off' is included as a request parameter.
+        var parameters = window.location.search.split('&');
+        if (parameters[0]) {
+            parameters[0] = parameters[0].replace('?', '');
+        }
+        for (var i = 0; i < parameters.length; i++) {
+            var values = parameters[i].split('=');
+            if (values[0] == 'analytics' && values[1] == 'off') {
+                useAnalytics = false;
+            }
+        }
+
+        //Turn off analytics if 'localhost' is the host
+        if (window.location.host == 'localhost') {
+            useAnalytics = false;
+        }
+    } catch(e) {
+        //Just in case something goes wrong...
+        useAnalytics = true;
+    }
+
+    if (useAnalytics) {
+      try {
+        var pageTracker = _gat._getTracker("UA-6392398-3");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    }
 </script>
