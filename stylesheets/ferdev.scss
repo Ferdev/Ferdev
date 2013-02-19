@@ -60,6 +60,11 @@ html {
 
       }
 
+      ul {
+        list-style-position: inside;
+        padding-left: 15px;
+      }
+
       #comments {
         margin: 40px 0;
 
@@ -93,6 +98,8 @@ html {
       strong {
         font-weight: normal;
       }
+
+
     }
 
     & > header {
