@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 'Pentadactyl: the reason why I still use Firefox.'
-branch-id:
-branch-url:
+branch-id: ijFhEEVYgT0
+branch-url: http://branch.com/b/pentadactyl-the-reason-why-i-still-use-firefox
 ---
 I'm a vim fanatic (vim neanderthal, say some of my colleages). I'm writting this post in vim, I code using vim, manage my tasks using vim and I wish I could do everything in front of my computer with vim.
 
