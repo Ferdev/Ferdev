@@ -8,6 +8,7 @@
 html {
 
   body {
+    position: relative;
     @include background-image( url("/images/noise.png"), radial-gradient(50% 0%, circle cover, #2b8eff, #2b8eff 0%, #2272cc 100%));
     background-repeat: repeat, no-repeat;
     width: 830px;
@@ -566,6 +567,7 @@ html {
 
       form {
         width: 501px;
+        padding-bottom: 200px;
 
         fieldset {
           border: 0;
@@ -675,9 +677,12 @@ html {
     }
 
     footer {
+      position: absolute;
+      bottom: 0;
+      width: 86.5%;
       border-top: 1px dotted rgba(255, 255, 255, 0.4);
       margin-top: 200px;
-      padding: 50px 0 20px;
+      padding: 20px 0;
       text-align: center;
     }
   }

@@ -4,7 +4,7 @@
  <title>Fernando Espinosa - Ferdev</title>
  <link href="http://ferdev.com/atom.xml" rel="self"/>
  <link href="http://ferdev.com/"/>
- <updated>2013-02-24T20:43:54+01:00</updated>
+ <updated>2013-12-28T19:05:28+01:00</updated>
  <id>http://ferdev.com/</id>
  <author>
    <name>Fernando Espinosa Jiménez</name>
@@ -19,9 +19,9 @@
    <id>http://www.ferdev.com/2013/02/19/pentadactyl-the-reason-i-use-firefox</id>
    <content type="html">&lt;p&gt;I&amp;#8217;m a vim fanatic (vim neanderthal, say some of my colleages). I&amp;#8217;m writting this post in vim, I code using vim, manage my tasks using vim and I wish I could do everything in front of my computer with vim.&lt;/p&gt;
 
-&lt;p&gt;I used to be a Chrome user, as the majority around here, I guess. One day, looking for an extension to Chrome, I ran into a extension called &amp;#8221;&lt;a href='http://vimium.github.com/'&gt;Vimium&lt;/a&gt;&amp;#8221;. Probably it&amp;#8217;s not the first of its kind, but is the first one I found. The idea behind Vimium is to be able to use the vim commands and key mappings in your browser. You can scroll down using &lt;code&gt;j&lt;/code&gt; or &lt;code&gt;d&lt;/code&gt;, scroll up using &lt;code&gt;k&lt;/code&gt; or &lt;code&gt;u&lt;/code&gt;, etc. The Vimium homepage explains it way better than me. I started using it and I fell in love instantly.&lt;/p&gt;
+&lt;p&gt;I used to be a Chrome user, as the majority around here, I guess. One day, looking for an extension to Chrome, I ran into a extension called &amp;#8221;&lt;a href=&#39;http://vimium.github.com/&#39;&gt;Vimium&lt;/a&gt;&amp;#8221;. Probably it&amp;#8217;s not the first of its kind, but is the first one I found. The idea behind Vimium is to be able to use the vim commands and key mappings in your browser. You can scroll down using &lt;code&gt;j&lt;/code&gt; or &lt;code&gt;d&lt;/code&gt;, scroll up using &lt;code&gt;k&lt;/code&gt; or &lt;code&gt;u&lt;/code&gt;, etc. The Vimium homepage explains it way better than me. I started using it and I fell in love instantly.&lt;/p&gt;
 
-&lt;p&gt;But I wanted more. Although my browsing workflow improved a lot, I felt that I was missing something. I started reading in forums and google groups until someone mentioned &amp;#8221;&lt;a href='http://5digits.org/pentadactyl/'&gt;Pentadactyl&lt;/a&gt;&amp;#8221; in one of those messages. He spoke so well of it that I had to try it right away. I opened Firefox and started downloading it.&lt;/p&gt;
+&lt;p&gt;But I wanted more. Although my browsing workflow improved a lot, I felt that I was missing something. I started reading in forums and google groups until someone mentioned &amp;#8221;&lt;a href=&#39;http://5digits.org/pentadactyl/&#39;&gt;Pentadactyl&lt;/a&gt;&amp;#8221; in one of those messages. He spoke so well of it that I had to try it right away. I opened Firefox and started downloading it.&lt;/p&gt;
 &lt;!--break--&gt;
 &lt;p&gt;I must admit that the first time I was overwhelmed. It has so many options is easy to get lost at first. But if you are a regular vim user you&amp;#8217;ll get used to it really fast. For me, the &amp;#8220;awesomest&amp;#8221; features of pentadactyl are:&lt;/p&gt;
 
@@ -51,10 +51,10 @@
 
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;First of all, install &lt;a href='https://github.com/grassofhust/buftabs'&gt;buftabs.js&lt;/a&gt;. It allows you to move your firefox tabs to your pentadactyl status bar. In my setup I&amp;#8217;ve removed all the superflous toolbars from Firefox: the tab bar, the navigation bar, the bookmarks bar&amp;#8230; All of them. With pentadactyl are useless. By the way, you can remove your tab bar with the following command:&lt;/p&gt;
+&lt;p&gt;First of all, install &lt;a href=&#39;https://github.com/grassofhust/buftabs&#39;&gt;buftabs.js&lt;/a&gt;. It allows you to move your firefox tabs to your pentadactyl status bar. In my setup I&amp;#8217;ve removed all the superflous toolbars from Firefox: the tab bar, the navigation bar, the bookmarks bar&amp;#8230; All of them. With pentadactyl are useless. By the way, you can remove your tab bar with the following command:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='ss'&gt;:set&lt;/span&gt; &lt;span class='n'&gt;showtabline&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='n'&gt;never&lt;/span&gt;
+&lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;ss&#39;&gt;:set&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;showtabline&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;=&lt;/span&gt;&lt;span class=&#39;n&#39;&gt;never&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -62,11 +62,11 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Bookmarklets doesn&amp;#8217;t have much sense with pentadactyl. Instead, save the bookmarklet as regular bookmarks and map them to custom keystrokes. For instance, I have the timer of &lt;a href='http://letsfreckle.com/'&gt;letsfreckle.com&lt;/a&gt; stored in a bookmark with the keyword &amp;#8220;timer&amp;#8221;. Then, I mapped that keyword and saved it to my &lt;code&gt;.pentadactylrc&lt;/code&gt; file. This way, to open the letsfreckle timer I just have to type &amp;#8220;timer&amp;#8221; and it&amp;#8217;ll be loaded in a new tab. Neat! This is the mapping command I used:&lt;/p&gt;
+&lt;p&gt;Bookmarklets doesn&amp;#8217;t have much sense with pentadactyl. Instead, save the bookmarklet as regular bookmarks and map them to custom keystrokes. For instance, I have the timer of &lt;a href=&#39;http://letsfreckle.com/&#39;&gt;letsfreckle.com&lt;/a&gt; stored in a bookmark with the keyword &amp;#8220;timer&amp;#8221;. Then, I mapped that keyword and saved it to my &lt;code&gt;.pentadactylrc&lt;/code&gt; file. This way, to open the letsfreckle timer I just have to type &amp;#8220;timer&amp;#8221; and it&amp;#8217;ll be loaded in a new tab. Neat! This is the mapping command I used:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='ss'&gt;:map&lt;/span&gt; &lt;span class='n'&gt;timer&lt;/span&gt; &lt;span class='ss'&gt;:tabopen&lt;/span&gt; &lt;span class='n'&gt;timer&lt;/span&gt;&lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='no'&gt;CR&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
-&lt;span class='ss'&gt;:mkp!&lt;/span&gt;
+&lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;ss&#39;&gt;:map&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;timer&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:tabopen&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;timer&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#39;no&#39;&gt;CR&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#39;ss&#39;&gt;:mkp!&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -74,10 +74,10 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Another cool trick I use for custom search engines is the following. I have installed &lt;a href='https://firefox.maltekraus.de/extensions/add-to-search-bar'&gt;this&lt;/a&gt; Firefox extension. It allows you to add any search engine to your search engines list. Then, you just have to assign a keyword to your search engine to be able to use it with pentadactyl. For instance, I have mapped the &lt;a href='http://dribbble.com/'&gt;dribbble&lt;/a&gt; search engine to the keyword &amp;#8216;dribbble&amp;#8217;, and this to a custom key map named &lt;code&gt;db&lt;/code&gt;. So, any time I want to perform a search in dribbble, I just type &lt;code&gt;db wanted-search-terms&amp;lt;CR&amp;gt;&lt;/code&gt; and this will create a new tab with the dribbble search in it. Really really handy. This is the keymapping I&amp;#8217;m using:&lt;/p&gt;
+&lt;p&gt;Another cool trick I use for custom search engines is the following. I have installed &lt;a href=&#39;https://firefox.maltekraus.de/extensions/add-to-search-bar&#39;&gt;this&lt;/a&gt; Firefox extension. It allows you to add any search engine to your search engines list. Then, you just have to assign a keyword to your search engine to be able to use it with pentadactyl. For instance, I have mapped the &lt;a href=&#39;http://dribbble.com/&#39;&gt;dribbble&lt;/a&gt; search engine to the keyword &amp;#8216;dribbble&amp;#8217;, and this to a custom key map named &lt;code&gt;db&lt;/code&gt;. So, any time I want to perform a search in dribbble, I just type &lt;code&gt;db wanted-search-terms&amp;lt;CR&amp;gt;&lt;/code&gt; and this will create a new tab with the dribbble search in it. Really really handy. This is the keymapping I&amp;#8217;m using:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='ss'&gt;:map&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt; &lt;span class='ss'&gt;:tabopen&lt;/span&gt; &lt;span class='n'&gt;dribbble&lt;/span&gt; 
+&lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;ss&#39;&gt;:map&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;db&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:tabopen&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;dribbble&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
