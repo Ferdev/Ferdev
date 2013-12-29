@@ -5,7 +5,7 @@
     <link>http://www.ferdev.com</link>
     <language>es</language>
     <webMaster>fer@ferdev.com (Fernando Espinosa Jiménez)</webMaster>
-    <pubDate>2013-12-28T19:05:28+01:00</pubDate>
+    <pubDate>2013-12-29T18:03:57+01:00</pubDate>
     <copyright>Copyright 2009-2010</copyright>
     <ttl>60</ttl>
     <description>Freelance Ruby on Rails developer</description>
@@ -15,13 +15,13 @@
       <link>http://www.ferdev.com/2013/02/19/pentadactyl-the-reason-i-use-firefox.html</link>
       <pubDate>2013-02-19 00:00:00 +0100</pubDate>
       <guid>http://www.ferdev.com/2013/02/19/pentadactyl-the-reason-i-use-firefox.html</guid>
-      <description>&lt;p&gt;I&amp;#8217;m a vim fanatic (vim neanderthal, say some of my colleages). I&amp;#8217;m writting this post in vim, I code using vim, manage my tasks using vim and I wish I could do everything in front of my computer with vim.&lt;/p&gt;
+      <description>&lt;p&gt;I’m a vim fanatic (vim neanderthal, say some of my colleages). I’m writting this post in vim, I code using vim, manage my tasks using vim and I wish I could do everything in front of my computer with vim.&lt;/p&gt;
 
-&lt;p&gt;I used to be a Chrome user, as the majority around here, I guess. One day, looking for an extension to Chrome, I ran into a extension called &amp;#8221;&lt;a href=&#39;http://vimium.github.com/&#39;&gt;Vimium&lt;/a&gt;&amp;#8221;. Probably it&amp;#8217;s not the first of its kind, but is the first one I found. The idea behind Vimium is to be able to use the vim commands and key mappings in your browser. You can scroll down using &lt;code&gt;j&lt;/code&gt; or &lt;code&gt;d&lt;/code&gt;, scroll up using &lt;code&gt;k&lt;/code&gt; or &lt;code&gt;u&lt;/code&gt;, etc. The Vimium homepage explains it way better than me. I started using it and I fell in love instantly.&lt;/p&gt;
+&lt;p&gt;I used to be a Chrome user, as the majority around here, I guess. One day, looking for an extension to Chrome, I ran into a extension called ”&lt;a href=&quot;http://vimium.github.com/&quot;&gt;Vimium&lt;/a&gt;”. Probably it’s not the first of its kind, but is the first one I found. The idea behind Vimium is to be able to use the vim commands and key mappings in your browser. You can scroll down using &lt;code&gt;j&lt;/code&gt; or &lt;code&gt;d&lt;/code&gt;, scroll up using &lt;code&gt;k&lt;/code&gt; or &lt;code&gt;u&lt;/code&gt;, etc. The Vimium homepage explains it way better than me. I started using it and I fell in love instantly.&lt;/p&gt;
 
-&lt;p&gt;But I wanted more. Although my browsing workflow improved a lot, I felt that I was missing something. I started reading in forums and google groups until someone mentioned &amp;#8221;&lt;a href=&#39;http://5digits.org/pentadactyl/&#39;&gt;Pentadactyl&lt;/a&gt;&amp;#8221; in one of those messages. He spoke so well of it that I had to try it right away. I opened Firefox and started downloading it.&lt;/p&gt;
+&lt;p&gt;But I wanted more. Although my browsing workflow improved a lot, I felt that I was missing something. I started reading in forums and google groups until someone mentioned ”&lt;a href=&quot;http://5digits.org/pentadactyl/&quot;&gt;Pentadactyl&lt;/a&gt;” in one of those messages. He spoke so well of it that I had to try it right away. I opened Firefox and started downloading it.&lt;/p&gt;
 &lt;!--break--&gt;
-&lt;p&gt;I must admit that the first time I was overwhelmed. It has so many options is easy to get lost at first. But if you are a regular vim user you&amp;#8217;ll get used to it really fast. For me, the &amp;#8220;awesomest&amp;#8221; features of pentadactyl are:&lt;/p&gt;
+&lt;p&gt;I must admit that the first time I was overwhelmed. It has so many options is easy to get lost at first. But if you are a regular vim user you’ll get used to it really fast. For me, the “awesomest” features of pentadactyl are:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;
@@ -48,9 +48,7 @@
 &lt;p&gt;I think the best way to explain how pentadactyl has made me to switch back to Firefox and improved my browsing experience is to share some of my workflow. So, here comes some tips:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;First of all, install &lt;a href=&#39;https://github.com/grassofhust/buftabs&#39;&gt;buftabs.js&lt;/a&gt;. It allows you to move your firefox tabs to your pentadactyl status bar. In my setup I&amp;#8217;ve removed all the superflous toolbars from Firefox: the tab bar, the navigation bar, the bookmarks bar&amp;#8230; All of them. With pentadactyl are useless. By the way, you can remove your tab bar with the following command:&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;First of all, install &lt;a href=&quot;https://github.com/grassofhust/buftabs&quot;&gt;buftabs.js&lt;/a&gt;. It allows you to move your firefox tabs to your pentadactyl status bar. In my setup I’ve removed all the superflous toolbars from Firefox: the tab bar, the navigation bar, the bookmarks bar… All of them. With pentadactyl are useless. By the way, you can remove your tab bar with the following command:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;ss&#39;&gt;:set&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;showtabline&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;=&lt;/span&gt;&lt;span class=&#39;n&#39;&gt;never&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -60,7 +58,7 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Bookmarklets doesn&amp;#8217;t have much sense with pentadactyl. Instead, save the bookmarklet as regular bookmarks and map them to custom keystrokes. For instance, I have the timer of &lt;a href=&#39;http://letsfreckle.com/&#39;&gt;letsfreckle.com&lt;/a&gt; stored in a bookmark with the keyword &amp;#8220;timer&amp;#8221;. Then, I mapped that keyword and saved it to my &lt;code&gt;.pentadactylrc&lt;/code&gt; file. This way, to open the letsfreckle timer I just have to type &amp;#8220;timer&amp;#8221; and it&amp;#8217;ll be loaded in a new tab. Neat! This is the mapping command I used:&lt;/p&gt;
+&lt;p&gt;Bookmarklets doesn’t have much sense with pentadactyl. Instead, save the bookmarklet as regular bookmarks and map them to custom keystrokes. For instance, I have the timer of &lt;a href=&quot;http://letsfreckle.com/&quot;&gt;letsfreckle.com&lt;/a&gt; stored in a bookmark with the keyword “timer”. Then, I mapped that keyword and saved it to my &lt;code&gt;.pentadactylrc&lt;/code&gt; file. This way, to open the letsfreckle timer I just have to type “timer” and it’ll be loaded in a new tab. Neat! This is the mapping command I used:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;ss&#39;&gt;:map&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;timer&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:tabopen&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;timer&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#39;no&#39;&gt;CR&lt;/span&gt;&lt;span class=&#39;o&#39;&gt;&amp;gt;&lt;/span&gt;
@@ -72,14 +70,14 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Another cool trick I use for custom search engines is the following. I have installed &lt;a href=&#39;https://firefox.maltekraus.de/extensions/add-to-search-bar&#39;&gt;this&lt;/a&gt; Firefox extension. It allows you to add any search engine to your search engines list. Then, you just have to assign a keyword to your search engine to be able to use it with pentadactyl. For instance, I have mapped the &lt;a href=&#39;http://dribbble.com/&#39;&gt;dribbble&lt;/a&gt; search engine to the keyword &amp;#8216;dribbble&amp;#8217;, and this to a custom key map named &lt;code&gt;db&lt;/code&gt;. So, any time I want to perform a search in dribbble, I just type &lt;code&gt;db wanted-search-terms&amp;lt;CR&amp;gt;&lt;/code&gt; and this will create a new tab with the dribbble search in it. Really really handy. This is the keymapping I&amp;#8217;m using:&lt;/p&gt;
+&lt;p&gt;Another cool trick I use for custom search engines is the following. I have installed &lt;a href=&quot;https://firefox.maltekraus.de/extensions/add-to-search-bar&quot;&gt;this&lt;/a&gt; Firefox extension. It allows you to add any search engine to your search engines list. Then, you just have to assign a keyword to your search engine to be able to use it with pentadactyl. For instance, I have mapped the &lt;a href=&quot;http://dribbble.com/&quot;&gt;dribbble&lt;/a&gt; search engine to the keyword ‘dribbble’, and this to a custom key map named &lt;code&gt;db&lt;/code&gt;. So, any time I want to perform a search in dribbble, I just type &lt;code&gt;db wanted-search-terms&amp;lt;CR&amp;gt;&lt;/code&gt; and this will create a new tab with the dribbble search in it. Really really handy. This is the keymapping I’m using:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#39;highlight&#39;&gt;&lt;pre&gt;&lt;code class=&#39;ruby&#39;&gt;&lt;span class=&#39;ss&#39;&gt;:map&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;db&lt;/span&gt; &lt;span class=&#39;ss&#39;&gt;:tabopen&lt;/span&gt; &lt;span class=&#39;n&#39;&gt;dribbble&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Privacy is important in pentadactyl, and you can clean all your personal session data with the sanitize command. Cache, cookies, downloads, history&amp;#8230; Everything. You better check the help entry for the sanitize command.&lt;/p&gt;
+&lt;p&gt;Privacy is important in pentadactyl, and you can clean all your personal session data with the sanitize command. Cache, cookies, downloads, history… Everything. You better check the help entry for the sanitize command.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -87,7 +85,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This is just some of the posibilities of pentadactyl. Of course, this power doesn&amp;#8217;t come without drawbacks: Firefox is way slower than other browsers like Chrome, and the debugger is not as good as Web Inspector in Webkit based browsers&amp;#8230; But anyway, pentadactyl is so powerful that won&amp;#8217;t make you miss your old browser never again. I promise you!&lt;/p&gt;</description>
+&lt;p&gt;This is just some of the posibilities of pentadactyl. Of course, this power doesn’t come without drawbacks: Firefox is way slower than other browsers like Chrome, and the debugger is not as good as Web Inspector in Webkit based browsers… But anyway, pentadactyl is so powerful that won’t make you miss your old browser never again. I promise you!&lt;/p&gt;</description>
       
     </item>
     
@@ -96,15 +94,15 @@
       <link>http://www.ferdev.com/2013/02/13/how-to-create-a-web-project-from-scratch.html</link>
       <pubDate>2013-02-13 00:00:00 +0100</pubDate>
       <guid>http://www.ferdev.com/2013/02/13/how-to-create-a-web-project-from-scratch.html</guid>
-      <description>&lt;p&gt;With this article I&amp;#8217;m starting a new series of blog posts about my approach building a new web project from scratch.&lt;/p&gt;
+      <description>&lt;p&gt;With this article I’m starting a new series of blog posts about my approach building a new web project from scratch.&lt;/p&gt;
 
-&lt;p&gt;Since I&amp;#8217;m about to start one, I thought it may be useful for somebody to know the process I&amp;#8217;ll follow, including design, front-end and back-end development, testing, management and all the related stuff.&lt;/p&gt;
+&lt;p&gt;Since I’m about to start one, I thought it may be useful for somebody to know the process I’ll follow, including design, front-end and back-end development, testing, management and all the related stuff.&lt;/p&gt;
 
-&lt;p&gt;I won&amp;#8217;t be talking about the interns of the project, though. Only about the process, and how I use my own techniques for every single aspect of the development of a web project.&lt;/p&gt;
+&lt;p&gt;I won’t be talking about the interns of the project, though. Only about the process, and how I use my own techniques for every single aspect of the development of a web project.&lt;/p&gt;
 
-&lt;p&gt;Also, I&amp;#8217;m not pretending to give a master class about creating web projects. I just want to share my tips &amp;amp; tricks about web development, how I make things, hoping that it would be useful for somebody.&lt;/p&gt;
+&lt;p&gt;Also, I’m not pretending to give a master class about creating web projects. I just want to share my tips &amp;amp; tricks about web development, how I make things, hoping that it would be useful for somebody.&lt;/p&gt;
 
-&lt;p&gt;In the first post, I&amp;#8217;ll talk about defining the scope of the project, the &amp;#8220;minimal-viable-version&amp;#8221; and the tools I usually use for this task.&lt;/p&gt;</description>
+&lt;p&gt;In the first post, I’ll talk about defining the scope of the project, the “minimal-viable-version” and the tools I usually use for this task.&lt;/p&gt;</description>
       
     </item>
     

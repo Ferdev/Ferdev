@@ -115,7 +115,7 @@
 }
 
 @include keyframes(black-background-fade-in) {
-  0%   { background-color: rgba(0, 0, 0, 0); }
+  0%   { background-color: rgba(0, 0, 0, 0); display: block; }
   100% { background-color: rgba(0, 0, 0, 0.85); }
 }
 
@@ -141,7 +141,7 @@
 
 @include keyframes(black-background-fade-out) {
   0%   { background-color: rgba(0, 0, 0, 0.85); }
-  100% { background-color: rgba(0, 0, 0, 0);    }
+  100% { background-color: rgba(0, 0, 0, 0); display: none; z-index: auto; }
 }
 
 @include keyframes(portfolio-detail-title-out) {
@@ -187,6 +187,16 @@
 
 html {
   body {
+
+    .black.show {
+      display: block;
+      @include animation-name(black-background-fade-in);
+    }
+
+    .black.hide {
+      display: block;
+      @include animation-name(black-background-fade-out);
+    }
 
     header hgroup .photo.bounce {
       @include animation-name(bounce);

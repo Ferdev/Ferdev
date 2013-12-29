@@ -104,12 +104,16 @@ var goToTop = function(evt) {
 
 var showPortfolioDetail = function(evt) {
   evt.preventDefault();
+  $('body').find('.black').addClass('show');
+  $('body').find('.black').removeClass('hide');
   $('.portfolio').children('li').removeClass('inactive');
   $(this).closest('li').addClass('active');
 };
 
 var hidePortfolioDetail = function(evt) {
   evt.preventDefault();
+  $('body').find('.black').removeClass('show');
+  $('body').find('.black').addClass('hide');
   $('.portfolio').children('li').removeClass('active');
   $(this).closest('li').addClass('inactive');
 };
