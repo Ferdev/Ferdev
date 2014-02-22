@@ -140,8 +140,8 @@
 }
 
 @include keyframes(black-background-fade-out) {
-  0%   { background-color: rgba(0, 0, 0, 0.85); }
-  100% { background-color: rgba(0, 0, 0, 0); display: none; z-index: auto; }
+  0%   { background-color: rgba(0, 0, 0, 0.85); display: block; }
+  100% { background-color: rgba(0, 0, 0, 0); display: none; z-index: 0; }
 }
 
 @include keyframes(portfolio-detail-title-out) {
